@@ -10,6 +10,14 @@ namespace Text_Based_RPG
     {
         static void Main(string[] args)
         {
+            string map;
+            map = System.IO.File.ReadAllText("Map.txt");
+            Console.WriteLine(map);
+
+            Player player = new Player();
+            player.Movement();
+
+            
         }
     }
 }
