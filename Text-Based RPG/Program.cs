@@ -8,16 +8,33 @@ namespace Text_Based_RPG
 {
     class Program
     {
+
+        static public bool moving = true;
+
         static void Main(string[] args)
         {
-            string map;
-            map = System.IO.File.ReadAllText("Map.txt");
-            Console.WriteLine(map);
+            Console.CursorVisible = false;
+            Map map = new Map();
+            map.DisplayMap();
+            Player player = new Player(10, 3);
+            Enemy enemy = new Enemy(11, 5);
 
-            Player player = new Player();
-            player.Movement();
+            while (moving == true)
+            {
 
-            
+                if (Character.PlayerAlive == true) { player.Movement(); Character.CheckForEnemy(player.PlayerX, enemy.EnemyX, player.PlayerY, enemy.EnemyY); }
+
+                if (Character.EnemyAlive == true) { enemy.Movement(); Character.CheckForPlayer(player.PlayerX, enemy.EnemyX, player.PlayerY, enemy.EnemyY); }
+                if (Character.EnemyAlive == false) { enemy = new Enemy(32, 15); Character.EnemyAlive = true; }  //prototype spawning new enemy
+                
+
+
+
+            }
+
+
         }
+
+        
     }
 }
