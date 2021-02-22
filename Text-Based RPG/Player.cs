@@ -23,14 +23,14 @@ namespace Text_Based_RPG
             Console.WriteLine(Icon);
         }
 
-        public void Movement()
+        public void Movement(Map map)
         {
             ConsoleKeyInfo input;
             input = Console.ReadKey(true);
 
             if (input.KeyChar == 'w')
             {
-                if (mapArray[PlayerY - 1, PlayerX] == "`")
+                if (map.mapArray[PlayerY - 1, PlayerX] == "`")
                 {
 
                     PlayerY = PlayerY - 1;
@@ -39,13 +39,13 @@ namespace Text_Based_RPG
                     Console.SetCursorPosition(PlayerX, PlayerY);
                     Console.WriteLine(Icon);                            // player moves up
                     Console.SetCursorPosition(PlayerX, PlayerY + 1);
-                    Console.Write(mapArray[PlayerY + 1, PlayerX]);      // previous tile is replaced by map tile
+                    Console.Write(map.mapArray[PlayerY + 1, PlayerX]);      // previous tile is replaced by map tile
                 }
                 else { Collision(); }
             }
             else if (input.KeyChar == 'd')
             {
-                if (mapArray[PlayerY, PlayerX + 1] == "`")
+                if (map.mapArray[PlayerY, PlayerX + 1] == "`")
                 {
                     PlayerX = PlayerX + 1;
                     //Console.Clear();
@@ -53,13 +53,13 @@ namespace Text_Based_RPG
                     Console.SetCursorPosition(PlayerX, PlayerY);
                     Console.WriteLine(Icon);                            // player moves right
                     Console.SetCursorPosition(PlayerX - 1, PlayerY);
-                    Console.Write(mapArray[PlayerY, PlayerX - 1]);      // previous tile is replaced by map tile
+                    Console.Write(map.mapArray[PlayerY, PlayerX - 1]);      // previous tile is replaced by map tile
                 }
                 else { Collision(); }
             }
             else if (input.KeyChar == 's')
             {
-                if (mapArray[PlayerY + 1, PlayerX] == "`")
+                if (map.mapArray[PlayerY + 1, PlayerX] == "`")
                 {
                     PlayerY = PlayerY + 1;
                     //Console.Clear();
@@ -67,13 +67,13 @@ namespace Text_Based_RPG
                     Console.SetCursorPosition(PlayerX, PlayerY);
                     Console.WriteLine(Icon);                            // player moves left
                     Console.SetCursorPosition(PlayerX, PlayerY - 1);
-                    Console.Write(mapArray[PlayerY - 1, PlayerX]);      // previous tile is replaced by map tile
+                    Console.Write(map.mapArray[PlayerY - 1, PlayerX]);      // previous tile is replaced by map tile
                 }
                 else { Collision(); }
             }
             else if (input.KeyChar == 'a')
             {
-                if (mapArray[PlayerY, PlayerX - 1] == "`")
+                if (map.mapArray[PlayerY, PlayerX - 1] == "`")
                 {
                     PlayerX = PlayerX - 1;
                     //Console.Clear();
@@ -81,10 +81,9 @@ namespace Text_Based_RPG
                     Console.SetCursorPosition(PlayerX, PlayerY);
                     Console.WriteLine(Icon);                            // player moves down
                     Console.SetCursorPosition(PlayerX + 1, PlayerY);
-                    Console.Write(mapArray[PlayerY, PlayerX + 1]);      // previous tile is replaced by map tile
+                    Console.Write(map.mapArray[PlayerY, PlayerX + 1]);      // previous tile is replaced by map tile
                 }
-                else 
-                { Collision(); }
+                else { Collision(); }
             }
 
 

@@ -26,7 +26,7 @@ namespace Text_Based_RPG
             Console.WriteLine(Icon);
         }
 
-        public void Movement()
+        public void Movement(Map map)
         {
 
             
@@ -39,7 +39,7 @@ namespace Text_Based_RPG
                 Console.SetCursorPosition(EnemyX, EnemyY);
                 Console.WriteLine(Icon);                            // enemy moves right for 10 spaces 
                 Console.SetCursorPosition(EnemyX - 1, EnemyY);
-                Console.Write(mapArray[EnemyY, EnemyX - 1]);
+                Console.Write(map.mapArray[EnemyY, EnemyX - 1]);
 
                 if (right > 9)
                 {
@@ -57,7 +57,7 @@ namespace Text_Based_RPG
                 Console.SetCursorPosition(EnemyX, EnemyY);
                 Console.WriteLine(Icon);                            // enemy moves back to the left for 10 spaces 
                 Console.SetCursorPosition(EnemyX + 1, EnemyY);
-                Console.Write(mapArray[EnemyY, EnemyX + 1]);
+                Console.Write(map.mapArray[EnemyY, EnemyX + 1]);
 
                 if (left > 9)
                 {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    class Character : Map
+    class Character
     {
         public int PlayerX;
         public int PlayerY;
@@ -27,7 +27,7 @@ namespace Text_Based_RPG
                 {
                     Console.SetCursorPosition(51, 1);   // player checks if they have attacked the enemy
                     Console.WriteLine("Enemy hit");
-                    EnemyAlive = false;
+                    EnemyAlive = false;                 // enemy = null; <---- save for future use
                 }
             }
         }
