@@ -17,8 +17,8 @@ namespace Text_Based_RPG
         public Player(int x, int y)
         {
             this.Icon = "@";
-            this.PlayerX = x;
-            this.PlayerY = y;
+            this.x = x;
+            this.y = y;
             Console.SetCursorPosition(x, y);
             Console.WriteLine(Icon);
         }
@@ -30,58 +30,58 @@ namespace Text_Based_RPG
 
             if (input.KeyChar == 'w')
             {
-                if (map.mapArray[PlayerY - 1, PlayerX] == "`")
+                if (map.IsFloor(y - 1, x) == true)
                 {
 
-                    PlayerY = PlayerY - 1;
+                    y = y - 1;
                     //Console.Clear();
                     //DisplayMap();
-                    Console.SetCursorPosition(PlayerX, PlayerY);
+                    Console.SetCursorPosition(x, y);
                     Console.WriteLine(Icon);                            // player moves up
-                    Console.SetCursorPosition(PlayerX, PlayerY + 1);
-                    Console.Write(map.mapArray[PlayerY + 1, PlayerX]);      // previous tile is replaced by map tile
+                    Console.SetCursorPosition(x, y + 1);
+                    Console.Write(map.mapArray[y + 1, x]);      // previous tile is replaced by map tile
                 }
                 else { Collision(); }
             }
             else if (input.KeyChar == 'd')
             {
-                if (map.mapArray[PlayerY, PlayerX + 1] == "`")
+                if (map.IsFloor(y, x + 1) == true)
                 {
-                    PlayerX = PlayerX + 1;
+                    x = x + 1;
                     //Console.Clear();
                     //DisplayMap();
-                    Console.SetCursorPosition(PlayerX, PlayerY);
+                    Console.SetCursorPosition(x, y);
                     Console.WriteLine(Icon);                            // player moves right
-                    Console.SetCursorPosition(PlayerX - 1, PlayerY);
-                    Console.Write(map.mapArray[PlayerY, PlayerX - 1]);      // previous tile is replaced by map tile
+                    Console.SetCursorPosition(x - 1, y);
+                    Console.Write(map.mapArray[y, x - 1]);      // previous tile is replaced by map tile
                 }
                 else { Collision(); }
             }
             else if (input.KeyChar == 's')
             {
-                if (map.mapArray[PlayerY + 1, PlayerX] == "`")
+                if (map.IsFloor(y + 1, x) == true)
                 {
-                    PlayerY = PlayerY + 1;
+                    y = y + 1;
                     //Console.Clear();
                     //DisplayMap();
-                    Console.SetCursorPosition(PlayerX, PlayerY);
+                    Console.SetCursorPosition(x, y);
                     Console.WriteLine(Icon);                            // player moves left
-                    Console.SetCursorPosition(PlayerX, PlayerY - 1);
-                    Console.Write(map.mapArray[PlayerY - 1, PlayerX]);      // previous tile is replaced by map tile
+                    Console.SetCursorPosition(x, y - 1);
+                    Console.Write(map.mapArray[y - 1, x]);      // previous tile is replaced by map tile
                 }
                 else { Collision(); }
             }
             else if (input.KeyChar == 'a')
             {
-                if (map.mapArray[PlayerY, PlayerX - 1] == "`")
+                if (map.IsFloor(y, x - 1) == true)
                 {
-                    PlayerX = PlayerX - 1;
+                    x = x - 1;
                     //Console.Clear();
                     //DisplayMap();
-                    Console.SetCursorPosition(PlayerX, PlayerY);
+                    Console.SetCursorPosition(x, y);
                     Console.WriteLine(Icon);                            // player moves down
-                    Console.SetCursorPosition(PlayerX + 1, PlayerY);
-                    Console.Write(map.mapArray[PlayerY, PlayerX + 1]);      // previous tile is replaced by map tile
+                    Console.SetCursorPosition(x + 1, y);
+                    Console.Write(map.mapArray[y, x + 1]);      // previous tile is replaced by map tile
                 }
                 else { Collision(); }
             }

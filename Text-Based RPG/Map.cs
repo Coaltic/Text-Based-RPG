@@ -9,8 +9,8 @@ namespace Text_Based_RPG
     class Map
     {
 
-        public int x = 0;
-        public int y = 0;
+        //public int x = 0;
+        //public int y = 0;
 
         public string[,] mapArray = new string[,]
                 {
@@ -53,6 +53,16 @@ namespace Text_Based_RPG
 
                 Console.WriteLine("");
             }
+
+        }
+
+        public bool IsFloor(int x, int y)
+        {
+            if (mapArray[x, y] == "`")
+            {
+                return true;
+            }
+            else return false;
 
         }
     }

@@ -8,10 +8,9 @@ namespace Text_Based_RPG
 {
     class Character
     {
-        public int PlayerX;
-        public int PlayerY;
-        public int EnemyX;
-        public int EnemyY;
+        public int x;
+        public int y;
+
         public static bool EnemyAlive = true;
         public static bool PlayerAlive = true;
 
@@ -19,9 +18,9 @@ namespace Text_Based_RPG
 
 
 
-        public static void CheckForEnemy(int PlayerX, int EnemyX, int PlayerY, int EnemyY)
+        /*public static void CheckForEnemy(int PlayerX, int EnemyX, int PlayerY, int EnemyY)
         {
-            if (EnemyX == PlayerX)
+            if (EnemyX == Player.x)
             {
                 if (EnemyY == PlayerY)
                 {
@@ -30,7 +29,7 @@ namespace Text_Based_RPG
                     EnemyAlive = false;                 // enemy = null; <---- save for future use
                 }
             }
-        }
+        }*/
 
         public static void CheckForPlayer(int PlayerX, int EnemyX, int PlayerY, int EnemyY)
         {

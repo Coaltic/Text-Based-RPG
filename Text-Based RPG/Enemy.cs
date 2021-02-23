@@ -20,8 +20,8 @@ namespace Text_Based_RPG
         public Enemy(int x, int y)
         {
             this.Icon = "E";
-            this.EnemyX = x;
-            this.EnemyY = y;
+            this.x = x;
+            this.y = y;
             Console.SetCursorPosition(x, y);
             Console.WriteLine(Icon);
         }
@@ -35,11 +35,11 @@ namespace Text_Based_RPG
             {
 
                 right++;
-                EnemyX++;
-                Console.SetCursorPosition(EnemyX, EnemyY);
+                x++;
+                Console.SetCursorPosition(x, y);
                 Console.WriteLine(Icon);                            // enemy moves right for 10 spaces 
-                Console.SetCursorPosition(EnemyX - 1, EnemyY);
-                Console.Write(map.mapArray[EnemyY, EnemyX - 1]);
+                Console.SetCursorPosition(x - 1, y);
+                Console.Write(map.mapArray[y, x - 1]);
 
                 if (right > 9)
                 {
@@ -53,11 +53,11 @@ namespace Text_Based_RPG
             else if (checkpoint == true)
             {
                 left++;
-                EnemyX--;
-                Console.SetCursorPosition(EnemyX, EnemyY);
+                x--;
+                Console.SetCursorPosition(x, y);
                 Console.WriteLine(Icon);                            // enemy moves back to the left for 10 spaces 
-                Console.SetCursorPosition(EnemyX + 1, EnemyY);
-                Console.Write(map.mapArray[EnemyY, EnemyX + 1]);
+                Console.SetCursorPosition(x + 1, y);
+                Console.Write(map.mapArray[y, x + 1]);
 
                 if (left > 9)
                 {
