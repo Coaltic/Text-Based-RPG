@@ -14,90 +14,31 @@ namespace Text_Based_RPG
         public bool checkpoint2 = false;
         public int point1 = 35;
         public int point2 = 25;
-        int right = 0;
-        int left = 0;
+        public int right = 0;
+        public int left = 0;
 
-        public Enemy(int x, int y)
+        public Enemy()
         {
-            this.Icon = "E";
-            this.x = x;
-            this.y = y;
-            Console.SetCursorPosition(x, y);
-            Console.WriteLine(Icon);
+            
         }
 
-        public void Movement(Map map)
+        
+
+        public static void CheckForPlayer(int PlayerX, int EnemyX, int PlayerY, int EnemyY, Player player)
         {
-
-            
-
-            if (checkpoint == false)
+            if (EnemyX == PlayerX)
             {
-
-                right++;
-                x++;
-                Console.SetCursorPosition(x, y);
-                Console.WriteLine(Icon);                            // enemy moves right for 10 spaces 
-                Console.SetCursorPosition(x - 1, y);
-                Console.Write(map.mapArray[y, x - 1]);
-
-                if (right > 9)
+                if (EnemyY == PlayerY)
                 {
-                    right = 0;
-                    checkpoint = true;
-                }
-
-                
-                
-            }
-            else if (checkpoint == true)
-            {
-                left++;
-                x--;
-                Console.SetCursorPosition(x, y);
-                Console.WriteLine(Icon);                            // enemy moves back to the left for 10 spaces 
-                Console.SetCursorPosition(x + 1, y);
-                Console.Write(map.mapArray[y, x + 1]);
-
-                if (left > 9)
-                {
-                    left = 0;
-                    checkpoint = false;
+                    Console.SetCursorPosition(51, 1);
+                    Console.WriteLine("Player hit");
+                    Console.SetCursorPosition(51, 2);   // enemy checks if they have attacked the player
+                    Console.WriteLine("GAME OVER");
+                    GameManager.gameplay = false;
+                    player.alive = false;
+                    Console.ReadKey(true);
                 }
             }
-
-
-
-
-            /*ConsoleKeyInfo input;
-            input = Player.input;
-
-
-            if (input.KeyChar == 'w')
-            {
-                y = y + 1; Console.SetCursorPosition(x, y);
-                Console.WriteLine(enemyIcon);
-            }
-            else if (input.KeyChar == 'd')
-            {
-                x = x - 1; Console.SetCursorPosition(x, y);         // original enemy AI concept, could be used for a 2-player mode
-                Console.WriteLine(enemyIcon);
-            }
-            else if (input.KeyChar == 's')
-            {
-                y = y - 1; Console.SetCursorPosition(x, y);
-                Console.WriteLine(enemyIcon);
-            }
-            else if (input.KeyChar == 'a')
-            {
-                x = x + 1; Console.SetCursorPosition(x, y);
-                Console.WriteLine(enemyIcon);
-            }*/
-
-            
-
-
-
         }
     }
 }

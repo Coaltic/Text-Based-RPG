@@ -56,9 +56,9 @@ namespace Text_Based_RPG
 
         }
 
-        public bool IsFloor(int x, int y)
+        public bool IsFloor(int y, int x)
         {
-            if (mapArray[x, y] == "`")
+            if (mapArray[y, x] == "`")
             {
                 return true;
             }

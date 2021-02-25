@@ -11,42 +11,12 @@ namespace Text_Based_RPG
         public int x;
         public int y;
 
-        public static bool EnemyAlive = true;
-        public static bool PlayerAlive = true;
+        public bool alive;
 
         public string Icon;
 
 
-
-        /*public static void CheckForEnemy(int PlayerX, int EnemyX, int PlayerY, int EnemyY)
-        {
-            if (EnemyX == Player.x)
-            {
-                if (EnemyY == PlayerY)
-                {
-                    Console.SetCursorPosition(51, 1);   // player checks if they have attacked the enemy
-                    Console.WriteLine("Enemy hit");
-                    EnemyAlive = false;                 // enemy = null; <---- save for future use
-                }
-            }
-        }*/
-
-        public static void CheckForPlayer(int PlayerX, int EnemyX, int PlayerY, int EnemyY)
-        {
-            if (EnemyX == PlayerX)
-            {
-                if (EnemyY == PlayerY)
-                {
-                    Console.SetCursorPosition(51, 1);
-                    Console.WriteLine("Player hit");
-                    Console.SetCursorPosition(51, 2);   // enemy checks if they have attacked the player
-                    Console.WriteLine("GAME OVER");
-                    Program.moving = false;
-                    PlayerAlive = false;
-                    Console.ReadKey(true);
-                }
-            }
-        }
+        
 
 
     }

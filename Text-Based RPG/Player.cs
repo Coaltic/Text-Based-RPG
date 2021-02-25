@@ -19,6 +19,7 @@ namespace Text_Based_RPG
             this.Icon = "@";
             this.x = x;
             this.y = y;
+            this.alive = true;
             Console.SetCursorPosition(x, y);
             Console.WriteLine(Icon);
         }
@@ -94,7 +95,20 @@ namespace Text_Based_RPG
         {
             Console.Beep(100, 200);                                     // left as a method for future possible additions
         }
-        
+
+        public static void CheckForEnemy(int PlayerX, int EnemyX, int PlayerY, int EnemyY, Enemy enemy)
+        {
+            if (EnemyX == PlayerX)
+            {
+                if (EnemyY == PlayerY)
+                {
+                    Console.SetCursorPosition(51, 1);   // player checks if they have attacked the enemy
+                    Console.WriteLine("Enemy hit");
+                    enemy.alive = false;                 // enemy = null; <---- save for future use
+                }
+            }
+        }
+
 
     }
 }
