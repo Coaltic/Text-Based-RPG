@@ -24,6 +24,8 @@ namespace Text_Based_RPG
             Console.WriteLine(Icon);
         }
 
+        
+
         public void Movement(Map map)
         {
             ConsoleKeyInfo input;
@@ -34,13 +36,12 @@ namespace Text_Based_RPG
                 if (map.IsFloor(y - 1, x) == true)
                 {
 
-                    y = y - 1;
-                    //Console.Clear();
-                    //DisplayMap();
+                    //y = y - 1;
                     Console.SetCursorPosition(x, y);
-                    Console.WriteLine(Icon);                            // player moves up
-                    Console.SetCursorPosition(x, y + 1);
-                    Console.Write(map.mapArray[y + 1, x]);      // previous tile is replaced by map tile
+                    Console.Write(map.mapArray[y, x]);                            // player moves up
+                    y = y - 1;
+                    
+                          // previous tile is replaced by map tile
                 }
                 else { Collision(); }
             }
@@ -48,13 +49,12 @@ namespace Text_Based_RPG
             {
                 if (map.IsFloor(y, x + 1) == true)
                 {
-                    x = x + 1;
-                    //Console.Clear();
-                    //DisplayMap();
+                    
                     Console.SetCursorPosition(x, y);
-                    Console.WriteLine(Icon);                            // player moves right
-                    Console.SetCursorPosition(x - 1, y);
-                    Console.Write(map.mapArray[y, x - 1]);      // previous tile is replaced by map tile
+                    Console.Write(map.mapArray[y, x]);
+                    x = x + 1;                                  // player moves right
+                    
+                                                        // previous tile is replaced by map tile
                 }
                 else { Collision(); }
             }
@@ -62,13 +62,12 @@ namespace Text_Based_RPG
             {
                 if (map.IsFloor(y + 1, x) == true)
                 {
-                    y = y + 1;
-                    //Console.Clear();
-                    //DisplayMap();
+                    
                     Console.SetCursorPosition(x, y);
-                    Console.WriteLine(Icon);                            // player moves left
-                    Console.SetCursorPosition(x, y - 1);
-                    Console.Write(map.mapArray[y - 1, x]);      // previous tile is replaced by map tile
+                    Console.Write(map.mapArray[y, x]);                             // player moves left
+                    y = y + 1;
+                    
+                                                        // previous tile is replaced by map tile
                 }
                 else { Collision(); }
             }
@@ -76,13 +75,12 @@ namespace Text_Based_RPG
             {
                 if (map.IsFloor(y, x - 1) == true)
                 {
-                    x = x - 1;
-                    //Console.Clear();
-                    //DisplayMap();
+                    
                     Console.SetCursorPosition(x, y);
-                    Console.WriteLine(Icon);                            // player moves down
-                    Console.SetCursorPosition(x + 1, y);
-                    Console.Write(map.mapArray[y, x + 1]);      // previous tile is replaced by map tile
+                    Console.Write(map.mapArray[y, x]);                         // player moves down
+                    x = x - 1;
+                    
+                                                        // previous tile is replaced by map tile
                 }
                 else { Collision(); }
             }
@@ -96,15 +94,17 @@ namespace Text_Based_RPG
             Console.Beep(100, 200);                                     // left as a method for future possible additions
         }
 
-        public static void CheckForEnemy(int PlayerX, int EnemyX, int PlayerY, int EnemyY, Enemy enemy)
+        public static void CheckForEnemy(Player player, Enemy enemy)
         {
-            if (EnemyX == PlayerX)
+            
+            if (enemy.x == player.x)
             {
-                if (EnemyY == PlayerY)
+                if (enemy.y == player.y)
                 {
                     Console.SetCursorPosition(51, 1);   // player checks if they have attacked the enemy
                     Console.WriteLine("Enemy hit");
-                    enemy.alive = false;                 // enemy = null; <---- save for future use
+                    enemy.alive = false;  
+                                                        // enemy = null; <---- save for future use
                 }
             }
         }

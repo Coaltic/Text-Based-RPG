@@ -13,12 +13,13 @@ namespace Text_Based_RPG
             this.Icon = "S";
             this.x = x;
             this.y = y;
+            this.speed = 3;
             this.alive = true;
             Console.SetCursorPosition(x, y);
             Console.WriteLine(Icon);
         }
 
-        public void Movement(Map map)
+        /*public void Movement(Map map)
         {
 
             if (checkpoint == false)
@@ -54,10 +55,10 @@ namespace Text_Based_RPG
                     left = 0;
                     checkpoint = false;
                 }
-            }
+            }*/
 
 
 
-        }
+        
     }
 }

@@ -18,38 +18,62 @@ namespace Text_Based_RPG
 
             Console.CursorVisible = false;
             Map map = new Map();
-            map.DisplayMap();
+            Hud hud = new Hud();
             Player player = new Player(10, 3);
             Spider spider = new Spider(11, 5);
             Zombie zombie = new Zombie(32, 15);
+            Rat rat = new Rat(10, 16);
 
-            gameplay = true;
+            hud.DisplayMenu();
+            map.DisplayMap();
 
             while (gameplay == true)
             {
+             
 
                 if (player.alive == true)
                 {
                     player.Movement(map);
-                    
+                    player.Draw(player.x, player.y);
+                    Player.CheckForEnemy(player, spider);
+                    Player.CheckForEnemy(player, zombie);
+                    Player.CheckForEnemy(player, rat);
+
                 }
+                else if (player.alive == false)
+                {
+                    gameplay = false;
+                    Console.ReadKey(true);
+                }
+                
+                    
 
                 if (spider.alive == true)
                 {
-                    Player.CheckForEnemy(player.x, spider.x, player.y, spider.y, spider);
-
-                    if (spider.alive == true)
-                    {
-                        spider.Movement(map);
-                        Spider.CheckForPlayer(player.x, spider.x, player.y, spider.y, player);
-                    }
+                    Enemy.CheckForPlayer(spider, player);
+                    spider.Movement(map);
+                    spider.Draw(spider.x, spider.y);
+                    
                 }
 
-                /*if (Spider.alive == false)
+
+                if (zombie.alive == true)
                 {
-                    //spider = new Spider(32, 15);
-                    //Spider.alive = true;  //prototype spawning new spider
-                }*/
+                    Enemy.CheckForPlayer(zombie, player);
+                    zombie.Movement(map);
+                    zombie.Draw(zombie.x, zombie.y);
+
+                }
+
+                if (rat.alive == true)
+                {
+                    Enemy.CheckForPlayer(rat, player);
+                    rat.Movement(map);
+                    rat.Draw(rat.x, rat.y);
+
+                }
+
+                
 
 
 

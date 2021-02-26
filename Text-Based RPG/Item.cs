@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    class Character
+    class Item
     {
         public int x;
         public int y;
 
-        public bool alive;
+        public bool active;
 
         public string Icon;
-
 
 
         public void Draw(int x, int y)
@@ -22,8 +21,5 @@ namespace Text_Based_RPG
             Console.SetCursorPosition(x, y);
             Console.Write(Icon);
         }
-
     }
-
-    
 }

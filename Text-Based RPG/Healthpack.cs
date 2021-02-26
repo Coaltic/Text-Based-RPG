@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    class Zombie : Enemy
+    class Healthpack : Item
     {
-        public Zombie(int x, int y)
+        public Healthpack(int x, int y)
         {
-            this.Icon = "Z";
+            this.Icon = "H";
             this.x = x;
             this.y = y;
-            this.speed = 1;
-            this.alive = true;
+            this.active = true;
             Console.SetCursorPosition(x, y);
             Console.WriteLine(Icon);
         }
-
     }
 }
