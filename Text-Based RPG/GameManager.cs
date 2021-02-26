@@ -46,11 +46,15 @@ namespace Text_Based_RPG
                     
                     player.Update(map);
                     player.Draw(player.x, player.y);
-                    sword.Update(player, sword);
-                    key.Update(player, key);
                     Player.CheckForEnemy(player, spider);
                     Player.CheckForEnemy(player, zombie);
-                    Player.CheckForEnemy(player, rat);
+                    Player.CheckForEnemy(player, rat);  
+                    sword.Update(player, sword);
+                    healthpack.Update(player, healthpack);
+                    key.Update(player, key);
+                    key.Update(player, key2);
+                    
+                    
                     Hud.ShowPlayerStats(player);
 
                 }
@@ -62,25 +66,27 @@ namespace Text_Based_RPG
 
                 if (spider.alive == true)
                 {
-                    Enemy.CheckForPlayer(spider, player);
+                    
                     spider.Update(map);
                     spider.Draw(spider.x, spider.y);
+                    Enemy.CheckForPlayer(spider, player);
 
                 }
 
                 if (zombie.alive == true)
                 {
-                    Enemy.CheckForPlayer(zombie, player);
+                    
                     zombie.Update(map);
                     zombie.Draw(zombie.x, zombie.y);
+                    Enemy.CheckForPlayer(zombie, player);
 
                 }
 
                 if (rat.alive == true)
                 {
-                    Enemy.CheckForPlayer(rat, player);
                     rat.Update(map);
                     rat.Draw(rat.x, rat.y);
+                    Enemy.CheckForPlayer(rat, player);
 
                 }
 

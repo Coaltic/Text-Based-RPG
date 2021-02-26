@@ -54,5 +54,13 @@ namespace Text_Based_RPG
             Console.WriteLine("Key has been picked up");
             hudLine++;
         }
+
+        static public void HealthpackActive()
+        {
+            hudLine++;
+            Console.SetCursorPosition(170, hudLine);
+            Console.WriteLine("Healthpack has been picked up");
+            hudLine++;
+        }
     }
 }

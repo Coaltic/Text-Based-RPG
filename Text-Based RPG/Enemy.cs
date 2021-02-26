@@ -72,14 +72,14 @@ namespace Text_Based_RPG
         {
             
             
-                if (enemy.x == player.x)
+                if (player.x == enemy.x && player.y == enemy.y)
                 {
-                    if (enemy.y == player.y)
-                    {
+                    
+                    
 
                         player.TakeDamage(player, enemy);
 
-                    }
+                    
                 }
                 
 
@@ -94,16 +94,18 @@ namespace Text_Based_RPG
             }
 
             enemy.health = enemy.health - (player.sword + player.attack);
-                
+            
+
             if (enemy.health <= 0)
             {
                 enemy.health = 0;
                 enemy.alive = false;
-                Hud.ShowEnemyStats(enemy);
-                enemy = null;
+                
+                
             }
 
-            
+            Hud.ShowEnemyStats(enemy);
+
         }
     }
 }

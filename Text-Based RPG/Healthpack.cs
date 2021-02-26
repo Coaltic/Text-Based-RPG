@@ -22,13 +22,13 @@ namespace Text_Based_RPG
         {
             if (player.x == healthpack.x)
             {
-                if (player.y == healthpack.y)
-                {
+                if (player.y == healthpack.y && player.x == healthpack.x)
+                
 
                     player.health = player.health + 75;
-                    Hud.SwordActive();
+                    Hud.HealthpackActive();
 
-                }
+                
             }
         }
 

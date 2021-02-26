@@ -96,29 +96,31 @@ namespace Text_Based_RPG
         public static void CheckForEnemy(Player player, Enemy enemy)
         {
             
-            if (enemy.x == player.x)
+            if (enemy.x == player.x && enemy.y == player.y)
             {
-                if (enemy.y == player.y)
-                {
+                
+                
                     enemy.TakeDamage(enemy, player);
                                                         // enemy = null; <---- save for future use
-                }
+                
             }
         }
 
         public void TakeDamage(Player player, Enemy enemy)
         {
             player.health = player.health - (enemy.attack);
+            
 
             if (player.health <= 0)
             {
                 player.health = 0;
                 player.alive = false;
-                Hud.ShowEnemyStats(enemy);
+                
                 player = null;
             }
 
-            
+            Hud.ShowPlayerStats(player);
+
         }
 
 
