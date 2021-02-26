@@ -23,22 +23,22 @@ namespace Text_Based_RPG
             
         }
 
-        public void Movement(Map map)
+        public void Update(Map map)
         {
 
             if (checkpoint == false)
             {
-                for (int movementLoop = 0; movementLoop <= speed; movementLoop++)
-                {
+                
+                
                     right = right + 1;
                     Console.SetCursorPosition(x, y);
-                    Console.Write(map.mapArray[y, x]);
-                    x = x + 1;                                  // player moves right
-                }
+                    Console.Write(map.map[x, y]);
+                    x = x + speed;                                  // player moves right
+                
                 
 
 
-                if (right > 10)
+                if (right >= 10)
                 {
                     right = 0;
                     checkpoint = true;
@@ -49,16 +49,16 @@ namespace Text_Based_RPG
             }
             else if (checkpoint == true)
             {
-                for (int movementLoop = 0; movementLoop <= speed; movementLoop++)
-                {
+                
+                
                     left = left + 1;
                     Console.SetCursorPosition(x, y);
-                    Console.Write(map.mapArray[y, x]);                         // player moves down
-                    x = x - 1;
-                }
+                    Console.Write(map.map[x, y]);                         // player moves down
+                    x = x - speed;
+                
                 
 
-                if (left > 10)
+                if (left >= 10)
                 {
                     left = 0;
                     checkpoint = false;
@@ -70,24 +70,40 @@ namespace Text_Based_RPG
 
         public static void CheckForPlayer(Enemy enemy, Player player)
         {
-            for (int loop = 0; loop <= enemy.speed; loop++)
-            {
-                if ((enemy.x + loop == player.x) || (enemy.x - loop == player.x))
+            
+            
+                if (enemy.x == player.x)
                 {
                     if (enemy.y == player.y)
                     {
-                        Console.SetCursorPosition(51, 1);
-                        Console.WriteLine("Player hit");
-                        Console.SetCursorPosition(51, 2);   // enemy checks if they have attacked the player
-                        Console.WriteLine("GAME OVER");
-                        //GameManager.gameplay = false;
-                        player.alive = false;
-                        //Console.ReadKey(true);
+
+                        player.TakeDamage(player, enemy);
+
                     }
                 }
                 
 
+            
+        }
+
+        public void TakeDamage(Enemy enemy, Player player)
+        {
+            if (Sword.hasSword)
+            {
+                player.sword = 15;
             }
+
+            enemy.health = enemy.health - (player.sword + player.attack);
+                
+            if (enemy.health <= 0)
+            {
+                enemy.health = 0;
+                enemy.alive = false;
+                Hud.ShowEnemyStats(enemy);
+                enemy = null;
+            }
+
+            
         }
     }
 }

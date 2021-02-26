@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    class Healthpack : Item
+    class Sword : Item
     {
-        public Healthpack(int x, int y)
+        static public bool hasSword = false;
+
+        public Sword(int x, int y)
         {
-            this.Icon = "H";
+            this.Icon = "┼";
             this.x = x;
             this.y = y;
             this.active = true;
@@ -18,19 +20,18 @@ namespace Text_Based_RPG
             Console.WriteLine(Icon);
         }
 
-        public void Update(Player player, Healthpack healthpack)
+        public void Update(Player player, Sword sword)
         {
-            if (player.x == healthpack.x)
+            if (player.x == sword.x)
             {
-                if (player.y == healthpack.y)
-                {
-
-                    player.health = player.health + 75;
+                if (player.y == sword.y)
+                {                    
+                    
+                    hasSword = true;
                     Hud.SwordActive();
-
+                    
                 }
             }
         }
-
     }
 }

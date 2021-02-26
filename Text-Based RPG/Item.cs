@@ -21,5 +21,7 @@ namespace Text_Based_RPG
             Console.SetCursorPosition(x, y);
             Console.Write(Icon);
         }
+
+        
     }
 }

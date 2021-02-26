@@ -13,6 +13,7 @@ namespace Text_Based_RPG
             this.Icon = "Z";
             this.x = x;
             this.y = y;
+            this.health = 50;
             this.speed = 1;
             this.alive = true;
             Console.SetCursorPosition(x, y);

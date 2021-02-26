@@ -8,17 +8,15 @@ namespace Text_Based_RPG
 {
     class Player : Character
     {
-        //public string playerIcon = "@";
-        //static public ConsoleKeyInfo input;
-        //public bool moving = true;
-
-
+        public int sword = 0;
 
         public Player(int x, int y)
         {
             this.Icon = "@";
             this.x = x;
             this.y = y;
+            this.attack = 25;
+            this.health = 100;
             this.alive = true;
             Console.SetCursorPosition(x, y);
             Console.WriteLine(Icon);
@@ -26,7 +24,7 @@ namespace Text_Based_RPG
 
         
 
-        public void Movement(Map map)
+        public void Update(Map map)
         {
             ConsoleKeyInfo input;
             input = Console.ReadKey(true);
@@ -38,10 +36,10 @@ namespace Text_Based_RPG
 
                     //y = y - 1;
                     Console.SetCursorPosition(x, y);
-                    Console.Write(map.mapArray[y, x]);                            // player moves up
+                    Console.Write(map.map[x, y]);                            // player moves up
                     y = y - 1;
                     
-                          // previous tile is replaced by map tile
+                                                        // previous tile is replaced by map tile
                 }
                 else { Collision(); }
             }
@@ -51,7 +49,7 @@ namespace Text_Based_RPG
                 {
                     
                     Console.SetCursorPosition(x, y);
-                    Console.Write(map.mapArray[y, x]);
+                    Console.Write(map.map[x, y]);
                     x = x + 1;                                  // player moves right
                     
                                                         // previous tile is replaced by map tile
@@ -64,7 +62,7 @@ namespace Text_Based_RPG
                 {
                     
                     Console.SetCursorPosition(x, y);
-                    Console.Write(map.mapArray[y, x]);                             // player moves left
+                    Console.Write(map.map[x, y]);                             // player moves left
                     y = y + 1;
                     
                                                         // previous tile is replaced by map tile
@@ -77,7 +75,7 @@ namespace Text_Based_RPG
                 {
                     
                     Console.SetCursorPosition(x, y);
-                    Console.Write(map.mapArray[y, x]);                         // player moves down
+                    Console.Write(map.map[x, y]);                         // player moves down
                     x = x - 1;
                     
                                                         // previous tile is replaced by map tile
@@ -85,6 +83,7 @@ namespace Text_Based_RPG
                 else { Collision(); }
             }
 
+           
 
 
         }
@@ -101,12 +100,25 @@ namespace Text_Based_RPG
             {
                 if (enemy.y == player.y)
                 {
-                    Console.SetCursorPosition(51, 1);   // player checks if they have attacked the enemy
-                    Console.WriteLine("Enemy hit");
-                    enemy.alive = false;  
+                    enemy.TakeDamage(enemy, player);
                                                         // enemy = null; <---- save for future use
                 }
             }
+        }
+
+        public void TakeDamage(Player player, Enemy enemy)
+        {
+            player.health = player.health - (enemy.attack);
+
+            if (player.health <= 0)
+            {
+                player.health = 0;
+                player.alive = false;
+                Hud.ShowEnemyStats(enemy);
+                player = null;
+            }
+
+            
         }
 
 

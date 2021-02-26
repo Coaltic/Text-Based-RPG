@@ -11,6 +11,9 @@ namespace Text_Based_RPG
         public int x;
         public int y;
 
+        public int health;
+        public int attack;
+
         public bool alive;
 
         public string Icon;

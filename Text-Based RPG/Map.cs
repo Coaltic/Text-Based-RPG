@@ -9,14 +9,14 @@ namespace Text_Based_RPG
     class Map
     {
 
-        public char[,] map = new char[141, 21];
+        public char[,] map = new char[160, 37];
         public string[] mapData;
         private int x;
         private int y;
 
 
 
-        public void LoadMap()
+        public Map()
         {
             mapData = System.IO.File.ReadAllLines("Map.txt");
             for (y = 0; y <= mapData.Length - 1; y++)
@@ -30,31 +30,31 @@ namespace Text_Based_RPG
             }
         }
 
-        public Map()
-        {
-            //DisplayMap();
-        }
 
         public void DisplayMap()
         {
-            for (int x = 0; x <= 19; x++)
+            Console.Clear();
+            for (y = 0; y <= mapData.Length - 1; y++)
             {
-
-                for (int y = 0; y <= 49; y++)
-                {
-                    Console.Write(map[x, y]);          // displays every row and line of the map
-                }
-
-                Console.WriteLine("");
+                Console.WriteLine(mapData[y]);
             }
 
         }
 
         public bool IsFloor(int y, int x)
         {
-            if (map[y, x] == ' ')
+            if (map[x, y] == ' ')
             {
                 return true;
+            }
+            else if (map[x, y] == '█')
+            {
+                if (Key.hasKey == true)
+                {
+                    Key.hasKey = false;
+                    return true;
+                }
+                else return false;
             }
             else return false;
 

@@ -13,8 +13,9 @@ namespace Text_Based_RPG
             this.Icon = "R";
             this.x = x;
             this.y = y;
+            this.health = 20;
             this.alive = true;
-            this.speed = 2;
+            this.speed = 1;
             Console.SetCursorPosition(x, y);
             Console.WriteLine(Icon);
         }
