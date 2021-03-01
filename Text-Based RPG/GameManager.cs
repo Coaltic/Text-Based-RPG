@@ -45,17 +45,24 @@ namespace Text_Based_RPG
                 {
                     
                     player.Update(map);
-                    player.Draw(player.x, player.y);
+                    player.Draw();
+                    Item.Update(player, key);
+                    key.Draw();
+                    Item.Update(player, key2);
+                    key2.Draw();
+                    Item.Update(player, healthpack);
+                    healthpack.Draw();
+                    Item.Update(player, sword);
+                    sword.Draw();
                     Player.CheckForEnemy(player, spider);
                     Player.CheckForEnemy(player, zombie);
-                    Player.CheckForEnemy(player, rat);  
-                    sword.Update(player, sword);
-                    healthpack.Update(player, healthpack);
-                    key.Update(player, key);
-                    key.Update(player, key2);
+                    Player.CheckForEnemy(player, rat);
                     
                     
-                    Hud.ShowPlayerStats(player);
+                    
+                    
+                    
+                    Hud.ShowPlayerStats(player, map);
 
                 }
                 else if (player.alive == false)
@@ -68,7 +75,7 @@ namespace Text_Based_RPG
                 {
                     
                     spider.Update(map);
-                    spider.Draw(spider.x, spider.y);
+                    spider.Draw();
                     Enemy.CheckForPlayer(spider, player);
 
                 }
@@ -77,7 +84,7 @@ namespace Text_Based_RPG
                 {
                     
                     zombie.Update(map);
-                    zombie.Draw(zombie.x, zombie.y);
+                    zombie.Draw();
                     Enemy.CheckForPlayer(zombie, player);
 
                 }
@@ -85,11 +92,12 @@ namespace Text_Based_RPG
                 if (rat.alive == true)
                 {
                     rat.Update(map);
-                    rat.Draw(rat.x, rat.y);
+                    rat.Draw();
                     Enemy.CheckForPlayer(rat, player);
 
                 }
 
+                
 
 
 

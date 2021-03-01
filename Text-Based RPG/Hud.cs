@@ -23,10 +23,18 @@ namespace Text_Based_RPG
 
         }
 
-        static public void ShowPlayerStats(Player player)
+        static public void ShowPlayerStats(Player player, Map map)
         {
+            /*if (hudLine > 6)
+            {
+                Console.Clear();
+                map.DisplayMap();
+                hudLine = 1;
+            }*/
+
             Console.SetCursorPosition(170, hudLine);
             Console.WriteLine("Player Health: " + player.health);
+            
             
         }
 
@@ -38,29 +46,14 @@ namespace Text_Based_RPG
             hudLine++;
         }
 
-        static public void SwordActive()
+        static public void ItemCollected(Item item)
         {
             hudLine++;
             Console.SetCursorPosition(170, hudLine);
-            Console.WriteLine("Sword has been picked up");
-            hudLine++;
-
-        }
-
-        static public void KeyCollected()
-        {
-            hudLine++;
-            Console.SetCursorPosition(170, hudLine);
-            Console.WriteLine("Key has been picked up");
+            Console.WriteLine(item.name + " has been picked up");
             hudLine++;
         }
 
-        static public void HealthpackActive()
-        {
-            hudLine++;
-            Console.SetCursorPosition(170, hudLine);
-            Console.WriteLine("Healthpack has been picked up");
-            hudLine++;
-        }
+        
     }
 }

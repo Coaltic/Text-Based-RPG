@@ -9,6 +9,8 @@ namespace Text_Based_RPG
     class Player : Character
     {
         public int sword = 0;
+        static public bool hasSword = false;
+        static public bool hasKey = false;
 
         public Player(int x, int y)
         {
@@ -108,7 +110,7 @@ namespace Text_Based_RPG
 
         public void TakeDamage(Player player, Enemy enemy)
         {
-            player.health = player.health - (enemy.attack);
+            player.health = player.health - enemy.attack;
             
 
             if (player.health <= 0)
@@ -119,7 +121,7 @@ namespace Text_Based_RPG
                 player = null;
             }
 
-            Hud.ShowPlayerStats(player);
+            //Hud.ShowPlayerStats(player, map);
 
         }
 

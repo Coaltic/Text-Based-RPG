@@ -72,7 +72,7 @@ namespace Text_Based_RPG
         {
             
             
-                if (player.x == enemy.x && player.y == enemy.y)
+                if (enemy.x == player.x && enemy.y == player.y)
                 {
                     
                     
@@ -88,7 +88,7 @@ namespace Text_Based_RPG
 
         public void TakeDamage(Enemy enemy, Player player)
         {
-            if (Sword.hasSword)
+            if (Player.hasSword)
             {
                 player.sword = 15;
             }

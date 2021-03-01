@@ -11,26 +11,13 @@ namespace Text_Based_RPG
         public Healthpack(int x, int y)
         {
             this.Icon = "H";
+            this.name = "Healthpack";
             this.x = x;
             this.y = y;
             this.active = true;
-            Console.SetCursorPosition(x, y);
-            Console.WriteLine(Icon);
         }
 
-        public void Update(Player player, Healthpack healthpack)
-        {
-            if (player.x == healthpack.x)
-            {
-                if (player.y == healthpack.y && player.x == healthpack.x)
-                
-
-                    player.health = player.health + 75;
-                    Hud.HealthpackActive();
-
-                
-            }
-        }
+       
 
     }
 }

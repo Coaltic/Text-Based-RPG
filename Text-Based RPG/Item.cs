@@ -14,14 +14,37 @@ namespace Text_Based_RPG
         public bool active;
 
         public string Icon;
+        public string name;
 
 
-        public void Draw(int x, int y)
+        public void Draw()
         {
-            Console.SetCursorPosition(x, y);
-            Console.Write(Icon);
+            if (active == true)
+            {
+                
+                Console.SetCursorPosition(x, y);
+                Console.Write(Icon);
+            }
         }
 
-        
+        public static void Update(Player player, Item item)
+        {
+            if (player.x == item.x)
+            {
+                if (player.y == item.y)
+                {
+                    if (item.name == "Sword") { Player.hasSword = true; }
+                    if (item.name == "Key") { Player.hasKey = true; ; }
+
+                    if (item.active)
+                    {
+                        item.active = false;
+                        Hud.ItemCollected(item);
+                    }
+
+                }
+            }
+        }
+
     }
 }

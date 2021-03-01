@@ -20,7 +20,7 @@ namespace Text_Based_RPG
 
 
 
-        public void Draw(int x, int y)
+        public void Draw()
         {
             Console.SetCursorPosition(x, y);
             Console.Write(Icon);

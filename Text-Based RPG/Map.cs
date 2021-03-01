@@ -49,9 +49,10 @@ namespace Text_Based_RPG
             }
             else if (map[x, y] == '█')
             {
-                if (Key.hasKey == true)
+                if (Player.hasKey == true)
                 {
-                    Key.hasKey = false;
+                    Player.hasKey = false;
+                    map[x, y] = ' ';
                     return true;
                 }
                 else return false;
