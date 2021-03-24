@@ -11,6 +11,7 @@ namespace Text_Based_RPG
         public int sword = 0;
         static public bool hasSword = false;
         static public bool hasKey = false;
+        
 
         public Player(int x, int y)
         {
@@ -26,8 +27,13 @@ namespace Text_Based_RPG
 
         
 
-        public void Update(Map map)
+        public void Update(Map map, Player player, Enemy enemy1, Enemy enemy2, Enemy enemy3, Item item)
         {
+            while (Console.KeyAvailable)
+            {
+                Console.ReadKey(true);
+            }
+
             ConsoleKeyInfo input;
             input = Console.ReadKey(true);
 
@@ -35,11 +41,28 @@ namespace Text_Based_RPG
             {
                 if (map.IsFloor(y - 1, x) == true)
                 {
+                    
+                    if (item.IsItem(player.y - 1, player.x, item) == true)
+                    {
+                        if (item.name == "Sword") { hasSword = true; }
+                        if (item.name == "Key") { hasKey = true; ; }
 
-                    //y = y - 1;
-                    Console.SetCursorPosition(x, y);
-                    Console.Write(map.map[x, y]);                            // player moves up
-                    y = y - 1;
+                        item.active = false;
+                        Hud.ItemCollected(item);
+
+                    }
+                    if (enemy1.IsEnemy(player.y - 1, player.x, enemy1) == true)
+                    {
+                        enemy1.TakeDamage(enemy1, player);
+                        Console.Beep(800, 200);
+                    } 
+                    else if (enemy1.IsEnemy(player.y - 1, player.x, enemy1) == false)
+                    {
+                        //y = y - 1;
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(map.map[x, y]);                            // player moves up
+                        y = y - 1;
+                    }
                     
                                                         // previous tile is replaced by map tile
                 }
@@ -49,10 +72,26 @@ namespace Text_Based_RPG
             {
                 if (map.IsFloor(y, x + 1) == true)
                 {
-                    
-                    Console.SetCursorPosition(x, y);
-                    Console.Write(map.map[x, y]);
-                    x = x + 1;                                  // player moves right
+                    if (item.IsItem(player.y, player.x + 1, item) == true)
+                    {
+                        if (item.name == "Sword") { hasSword = true; }
+                        if (item.name == "Key") { hasKey = true; ; }
+
+                        item.active = false;
+                        Hud.ItemCollected(item);
+
+                    }
+                    if (enemy1.IsEnemy(player.y, player.x + 1, enemy1) == true)
+                    {
+                        enemy1.TakeDamage(enemy1, player);
+                        Console.Beep(800, 200);
+                    }
+                    else if (enemy1.IsEnemy(player.y, player.x + 1, enemy1) == false)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(map.map[x, y]);
+                        x = x + 1;
+                    }
                     
                                                         // previous tile is replaced by map tile
                 }
@@ -62,11 +101,26 @@ namespace Text_Based_RPG
             {
                 if (map.IsFloor(y + 1, x) == true)
                 {
-                    
-                    Console.SetCursorPosition(x, y);
-                    Console.Write(map.map[x, y]);                             // player moves left
-                    y = y + 1;
-                    
+                    if (item.IsItem(player.y + 1, player.x, item) == true)
+                    {
+                        if (item.name == "Sword") { hasSword = true; }
+                        if (item.name == "Key") { hasKey = true; ; }
+
+                        item.active = false;
+                        Hud.ItemCollected(item);
+
+                    }
+                    if (enemy1.IsEnemy(player.y + 1, player.x, enemy1) == true)
+                    {
+                        enemy1.TakeDamage(enemy1, player);
+                        Console.Beep(800, 200);
+                    }
+                    else if (enemy1.IsEnemy(player.y + 1, player.x, enemy1) == false)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(map.map[x, y]);                             // player moves left
+                        y = y + 1;
+                    }
                                                         // previous tile is replaced by map tile
                 }
                 else { Collision(); }
@@ -75,10 +129,27 @@ namespace Text_Based_RPG
             {
                 if (map.IsFloor(y, x - 1) == true)
                 {
-                    
-                    Console.SetCursorPosition(x, y);
-                    Console.Write(map.map[x, y]);                         // player moves down
-                    x = x - 1;
+                    if (item.IsItem(player.y, player.x - 1, item) == true)
+                    {
+                        if (item.name == "Sword") { hasSword = true; }
+                        if (item.name == "Key") { hasKey = true; ; }
+
+                        item.active = false;
+                        Hud.ItemCollected(item);
+
+                    }
+                    if (enemy1.IsEnemy(player.y, player.x - 1, enemy1) == true)
+                    {
+                        enemy1.TakeDamage(enemy1, player);
+                        Console.Beep(800, 200);
+
+                    }
+                    else if (enemy1.IsEnemy(player.y, player.x - 1, enemy1) == false)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(map.map[x, y]);                         // player moves down
+                        x = x - 1;
+                    }
                     
                                                         // previous tile is replaced by map tile
                 }
@@ -90,19 +161,18 @@ namespace Text_Based_RPG
 
         }
 
-        public void Collision()
-        {
-            Console.Beep(100, 200);                                     // left as a method for future possible additions
-        }
+        
 
-        public static void CheckForEnemy(Player player, Enemy enemy)
+        
+
+        public void CheckForEnemy(Player player, Enemy enemy)
         {
             
             if (enemy.x == player.x && enemy.y == player.y)
             {
-                
-                
-                    enemy.TakeDamage(enemy, player);
+
+
+                //return true;
                                                         // enemy = null; <---- save for future use
                 
             }

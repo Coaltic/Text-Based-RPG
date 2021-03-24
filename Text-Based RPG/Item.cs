@@ -46,5 +46,19 @@ namespace Text_Based_RPG
             }
         }
 
+        public bool IsItem(int y, int x, Item item)
+        {
+            if (item.x == x && item.y == y)
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
     }
 }

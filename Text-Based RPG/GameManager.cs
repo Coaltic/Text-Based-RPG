@@ -23,9 +23,9 @@ namespace Text_Based_RPG
             map.DisplayMap();
 
             
-            Player player = new Player(10, 3);
+            Player player = new Player(22, 14);
             Spider spider = new Spider(12, 18);
-            Zombie zombie = new Zombie(100, 15);
+            Zombie zombie = new Zombie(20, 10);
             Rat rat = new Rat(14, 5);
 
             Healthpack healthpack = new Healthpack(38, 2);
@@ -44,9 +44,9 @@ namespace Text_Based_RPG
                 if (player.alive == true)
                 {
                     
-                    player.Update(map);
+                    player.Update(map, player, zombie, spider, rat, key);
                     player.Draw();
-                    Item.Update(player, key);
+                    /*Item.Update(player, key);
                     key.Draw();
                     Item.Update(player, key2);
                     key2.Draw();
@@ -56,16 +56,16 @@ namespace Text_Based_RPG
                     sword.Draw();
                     Player.CheckForEnemy(player, spider);
                     Player.CheckForEnemy(player, zombie);
-                    Player.CheckForEnemy(player, rat);
-                    
-                    
-                    
-                    
-                    
+                    Player.CheckForEnemy(player, rat);*/
+
+
+
+
+
                     Hud.ShowPlayerStats(player, map);
 
                 }
-                else if (player.alive == false)
+                /*else if (player.alive == false)
                 {
                     gameplay = false;
                     Console.ReadKey(true);
@@ -95,7 +95,7 @@ namespace Text_Based_RPG
                     rat.Draw();
                     Enemy.CheckForPlayer(rat, player);
 
-                }
+                }*/
 
                 
 

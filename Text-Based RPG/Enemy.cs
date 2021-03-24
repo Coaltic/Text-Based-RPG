@@ -28,14 +28,14 @@ namespace Text_Based_RPG
 
             if (checkpoint == false)
             {
-                
-                
+                if (map.IsFloor(y + 1, x) == true)
+                {
                     right = right + 1;
                     Console.SetCursorPosition(x, y);
                     Console.Write(map.map[x, y]);
-                    x = x + speed;                                  // player moves right
-                
-                
+                    x = x + 1;                              // player moves right
+                }
+                else { right = 10; }
 
 
                 if (right >= 10)
@@ -49,13 +49,14 @@ namespace Text_Based_RPG
             }
             else if (checkpoint == true)
             {
-                
-                
+                if (map.IsFloor(y + 1, x) == true)
+                {
                     left = left + 1;
                     Console.SetCursorPosition(x, y);
                     Console.Write(map.map[x, y]);                         // player moves down
-                    x = x - speed;
-                
+                    x = x - 1;
+                }
+                else { left = 10; }
                 
 
                 if (left >= 10)
@@ -66,6 +67,19 @@ namespace Text_Based_RPG
             }
         }
 
+        public bool IsEnemy(int y, int x, Enemy enemy)
+        {
+            if (enemy.x == x && enemy.y == y)
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+
+        }
 
 
         public static void CheckForPlayer(Enemy enemy, Player player)
@@ -86,22 +100,27 @@ namespace Text_Based_RPG
             
         }
 
+        
+
+
+
         public void TakeDamage(Enemy enemy, Player player)
         {
-            if (Player.hasSword)
-            {
-                player.sword = 15;
-            }
 
-            enemy.health = enemy.health - (player.sword + player.attack);
+            enemy.health = enemy.health - player.attack;
             
 
             if (enemy.health <= 0)
             {
                 enemy.health = 0;
                 enemy.alive = false;
-                
-                
+                Console.SetCursorPosition(enemy.x, enemy.y);
+                Console.Write(" ");
+                enemy.x = 0;
+                enemy.y = 0;
+
+
+
             }
 
             Hud.ShowEnemyStats(enemy);

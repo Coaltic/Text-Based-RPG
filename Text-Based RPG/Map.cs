@@ -9,7 +9,7 @@ namespace Text_Based_RPG
     class Map
     {
 
-        public char[,] map = new char[160, 37];
+        public char[,] map = new char[180, 56];
         public string[] mapData;
         private int x;
         private int y;
@@ -34,10 +34,17 @@ namespace Text_Based_RPG
         public void DisplayMap()
         {
             Console.Clear();
-            for (y = 0; y <= mapData.Length - 1; y++)
+            for (y = 0; y <= 55; y++)
             {
-                Console.WriteLine(mapData[y]);
+                for (x = 0; x <= 163; x++)
+                {
+                    Console.Write(map[x, y]);
+                }
+                Console.WriteLine();
+                x = 0;
             }
+
+            y = 0;
 
         }
 

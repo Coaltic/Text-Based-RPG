@@ -26,6 +26,11 @@ namespace Text_Based_RPG
             Console.Write(Icon);
         }
 
+        public void Collision()
+        {
+            Console.Beep(100, 200);                                     // left as a method for future possible additions
+        }
+
     }
 
     
