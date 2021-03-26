@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    class Healthpack : Item
+    class Healthpack
     {
-        public Healthpack(int x, int y)
+        /*public Healthpack(int x, int y)
         {
             this.Icon = "H";
             this.name = "Healthpack";
             this.x = x;
             this.y = y;
             this.active = true;
-        }
+        }*/
 
        
 

@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    class Sword : Item
+    class Sword
     {
         
 
-        public Sword(int x, int y)
+        /*public Sword(int x, int y)
         {
             this.Icon = "┼";
             this.name = "Sword";
             this.x = x;
             this.y = y;
             this.active = true;
-        }
+        }*/
 
         
     }

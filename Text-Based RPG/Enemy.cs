@@ -11,97 +11,62 @@ namespace Text_Based_RPG
 
 
         public bool checkpoint = false;
-        //public bool checkpoint2 = false;
-        //public int point1 = 35;
-        //public int point2 = 25;
         public int right = 0;
         public int left = 0;
-        public int speed;
 
-        public Enemy()
+        private int enemyType;
+
+
+        public void SetEnemy(int x, int y, int type)
         {
-            
-        }
+            enemyType = type;
+            this.x = x;
+            this.y = y;
 
-        public void Update(Map map)
-        {
+            Console.Write("this is working");
 
-            if (checkpoint == false)
+            if (type <= 1)
             {
-                if (map.IsFloor(y + 1, x) == true)
-                {
-                    right = right + 1;
-                    Console.SetCursorPosition(x, y);
-                    Console.Write(map.map[x, y]);
-                    x = x + 1;                              // player moves right
-                }
-                else { right = 10; }
-
-
-                if (right >= 10)
-                {
-                    right = 0;
-                    checkpoint = true;
-                }
-
-
-
+                Icon = "S";
+                health = 100;
+                attack = 25;
             }
-            else if (checkpoint == true)
+            else if (type == 2)
             {
-                if (map.IsFloor(y + 1, x) == true)
-                {
-                    left = left + 1;
-                    Console.SetCursorPosition(x, y);
-                    Console.Write(map.map[x, y]);                         // player moves down
-                    x = x - 1;
-                }
-                else { left = 10; }
-                
-
-                if (left >= 10)
-                {
-                    left = 0;
-                    checkpoint = false;
-                }
+                Icon = "Z";
+                health = 50;
+                attack = 15;
             }
-        }
-
-        public bool IsEnemy(int y, int x, Enemy enemy)
-        {
-            if (enemy.x == x && enemy.y == y)
+            else if (type == 3)
             {
-                return true;
+                Icon = "R";
+                health = 25;
+                attack = 10;
+            }
 
-            }
-            else
-            {
-                return false;
-            }
+            Console.SetCursorPosition(x, y);
+            Console.WriteLine(Icon);
 
         }
 
 
-        public static void CheckForPlayer(Enemy enemy, Player player)
+        public void Update(Map map, Player player, Enemy enemy, Item item)
         {
-            
-            
-                if (enemy.x == player.x && enemy.y == player.y)
+            if (enemyType == 3)
+            {
+                if (player.IsPlayerNear(enemy.x, enemy.y, player) == true)
                 {
-                    
-                    
-
-                        player.TakeDamage(player, enemy);
-
-                    
+                    player.TakeDamage(player, this);
+                    Console.Beep(100, 100);
                 }
-                
-
-            
+                else if (player.IsPlayerNear(enemy.x, enemy.y, player) == false)
+                {
+                    EnemyAI3(map, item, enemy);
+                }
+            }
         }
 
         
-
 
 
         public void TakeDamage(Enemy enemy, Player player)
@@ -118,13 +83,57 @@ namespace Text_Based_RPG
                 Console.Write(" ");
                 enemy.x = 0;
                 enemy.y = 0;
-
-
-
             }
 
             Hud.ShowEnemyStats(enemy);
 
+        }
+
+        public void EnemyAI3(Map map, Item item, Enemy enemy)
+        {
+            if (enemy.checkpoint == false)
+            {
+
+                if (map.IsFloor(y + 1, x) == true)
+                {
+                    if (item.IsItem(enemy.x, enemy.y + 1, item) == true)
+                    {
+                        right = 10;
+                    }
+
+                    right = right + 1;
+                    Console.SetCursorPosition(x, y);
+                    Console.Write(map.map[x, y]);
+                    x = x + 1;
+                }
+                else { right = 10; }
+
+
+                if (right >= 10)
+                {
+                    right = 0;
+                    enemy.checkpoint = true;
+                }
+
+            }
+            else if (enemy.checkpoint == true)
+            {
+                if (map.IsFloor(y + 1, x) == true)
+                {
+                    left = left + 1;
+                    Console.SetCursorPosition(x, y);
+                    Console.Write(map.map[x, y]);
+                    x = x - 1;
+                }
+                else { left = 10; }
+
+
+                if (left >= 10)
+                {
+                    left = 0;
+                    enemy.checkpoint = false;
+                }
+            }
         }
     }
 }

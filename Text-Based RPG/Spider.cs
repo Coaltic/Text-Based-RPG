@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    class Spider : Enemy
+    class Spider
     {
-        public Spider(int x, int y)
+        /*public Spider(int x, int y)
         {
             this.Icon = "S";
             this.x = x;
             this.y = y;
             this.health = 100;
-            this.speed = 3;
             this.alive = true;
             Console.SetCursorPosition(x, y);
             Console.WriteLine(Icon);
-        }
+        }*/
 
         /*public void Movement(Map map)
         {

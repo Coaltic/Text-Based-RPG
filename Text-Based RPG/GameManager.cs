@@ -24,15 +24,19 @@ namespace Text_Based_RPG
 
             
             Player player = new Player(22, 14);
-            Spider spider = new Spider(12, 18);
-            Zombie zombie = new Zombie(20, 10);
-            Rat rat = new Rat(14, 5);
+            EnemyManager enemyManager = new EnemyManager();
+            //Spider spider = new Spider(12, 18);
+            //Enemy enemy = new Enemy();
+            //Rat rat = new Rat(14, 5);
 
-            Healthpack healthpack = new Healthpack(38, 2);
-            Sword sword = new Sword(34, 28);
-            Key key = new Key(50, 19);
-            Key key2 = new Key(140, 1);
+            Item item = new Item(38, 2, 1);
+            //Sword sword = new Sword(34, 28);
+            //Key key = new Key(50, 19);
+            //Key key2 = new Key(140, 1);
             //key.MakeLockedDoor(62, 13);
+
+            enemyManager.InitEnemies();
+
 
 
             while (gameplay == true)
@@ -41,30 +45,27 @@ namespace Text_Based_RPG
 
 
 
-                if (player.alive == true)
-                {
                     
-                    player.Update(map, player, zombie, spider, rat, key);
-                    player.Draw();
-                    /*Item.Update(player, key);
-                    key.Draw();
-                    Item.Update(player, key2);
-                    key2.Draw();
-                    Item.Update(player, healthpack);
-                    healthpack.Draw();
-                    Item.Update(player, sword);
-                    sword.Draw();
-                    Player.CheckForEnemy(player, spider);
-                    Player.CheckForEnemy(player, zombie);
-                    Player.CheckForEnemy(player, rat);*/
-
-
-
+                player.Update(map, player, enemyManager, item);
+                enemyManager.Update(map, player, item);
+                player.Draw();
+                enemyManager.Draw();
+                /*Item.Update(player, key);
+                key.Draw();
+                Item.Update(player, key2);
+                key2.Draw();
+                Item.Update(player, healthpack);
+                healthpack.Draw();
+                Item.Update(player, sword);
+                sword.Draw();
+                Player.CheckForEnemy(player, spider);
+                Player.CheckForEnemy(player, zombie);
+                Player.CheckForEnemy(player, rat);*/
 
 
                     Hud.ShowPlayerStats(player, map);
 
-                }
+                
                 /*else if (player.alive == false)
                 {
                     gameplay = false;

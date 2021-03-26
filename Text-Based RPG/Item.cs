@@ -15,8 +15,21 @@ namespace Text_Based_RPG
 
         public string Icon;
         public string name;
+        public int itemType;
 
+        public Item(int x, int y, int type)
+        {
+            itemType = type;
+            this.x = x;
+            this.y = y;
 
+            if (type <= 1)
+            {
+                Icon = "S";
+                name = "Healthpack";
+            }
+            
+        }
         public void Draw()
         {
             if (active == true)

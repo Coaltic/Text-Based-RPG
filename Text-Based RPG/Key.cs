@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    class Key : Item
+    class Key
     {
         static public bool hasKey = false;
 
-        public Key(int x, int y)
+        /*public Key(int x, int y)
         {
             this.Icon = "K";
             this.name = "Key";
@@ -18,7 +18,7 @@ namespace Text_Based_RPG
             this.y = y;
             this.active = true;
 
-        }
+        }*/
 
         /*public void MakeLockedDoor(int x, int y)
         {

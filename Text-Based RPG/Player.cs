@@ -27,7 +27,7 @@ namespace Text_Based_RPG
 
         
 
-        public void Update(Map map, Player player, Enemy enemy1, Enemy enemy2, Enemy enemy3, Item item)
+        public void Update(Map map, Player player, EnemyManager enemyManager, Item item)
         {
             while (Console.KeyAvailable)
             {
@@ -51,20 +51,20 @@ namespace Text_Based_RPG
                         Hud.ItemCollected(item);
 
                     }
-                    if (enemy1.IsEnemy(player.y - 1, player.x, enemy1) == true)
+                    if (enemyManager.IsEnemy(player.y - 1, player.x, player) == true)
                     {
-                        enemy1.TakeDamage(enemy1, player);
+                        
                         Console.Beep(800, 200);
                     } 
-                    else if (enemy1.IsEnemy(player.y - 1, player.x, enemy1) == false)
+                    else if (enemyManager.IsEnemy(player.y - 1, player.x, player) == false)
                     {
                         //y = y - 1;
                         Console.SetCursorPosition(x, y);
-                        Console.Write(map.map[x, y]);                            // player moves up
+                        Console.Write(map.map[x, y]);                            
                         y = y - 1;
                     }
                     
-                                                        // previous tile is replaced by map tile
+                                                        
                 }
                 else { Collision(); }
             }
@@ -81,12 +81,12 @@ namespace Text_Based_RPG
                         Hud.ItemCollected(item);
 
                     }
-                    if (enemy1.IsEnemy(player.y, player.x + 1, enemy1) == true)
+                    if (enemyManager.IsEnemy(player.y, player.x + 1, player) == true)
                     {
-                        enemy1.TakeDamage(enemy1, player);
+                        
                         Console.Beep(800, 200);
                     }
-                    else if (enemy1.IsEnemy(player.y, player.x + 1, enemy1) == false)
+                    else if (enemyManager.IsEnemy(player.y, player.x + 1, player) == false)
                     {
                         Console.SetCursorPosition(x, y);
                         Console.Write(map.map[x, y]);
@@ -110,12 +110,12 @@ namespace Text_Based_RPG
                         Hud.ItemCollected(item);
 
                     }
-                    if (enemy1.IsEnemy(player.y + 1, player.x, enemy1) == true)
+                    if (enemyManager.IsEnemy(player.y + 1, player.x, player) == true)
                     {
-                        enemy1.TakeDamage(enemy1, player);
+                       
                         Console.Beep(800, 200);
                     }
-                    else if (enemy1.IsEnemy(player.y + 1, player.x, enemy1) == false)
+                    else if (enemyManager.IsEnemy(player.y + 1, player.x, player) == false)
                     {
                         Console.SetCursorPosition(x, y);
                         Console.Write(map.map[x, y]);                             // player moves left
@@ -138,13 +138,12 @@ namespace Text_Based_RPG
                         Hud.ItemCollected(item);
 
                     }
-                    if (enemy1.IsEnemy(player.y, player.x - 1, enemy1) == true)
+                    if (enemyManager.IsEnemy(player.y, player.x - 1, player) == true)
                     {
-                        enemy1.TakeDamage(enemy1, player);
                         Console.Beep(800, 200);
 
                     }
-                    else if (enemy1.IsEnemy(player.y, player.x - 1, enemy1) == false)
+                    else if (enemyManager.IsEnemy(player.y, player.x - 1, player) == false)
                     {
                         Console.SetCursorPosition(x, y);
                         Console.Write(map.map[x, y]);                         // player moves down
@@ -161,34 +160,42 @@ namespace Text_Based_RPG
 
         }
 
-        
-
-        
-
-        public void CheckForEnemy(Player player, Enemy enemy)
+        public bool IsPlayerNear(int x, int y, Player player)
         {
-            
-            if (enemy.x == player.x && enemy.y == player.y)
+            if (player.x == x - 1 && player.y == y)
             {
-
-
-                //return true;
-                                                        // enemy = null; <---- save for future use
+                return true;
                 
             }
+            else if (player.x == x + 1 && player.y == y)
+            {
+                return true;
+            }
+            else if (player.x == x && player.y + 1 == y)
+            {
+                return true;
+            }
+            else if (player.x == x && player.y - 1 == y)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+
 
         public void TakeDamage(Player player, Enemy enemy)
         {
             player.health = player.health - enemy.attack;
-            
 
             if (player.health <= 0)
             {
                 player.health = 0;
                 player.alive = false;
                 
-                player = null;
+                //player = null;
             }
 
             //Hud.ShowPlayerStats(player, map);

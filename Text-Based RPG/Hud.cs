@@ -33,7 +33,7 @@ namespace Text_Based_RPG
             }*/
 
             Console.SetCursorPosition(170, hudLine);
-            Console.WriteLine("Player Health: " + player.health);
+            Console.WriteLine("Player Health: " + player.health + "    ");
             
             
         }
@@ -42,7 +42,7 @@ namespace Text_Based_RPG
         {
             hudLine++;
             Console.SetCursorPosition(170, hudLine);
-            Console.WriteLine("Enemy Health: " + enemy.health);
+            Console.WriteLine("Enemy Health: " + enemy.health + "    ");
             hudLine++;
         }
 
