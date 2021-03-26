@@ -9,10 +9,10 @@ namespace Text_Based_RPG
     class Map
     {
 
-        public char[,] map = new char[180, 56];
+        public char[,] map = new char[220, 58];
         public string[] mapData;
-        private int x;
-        private int y;
+        public int x;
+        public int y;
 
 
 
@@ -34,9 +34,9 @@ namespace Text_Based_RPG
         public void DisplayMap()
         {
             Console.Clear();
-            for (y = 0; y <= 55; y++)
+            for (y = 0; y <= 57; y++)
             {
-                for (x = 0; x <= 163; x++)
+                for (x = 0; x <= 209; x++)
                 {
                     Console.Write(map[x, y]);
                 }
@@ -54,18 +54,24 @@ namespace Text_Based_RPG
             {
                 return true;
             }
-            else if (map[x, y] == '█')
+            else return false;
+
+        }
+
+        public bool IsDoor(int y, int x, Player player)
+        {
+            
+            if (map[x, y] == '█')
             {
-                if (Player.hasKey == true)
+                if (player.hasKey == true)
                 {
-                    Player.hasKey = false;
                     map[x, y] = ' ';
-                    return true;
                 }
-                else return false;
+                return true;
             }
             else return false;
 
         }
+
     }
 }

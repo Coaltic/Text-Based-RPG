@@ -16,32 +16,33 @@ namespace Text_Based_RPG
 
         private int enemyType;
 
+        Random rnd = new Random();
 
         public void SetEnemy(int x, int y, int type)
         {
             enemyType = type;
             this.x = x;
             this.y = y;
+            alive = true;
 
-            Console.Write("this is working");
 
-            if (type <= 1)
+            if (type == 1)
             {
                 Icon = "S";
-                health = 100;
-                attack = 25;
+                health = 200;
+                attack = 30;
             }
             else if (type == 2)
             {
                 Icon = "Z";
-                health = 50;
-                attack = 15;
+                health = 100;
+                attack = 20;
             }
             else if (type == 3)
             {
                 Icon = "R";
-                health = 25;
-                attack = 10;
+                health = 50;
+                attack = 15;
             }
 
             Console.SetCursorPosition(x, y);
@@ -50,35 +51,67 @@ namespace Text_Based_RPG
         }
 
 
-        public void Update(Map map, Player player, Enemy enemy, Item item)
+        public void Update(Map map, Player player, Enemy enemy)
         {
-            if (enemyType == 3)
+            if (enemy.alive == true)
             {
-                if (player.IsPlayerNear(enemy.x, enemy.y, player) == true)
+                if (enemyType == 1)
                 {
-                    player.TakeDamage(player, this);
-                    Console.Beep(100, 100);
+                    if (player.IsPlayerNear(enemy.x, enemy.y, player) == true)
+                    {
+                        player.TakeDamage(player, enemy);
+                        Console.Beep(100, 100);
+                    }
+                    else if (player.IsPlayerNear(enemy.x, enemy.y, player) == false)
+                    {
+                        EnemyAI1(map, enemy);
+                    }
                 }
-                else if (player.IsPlayerNear(enemy.x, enemy.y, player) == false)
+                else if (enemyType == 2)
                 {
-                    EnemyAI3(map, item, enemy);
+                    if (player.IsPlayerNear(enemy.x, enemy.y, player) == true)
+                    {
+                        player.TakeDamage(player, enemy);
+                        Console.Beep(100, 100);
+                    }
+                    else if (player.IsPlayerFar(enemy.x, enemy.y, player) == true)
+                    {
+                        EnemyAI2(map, enemy, player);
+                    }
+                }
+                else if (enemyType == 3)
+                {
+                    if (player.IsPlayerNear(enemy.x, enemy.y, player) == true)
+                    {
+                        player.TakeDamage(player, enemy);
+                        Console.Beep(100, 100);
+                    }
+                    else if (player.IsPlayerNear(enemy.x, enemy.y, player) == false)
+                    {
+                        EnemyAI3(map, enemy);
+                    }
                 }
             }
         }
 
-        
-
-
         public void TakeDamage(Enemy enemy, Player player)
         {
+            if (player.hasSword == true)
+            {
+                enemy.health = enemy.health - (player.attack + 15);
+            }
+            else if (player.hasSword == false)
+            {
+                enemy.health = enemy.health - player.attack;
+            }
 
-            enemy.health = enemy.health - player.attack;
             
 
             if (enemy.health <= 0)
             {
                 enemy.health = 0;
                 enemy.alive = false;
+                Icon = "";
                 Console.SetCursorPosition(enemy.x, enemy.y);
                 Console.Write(" ");
                 enemy.x = 0;
@@ -89,22 +122,83 @@ namespace Text_Based_RPG
 
         }
 
-        public void EnemyAI3(Map map, Item item, Enemy enemy)
+        public void EnemyAI1(Map map, Enemy enemy)
+        {
+            int num = rnd.Next(5);
+
+            //Console.Write(enemy.x + ", " + enemy.y);
+
+            if (num == 1 && map.IsFloor(enemy.y - 1, enemy.x) == true)
+            {
+                Console.SetCursorPosition(x, y);
+                Console.Write(map.map[x, y]);
+                enemy.y--;
+            }
+            else if (num == 2 && map.IsFloor(enemy.y, enemy.x + 1) == true)
+            {
+                Console.SetCursorPosition(x, y);
+                Console.Write(map.map[x, y]);
+                enemy.x++;
+            }
+            else if (num == 3 && map.IsFloor(y + 1, x) == true)
+            {
+                Console.SetCursorPosition(x, y);
+                Console.Write(map.map[x, y]);
+                enemy.y++;
+            }
+            else if (num == 4 && map.IsFloor(y, x - 1) == true)
+            {
+                Console.SetCursorPosition(x, y);
+                Console.Write(map.map[x, y]);
+                enemy.x--;
+            }
+
+        }
+
+        public void EnemyAI2(Map map, Enemy enemy, Player player)
+        {
+            if (enemy.y < player.y && map.IsFloor(y + 1, x) == true)
+            {
+                Console.SetCursorPosition(x, y);
+                Console.Write(map.map[x, y]);
+                enemy.y++;
+            }
+            else if (enemy.y > player.y && map.IsFloor(y - 1, x) == true)
+            {
+                Console.SetCursorPosition(x, y);
+                Console.Write(map.map[x, y]);
+                enemy.y--;
+            }
+            else if (enemy.x < player.x && map.IsFloor(y, x + 1) == true)
+            {
+                Console.SetCursorPosition(x, y);
+                Console.Write(map.map[x, y]);
+                enemy.x++;
+            }
+            else if (enemy.x > player.x && map.IsFloor(y, x - 1) == true)
+            {
+                Console.SetCursorPosition(x, y);
+                Console.Write(map.map[x, y]);
+                enemy.x--;
+            }
+        }
+
+        public void EnemyAI3(Map map, Enemy enemy)
         {
             if (enemy.checkpoint == false)
             {
 
                 if (map.IsFloor(y + 1, x) == true)
                 {
-                    if (item.IsItem(enemy.x, enemy.y + 1, item) == true)
+                    /*if (item.IsItem(enemy.x, enemy.y + 1, item) == true)
                     {
                         right = 10;
-                    }
+                    }*/
 
                     right = right + 1;
                     Console.SetCursorPosition(x, y);
                     Console.Write(map.map[x, y]);
-                    x = x + 1;
+                    enemy.x++; ;
                 }
                 else { right = 10; }
 
@@ -123,7 +217,7 @@ namespace Text_Based_RPG
                     left = left + 1;
                     Console.SetCursorPosition(x, y);
                     Console.Write(map.map[x, y]);
-                    x = x - 1;
+                    x--;
                 }
                 else { left = 10; }
 

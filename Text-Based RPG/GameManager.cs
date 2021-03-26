@@ -18,91 +18,40 @@ namespace Text_Based_RPG
 
             Map map = new Map();
             Hud hud = new Hud();
+            Camera camera = new Camera();
 
             hud.DisplayMenu();
             map.DisplayMap();
+            //camera.DisplayCamera();
 
             
             Player player = new Player(22, 14);
             EnemyManager enemyManager = new EnemyManager();
-            //Spider spider = new Spider(12, 18);
-            //Enemy enemy = new Enemy();
-            //Rat rat = new Rat(14, 5);
+            ItemManager itemManager = new ItemManager();
+            
 
-            Item item = new Item(38, 2, 1);
-            //Sword sword = new Sword(34, 28);
-            //Key key = new Key(50, 19);
-            //Key key2 = new Key(140, 1);
-            //key.MakeLockedDoor(62, 13);
 
             enemyManager.InitEnemies();
+            itemManager.InitItems();
 
 
 
-            while (gameplay == true)
+            while (player.alive == true)
             {
                 Console.CursorVisible = false;
 
 
 
                     
-                player.Update(map, player, enemyManager, item);
-                enemyManager.Update(map, player, item);
+                player.Update(map, player, enemyManager, itemManager);
+                enemyManager.Update(map, player);
+                itemManager.Update(player);
+                //camera.Update(map);
                 player.Draw();
                 enemyManager.Draw();
-                /*Item.Update(player, key);
-                key.Draw();
-                Item.Update(player, key2);
-                key2.Draw();
-                Item.Update(player, healthpack);
-                healthpack.Draw();
-                Item.Update(player, sword);
-                sword.Draw();
-                Player.CheckForEnemy(player, spider);
-                Player.CheckForEnemy(player, zombie);
-                Player.CheckForEnemy(player, rat);*/
+                itemManager.Draw();
 
-
-                    Hud.ShowPlayerStats(player, map);
-
-                
-                /*else if (player.alive == false)
-                {
-                    gameplay = false;
-                    Console.ReadKey(true);
-                }
-
-                if (spider.alive == true)
-                {
-                    
-                    spider.Update(map);
-                    spider.Draw();
-                    Enemy.CheckForPlayer(spider, player);
-
-                }
-
-                if (zombie.alive == true)
-                {
-                    
-                    zombie.Update(map);
-                    zombie.Draw();
-                    Enemy.CheckForPlayer(zombie, player);
-
-                }
-
-                if (rat.alive == true)
-                {
-                    rat.Update(map);
-                    rat.Draw();
-                    Enemy.CheckForPlayer(rat, player);
-
-                }*/
-
-                
-
-
-
-
+                Hud.ShowPlayerStats(player, map);
 
             }
         }

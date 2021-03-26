@@ -9,10 +9,13 @@ namespace Text_Based_RPG
     class Hud : GameManager
     {
         static public int hudLine = 1;
+        public string titleScreen = System.IO.File.ReadAllText("titlescreen.txt");
+        static public string gameoverScreen = System.IO.File.ReadAllText("gameoverscreen.txt");
+
         public void DisplayMenu()
         {
             Console.Clear();
-            Console.WriteLine("Welcome to the game");
+            Console.WriteLine(titleScreen);
             Console.WriteLine();
             Console.WriteLine("MAXIMIZE BEFORE CONTINUING");
             Console.WriteLine();
@@ -21,6 +24,13 @@ namespace Text_Based_RPG
             Console.Clear();
             GameManager.gameplay = true;
 
+        }
+
+        static public void GameOver()
+        {
+            Console.Clear();
+            Console.WriteLine(gameoverScreen);
+            Console.ReadKey(true);
         }
 
         static public void ShowPlayerStats(Player player, Map map)
