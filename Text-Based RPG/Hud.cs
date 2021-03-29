@@ -11,6 +11,7 @@ namespace Text_Based_RPG
         static public int hudLine = 1;
         public string titleScreen = System.IO.File.ReadAllText("titlescreen.txt");
         static public string gameoverScreen = System.IO.File.ReadAllText("gameoverscreen.txt");
+        static public string youwinScreen = System.IO.File.ReadAllText("youwinscreen.txt");
 
         public void DisplayMenu()
         {
@@ -22,7 +23,7 @@ namespace Text_Based_RPG
             Console.WriteLine("Press any key to play...");
             Console.ReadKey(true);
             Console.Clear();
-            GameManager.gameplay = true;
+            //GameManager.gameplay = true;
 
         }
 
@@ -30,6 +31,13 @@ namespace Text_Based_RPG
         {
             Console.Clear();
             Console.WriteLine(gameoverScreen);
+            Console.ReadKey(true);
+        }
+
+        static public void YouWin()
+        {
+            Console.Clear();
+            Console.WriteLine(youwinScreen);
             Console.ReadKey(true);
         }
 

@@ -9,7 +9,8 @@ namespace Text_Based_RPG
     class Enemy : Character
     {
 
-
+        static public int EnemyLimit = 10;
+        public int deathTally;
         public bool checkpoint = false;
         public int right = 0;
         public int left = 0;
@@ -92,6 +93,7 @@ namespace Text_Based_RPG
                     }
                 }
             }
+            
         }
 
         public void TakeDamage(Enemy enemy, Player player)
@@ -116,6 +118,9 @@ namespace Text_Based_RPG
                 Console.Write(" ");
                 enemy.x = 0;
                 enemy.y = 0;
+
+                
+                
             }
 
             Hud.ShowEnemyStats(enemy);
@@ -228,6 +233,11 @@ namespace Text_Based_RPG
                     enemy.checkpoint = false;
                 }
             }
+        }
+
+        public void gameEnd()
+        {
+
         }
     }
 }

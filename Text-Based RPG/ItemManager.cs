@@ -41,6 +41,7 @@ namespace Text_Based_RPG
             {
                 if (items[i].x == player.x && items[i].y == player.y)
                 {
+                    Hud.ItemCollected(items[i]);
                     items[i].Update(player, items[i]);
                     
                 }

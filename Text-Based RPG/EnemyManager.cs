@@ -8,7 +8,7 @@ namespace Text_Based_RPG
 {
     class EnemyManager : Enemy
     {
-        private static int EnemyLimit = 10;
+
         public Enemy[] enemies = new Enemy[EnemyLimit];
 
         public void InitEnemies()
@@ -42,6 +42,7 @@ namespace Text_Based_RPG
             for (int i = 0; i < EnemyLimit; i++)
             {
                 enemies[i].Update(map, player, enemies[i]);
+                
             }
         }
 
