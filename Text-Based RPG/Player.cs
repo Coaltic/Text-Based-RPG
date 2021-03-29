@@ -18,7 +18,7 @@ namespace Text_Based_RPG
             this.Icon = "@";
             this.x = x;
             this.y = y;
-            this.attack = 2500;
+            this.attack = 25;
             this.health = 100;
             this.alive = true;
             Console.SetCursorPosition(x, y);
@@ -237,6 +237,8 @@ namespace Text_Based_RPG
             //Hud.ShowPlayerStats(player, map);
 
         }
+
+        
 
 
     }

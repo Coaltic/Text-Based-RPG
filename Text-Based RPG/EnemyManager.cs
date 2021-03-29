@@ -42,6 +42,7 @@ namespace Text_Based_RPG
             for (int i = 0; i < EnemyLimit; i++)
             {
                 enemies[i].Update(map, player, enemies[i]);
+                endGameCheck(player);
                 
             }
         }
@@ -67,6 +68,25 @@ namespace Text_Based_RPG
 
             return false;
 
+        }
+
+        public void endGameCheck(Player player)
+        {
+            foreach (Enemy enemy in enemies)
+            {
+                if (enemy.alive == false)
+                {
+                    deathTally++;
+                }
+                
+            }
+
+            if (deathTally >= EnemyLimit)
+            {
+                player.alive = false;
+                Hud.YouWin();
+            }
+            else deathTally = 0;
         }
     }
 }
