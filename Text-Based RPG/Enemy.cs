@@ -193,51 +193,48 @@ namespace Text_Based_RPG
             if (enemy.checkpoint == false)
             {
 
-                if (map.IsFloor(y + 1, x) == true)
+                if (map.IsFloor(y, x + 1) == true)
                 {
                     /*if (item.IsItem(enemy.x, enemy.y + 1, item) == true)
                     {
                         right = 10;
                     }*/
 
-                    right = right + 1;
+                    //right = right + 1;
                     Console.SetCursorPosition(x, y);
                     Console.Write(map.map[x, y]);
                     enemy.x++; ;
                 }
-                else { right = 10; }
+                else { enemy.checkpoint = true; }
 
 
-                if (right >= 10)
+                /*if (right >= 10)
                 {
                     right = 0;
                     enemy.checkpoint = true;
-                }
+                }*/
 
             }
             else if (enemy.checkpoint == true)
             {
-                if (map.IsFloor(y + 1, x) == true)
+                if (map.IsFloor(y, x - 1) == true)
                 {
-                    left = left + 1;
+                    //left = left + 1;
                     Console.SetCursorPosition(x, y);
                     Console.Write(map.map[x, y]);
                     x--;
                 }
-                else { left = 10; }
+                else { enemy.checkpoint = false; }
 
 
-                if (left >= 10)
+                /*if (left >= 10)
                 {
                     left = 0;
                     enemy.checkpoint = false;
-                }
+                }*/
             }
         }
 
-        public void gameEnd()
-        {
-
-        }
+        
     }
 }

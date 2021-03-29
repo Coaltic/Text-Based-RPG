@@ -23,7 +23,7 @@ namespace Text_Based_RPG
 
         public void LoadEnemy()
         {
-            enemies[0].SetEnemy(90, 6, 3);
+            enemies[0].SetEnemy(105, 6, 3);
             enemies[1].SetEnemy(66, 3, 3);
             enemies[2].SetEnemy(98, 13, 2);
             enemies[3].SetEnemy(69, 13, 1);
