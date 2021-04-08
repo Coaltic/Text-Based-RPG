@@ -20,10 +20,10 @@ namespace Text_Based_RPG
 
 
 
-        public void Draw()
+        public void Draw(Camera camera, Render render, Map map)
         {
-            Console.SetCursorPosition(x, y);
-            Console.Write(Icon);
+            render.Draw(x, y, Icon, camera, map);
+
         }
 
         public void Collision()

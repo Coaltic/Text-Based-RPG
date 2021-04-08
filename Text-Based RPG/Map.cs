@@ -11,42 +11,55 @@ namespace Text_Based_RPG
 
         public char[,] map = new char[220, 58];
         public string[] mapData;
-        public int x;
-        public int y;
 
 
 
-        public Map()
+        public Map(Camera camera)
         {
             mapData = System.IO.File.ReadAllLines("Map.txt");
-            for (y = 0; y <= mapData.Length - 1; y++)
+            for (int y = 0; y <= mapData.Length - 1; y++)
             {
                 string currentMapLine = mapData[y];
-                for (x = 0; x <= currentMapLine.Length - 1; x++)
+                for (int x = 0; x <= currentMapLine.Length - 1; x++)
                 {
                     char mapTile = currentMapLine[x];
                     map[x, y] = mapTile;
                 }
             }
+            
         }
 
 
-        public void DisplayMap()
+        public void DisplayMap(Camera camera, Render render, Map map)
         {
-            Console.Clear();
-            for (y = 0; y <= 57; y++)
+            if (camera.offsetX < 0)
             {
-                for (x = 0; x <= 209; x++)
-                {
-                    Console.Write(map[x, y]);
-                }
-                Console.WriteLine();
-                x = 0;
+                //Console.SetCursorPosition(10 , 0);
+                camera.offsetX = 0;
+            }
+            if (camera.offsetY < 0)
+            {
+                //Console.SetCursorPosition(0 + camera.offsetX, 0 + camera.offsetY);
+                //camera.offsetY = 0;
+            }
+            else
+            {
+                Console.SetCursorPosition(0, 0);
             }
 
-            y = 0;
+            for (int y = camera.Ystart; y < camera.Yend; y++)
+            {
+                for (int x = camera.Xstart; x < camera.Xend; x++)
+                {
+                    //string Icon = this.map[x, y].ToString();
+                    render.MapDraw(x, y, camera, map);
+                }
+                Console.WriteLine();
+                
+            }
 
         }
+
 
         public bool IsFloor(int y, int x)
         {

@@ -8,61 +8,54 @@ namespace Text_Based_RPG
 {
     class Camera
     {
-        private char[,] cameraDisplay = new char[220, 56];
+        public int offsetX;
+        public int offsetY;
 
-        private string[] cameraData;
-        private int x;
-        private int y;
 
-        public int rightSide;
-        public int leftSide;
-        public int topSide;
-        public int bottomSide;
+        public int Xstart;
+        public int Xend = 50;
 
-        public Camera()
+        public int Ystart;
+        public int Yend = 24;
+
+        /*public void Draw(Character character)
         {
-            cameraData = System.IO.File.ReadAllLines("Map.txt");
+            Console.SetCursorPosition(character.x + offsetX, character.y + offsetY);
+        }*/
 
-            for (y = 0; y <= cameraData.Length - 1; y++)
-            {
-                string currentCameraLine = cameraData[y];
-                for (x = 0; x <= currentCameraLine.Length - 1; x++)
-                {
-                    char mapTile = currentCameraLine[x];
-                    cameraDisplay[x, y] = mapTile;
-                }
-            } 
-        }
-
-        public void DisplayCamera()
+        /*public void Update()
         {
-            Console.SetCursorPosition(0, 0);
-
-            for (y = 0; y <= 22; y++)
+            if (offsetX <= -1)
             {
-                for (x = 0; x <= 55; x++)
-                {
-                    Console.Write(cameraDisplay[x, y]);
-                }
-                Console.WriteLine();
-                x = 0;
+                Xstart = Xstart + 1;
+                offsetX = offsetX + 1;
             }
-
-            y = 0;
-        }
-
-        public void Update(Map map)
-        {
-            for (y = 0; y <= cameraData.Length - 1; y++)
+            if (offsetY <= -1)
             {
-                string currentMapLine = cameraData[map.y];
-                for (x = 0; x <= currentMapLine.Length - 1; x++)
-                {
-                    char mapTile = currentMapLine[map.x];
-                    cameraDisplay[x, y] = mapTile;
-                }
+                Ystart = Ystart + 1;
+                offsetY = offsetY + 1;
             }
-        }
+            if (offsetX >= 1)
+            {
+                Xstart = Xstart - 1;
+                offsetX = offsetX - 1;
+            }
+            if (offsetY >= 1)
+            {
+                Ystart = Ystart - 1;
+                offsetY = offsetY - 1;
+            }
+            if (Xstart <= 0)
+            {
+                Xstart = 0;
+            }
+            if (Ystart <= 0)
+            {
+                Ystart = 0;
+            }
+        }*/
+
+
     }
 
     

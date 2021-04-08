@@ -9,30 +9,31 @@ namespace Text_Based_RPG
     
     class GameManager
     {
-        //
+        
         public static bool gameplay = false;
 
 
         public void RunGame()
         {
-
-            Map map = new Map();
-            Hud hud = new Hud();
             Camera camera = new Camera();
+            Render render = new Render();
+            Map map = new Map(camera);
+            Hud hud = new Hud();
+            
 
             hud.DisplayMenu();
-            map.DisplayMap();
-            //camera.DisplayCamera();
+            map.DisplayMap(camera, render, map);
 
             
-            Player player = new Player(22, 14);
+            Player player = new Player(22, 10);
             EnemyManager enemyManager = new EnemyManager();
             ItemManager itemManager = new ItemManager();
-            
 
 
-            enemyManager.InitEnemies();
-            itemManager.InitItems();
+            //itemManager.InitItems();
+            //enemyManager.InitEnemies();
+            //itemManager.Draw();
+
 
 
 
@@ -41,17 +42,19 @@ namespace Text_Based_RPG
                 Console.CursorVisible = false;
 
 
-
+                
                     
-                player.Update(map, player, enemyManager, itemManager);
-                enemyManager.Update(map, player);
-                itemManager.Update(player);
-                //camera.Update(map);
-                player.Draw();
-                enemyManager.Draw();
-                itemManager.Draw();
+                player.Update(map, player, enemyManager, camera, render);
+                //enemyManager.Update(map, player, camera, render);
+                //itemManager.Update(player, camera, render);
+                //map.Update(camera);
+                map.DisplayMap(camera, render, map);
+                //camera.Draw(player);
+                player.Draw(camera, render, map);
+                //enemyManager.Draw(camera);
+                //itemManager.Draw();
 
-                Hud.ShowPlayerStats(player, map);
+                //Hud.ShowPlayerStats(player, map);
 
             }
         }

@@ -21,13 +21,13 @@ namespace Text_Based_RPG
             this.attack = 25;
             this.health = 100;
             this.alive = true;
-            Console.SetCursorPosition(x, y);
-            Console.WriteLine(Icon);
+            /*Console.SetCursorPosition(x, y);
+            Console.WriteLine(Icon);*/
         }
 
         
 
-        public void Update(Map map, Player player, EnemyManager enemyManager, ItemManager itemManager)
+        public void Update(Map map, Player player, EnemyManager enemyManager, Camera camera, Render render)
         {
             while (Console.KeyAvailable)
             {
@@ -41,7 +41,7 @@ namespace Text_Based_RPG
             {
                 if (map.IsFloor(y - 1, x) == true)
                 {
-                    
+
                     /*if (itemManager.IsItem(player.y - 1, player.x, player) == true)
                     {
                         if (itemManager.name == "Sword") { hasSword = true; }
@@ -52,11 +52,14 @@ namespace Text_Based_RPG
                     {
                         Console.Beep(800, 200);
                     }
-                    else if (enemyManager.IsEnemy(player.y - 1, player.x, player) == false)
+                    else //(enemyManager.IsEnemy(player.y - 1, player.x, player) == false)
                     {
-                        Console.SetCursorPosition(x, y);
-                        Console.Write(map.map[x, y]);
+                        //Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
+                        //Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);
                         y = y - 1;
+                        camera.offsetY--; ;
+                        //render.Draw(x, y, Icon, camera, map);
+                        //camera.offsetY++;
                     }
                     
                                                         
@@ -65,9 +68,12 @@ namespace Text_Based_RPG
                 {
                     if (hasKey == true)
                     {
-                        Console.SetCursorPosition(x, y);
-                        Console.Write(map.map[x, y]);
+                        Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
+                        Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);
                         y = y - 1;
+                        camera.offsetY--;
+                        //render.Draw(x, y, Icon, camera, map);
+                        //camera.offsetY++;
                     }
                     
                 }
@@ -87,11 +93,14 @@ namespace Text_Based_RPG
                     {
                         Console.Beep(800, 200);
                     }
-                    else if (enemyManager.IsEnemy(player.y, player.x + 1, player) == false)
+                    else //(enemyManager.IsEnemy(player.y, player.x + 1, player) == false)
                     {
-                        Console.SetCursorPosition(x, y);
-                        Console.Write(map.map[x, y]);
+                        //Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
+                        //Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);
                         x = x + 1;
+                        camera.offsetX++;
+                        //render.Draw(x, y, Icon, camera, map);
+                        //camera.offsetX--;
                     }
                     
                                                         // previous tile is replaced by map tile
@@ -100,9 +109,12 @@ namespace Text_Based_RPG
                 {
                     if (hasKey == true)
                     {
-                        Console.SetCursorPosition(x, y);
-                        Console.Write(map.map[x, y]);
-                        y = y - 1;
+                        //Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
+                        //Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);
+                        x = x + 1;
+                        camera.offsetX++;
+                        //render.Draw(x, y, Icon, camera, map);
+                        //camera.offsetX--;
                     }
 
                 }
@@ -122,11 +134,14 @@ namespace Text_Based_RPG
                        
                         Console.Beep(800, 200);
                     }
-                    else if (enemyManager.IsEnemy(player.y + 1, player.x, player) == false)
+                    else //(enemyManager.IsEnemy(player.y + 1, player.x, player) == false)
                     {
-                        Console.SetCursorPosition(x, y);
-                        Console.Write(map.map[x, y]);                             // player moves left
+                        //Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
+                        //Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);                             // player moves left
                         y = y + 1;
+                        camera.offsetY++;
+                        //render.Draw(x, y, Icon, camera, map);
+                        //camera.offsetY--;
                     }
                                                         // previous tile is replaced by map tile
                 }
@@ -134,9 +149,11 @@ namespace Text_Based_RPG
                 {
                     if (hasKey == true)
                     {
-                        Console.SetCursorPosition(x, y);
-                        Console.Write(map.map[x, y]);
+                        //Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
+                        //Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);
                         y = y +  1;
+                        camera.offsetY++;
+                        //render.Draw(x, y, Icon, camera, map);
 
                     }
                     else { Collision(); }
@@ -157,11 +174,14 @@ namespace Text_Based_RPG
                         Console.Beep(800, 200);
 
                     }
-                    else if (enemyManager.IsEnemy(player.y, player.x - 1, player) == false)
+                    else //(enemyManager.IsEnemy(player.y, player.x - 1, player) == false)
                     {
-                        Console.SetCursorPosition(x, y); 
-                        Console.Write(map.map[x, y]);                         // player moves down
+                        //Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
+                        //Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);                       // player moves down
                         x = x - 1;
+                        camera.offsetX--;
+                        //render.Draw(x, y, Icon, camera, map);
+                        //camera.offsetX++;
                     }
                     
                                                         // previous tile is replaced by map tile
@@ -170,9 +190,11 @@ namespace Text_Based_RPG
                 {
                     if (hasKey == true)
                     {
-                        Console.SetCursorPosition(x, y);
-                        Console.Write(map.map[x, y]);
+                        //Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
+                        //Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);
                         y = y - 1;
+                        //render.Draw(x, y, Icon, camera, map);
+                        //camera.offsetX++;
                     }
 
                 }

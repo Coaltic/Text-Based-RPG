@@ -52,7 +52,7 @@ namespace Text_Based_RPG
         }
 
 
-        public void Update(Map map, Player player, Enemy enemy)
+        public void Update(Map map, Player player, Enemy enemy, Camera camera)
         {
             if (enemy.alive == true)
             {
