@@ -42,10 +42,10 @@ namespace Text_Based_RPG
                 //Console.SetCursorPosition(0 + camera.offsetX, 0 + camera.offsetY);
                 //camera.offsetY = 0;
             }
-            else
-            {
+            
+            
                 Console.SetCursorPosition(0, 0);
-            }
+            
 
             for (int y = camera.Ystart; y < camera.Yend; y++)
             {

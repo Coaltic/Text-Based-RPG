@@ -22,8 +22,7 @@ namespace Text_Based_RPG
 
         public void Draw(Camera camera, Render render, Map map)
         {
-            render.Draw(x, y, Icon, camera, map);
-
+            render.Draw(x, y, Icon, camera);
         }
 
         public void Collision()

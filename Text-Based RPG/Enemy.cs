@@ -46,8 +46,8 @@ namespace Text_Based_RPG
                 attack = 15;
             }
 
-            Console.SetCursorPosition(x, y);
-            Console.WriteLine(Icon);
+            /*Console.SetCursorPosition(x, y);
+            Console.WriteLine(Icon);*/
 
         }
 

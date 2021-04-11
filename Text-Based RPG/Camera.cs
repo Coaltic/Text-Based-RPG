@@ -23,37 +23,17 @@ namespace Text_Based_RPG
             Console.SetCursorPosition(character.x + offsetX, character.y + offsetY);
         }*/
 
-        /*public void Update()
+        public void Update()
         {
             if (offsetX <= -1)
             {
-                Xstart = Xstart + 1;
-                offsetX = offsetX + 1;
+                offsetX = 0;
             }
             if (offsetY <= -1)
             {
-                Ystart = Ystart + 1;
-                offsetY = offsetY + 1;
+                offsetY = 0;
             }
-            if (offsetX >= 1)
-            {
-                Xstart = Xstart - 1;
-                offsetX = offsetX - 1;
-            }
-            if (offsetY >= 1)
-            {
-                Ystart = Ystart - 1;
-                offsetY = offsetY - 1;
-            }
-            if (Xstart <= 0)
-            {
-                Xstart = 0;
-            }
-            if (Ystart <= 0)
-            {
-                Ystart = 0;
-            }
-        }*/
+        }
 
 
     }

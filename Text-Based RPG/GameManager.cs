@@ -30,8 +30,8 @@ namespace Text_Based_RPG
             ItemManager itemManager = new ItemManager();
 
 
-            //itemManager.InitItems();
-            //enemyManager.InitEnemies();
+            itemManager.InitItems();
+            enemyManager.InitEnemies();
             //itemManager.Draw();
 
 
@@ -41,20 +41,16 @@ namespace Text_Based_RPG
             {
                 Console.CursorVisible = false;
 
-
-                
-                    
                 player.Update(map, player, enemyManager, camera, render);
-                //enemyManager.Update(map, player, camera, render);
-                //itemManager.Update(player, camera, render);
-                //map.Update(camera);
+                enemyManager.Update(map, player, camera);
+                camera.Update();
+                itemManager.Update(player);
                 map.DisplayMap(camera, render, map);
-                //camera.Draw(player);
                 player.Draw(camera, render, map);
-                //enemyManager.Draw(camera);
-                //itemManager.Draw();
+                enemyManager.Draw(camera, render, map);
+                itemManager.Draw(camera, render, map);
 
-                //Hud.ShowPlayerStats(player, map);
+                Hud.ShowPlayerStats(player, map);
 
             }
         }

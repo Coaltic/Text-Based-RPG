@@ -52,8 +52,8 @@ namespace Text_Based_RPG
                     {
                         Console.Beep(800, 200);
                     }
-                    else //(enemyManager.IsEnemy(player.y - 1, player.x, player) == false)
-                    {
+                    else if (enemyManager.IsEnemy(player.y - 1, player.x, player) == false)
+                    { 
                         //Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
                         //Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);
                         y = y - 1;

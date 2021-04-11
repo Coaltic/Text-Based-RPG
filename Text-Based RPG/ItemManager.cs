@@ -49,13 +49,13 @@ namespace Text_Based_RPG
         }
 
 
-        public new void Draw()
+        public new void Draw(Camera camera, Render render, Map map)
         {
             for (int i = 0; i < ItemLimit; i++)
             {
                 if (items[i].active == true)
                 {
-                    items[i].Draw();
+                    items[i].Draw(camera, render, map);
                 }
                 
             }
