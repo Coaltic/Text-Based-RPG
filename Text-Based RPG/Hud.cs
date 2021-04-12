@@ -18,18 +18,14 @@ namespace Text_Based_RPG
 
         public string[] hudLine = new string[6];
 
-        
-
         public void initHud()
         {
-            hudLine[0] = "0        ";
-            hudLine[1] = "1        ";
-            hudLine[2] = "2        ";
-            hudLine[3] = "3        ";
-            hudLine[4] = "4        ";
-            hudLine[5] = "5        ";
-
-            
+            hudLine[0] = "         ";
+            hudLine[1] = "         ";
+            hudLine[2] = "         ";
+            hudLine[3] = "         ";
+            hudLine[4] = "         ";
+            hudLine[5] = "         ";
         }
 
         public void DisplayHud(String text)
@@ -52,8 +48,7 @@ namespace Text_Based_RPG
                 Console.SetCursorPosition(5, currentHudLine);
                 Console.Write(hudLine[previousHudText] + "                                           ");
                 previousHudText--;
-                
-                
+
             }
 
             currentHudText++;
@@ -63,6 +58,7 @@ namespace Text_Based_RPG
                 currentHudText = 0;
             }
         }
+
         public void DisplayMenu()
         {
             Console.Clear();
@@ -73,8 +69,6 @@ namespace Text_Based_RPG
             Console.WriteLine("Press any key to play...");
             Console.ReadKey(true);
             Console.Clear();
-            //GameManager.gameplay = true;
-
         }
 
         static public void GameOver()
@@ -105,7 +99,5 @@ namespace Text_Based_RPG
         {
             DisplayHud(item.name + " has been picked up");
         }
-
-        
     }
 }

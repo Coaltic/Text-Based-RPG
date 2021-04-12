@@ -20,14 +20,15 @@ namespace Text_Based_RPG
 
 
 
-        public void Draw(Camera camera, Render render, Map map)
+        public void Draw(Camera camera, Render render)
         {
             render.Draw(x, y, Icon, camera);
+
         }
 
         public void Collision()
         {
-            Console.Beep(100, 200);                                     // left as a method for future possible additions
+            Console.Beep(100, 200);
         }
 
     }

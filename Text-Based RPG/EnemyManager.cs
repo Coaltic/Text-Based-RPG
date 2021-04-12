@@ -8,7 +8,6 @@ namespace Text_Based_RPG
 {
     class EnemyManager : Enemy
     {
-
         public Enemy[] enemies = new Enemy[EnemyLimit];
 
         public void InitEnemies()
@@ -33,8 +32,16 @@ namespace Text_Based_RPG
             enemies[7].SetEnemy(124, 34, 2);
             enemies[8].SetEnemy(142, 20, 1);
             enemies[9].SetEnemy(120, 7, 1);
-
-
+            enemies[10].SetEnemy(137, 11, 3);
+            enemies[11].SetEnemy(169, 7, 3);
+            enemies[12].SetEnemy(195, 29, 2);
+            enemies[13].SetEnemy(196, 18, 3);
+            enemies[14].SetEnemy(39, 24, 3);
+            enemies[15].SetEnemy(14, 15, 3);
+            enemies[16].SetEnemy(104, 20, 3);
+            enemies[17].SetEnemy(197, 37, 3);
+            enemies[18].SetEnemy(169, 25, 3);
+            enemies[19].SetEnemy(174, 41, 2);
         }
 
         public void Update(Map map, Player player, Hud hud)
@@ -43,19 +50,18 @@ namespace Text_Based_RPG
             {
                 enemies[i].Update(map, player, enemies[i], hud);
                 endGameCheck(player);
-                
             }
         }
 
-        public new void Draw(Camera camera, Render render, Map map)
+        public new void Draw(Camera camera, Render render)
         {
             for (int i = 0; i < EnemyLimit; i++)
             {
-                enemies[i].Draw(camera, render, map);
+                enemies[i].Draw(camera, render);
             }
         }
 
-        public bool IsEnemy(int y, int x, Player player, Hud hud)
+        public bool IsEnemy(int x, int y, Player player, Hud hud)
         {
             for (int i = 0; i < EnemyLimit; i++)
             {
@@ -67,7 +73,6 @@ namespace Text_Based_RPG
             }
 
             return false;
-
         }
 
         public void endGameCheck(Player player)
@@ -78,7 +83,6 @@ namespace Text_Based_RPG
                 {
                     deathTally++;
                 }
-                
             }
 
             if (deathTally >= EnemyLimit)
@@ -86,6 +90,7 @@ namespace Text_Based_RPG
                 player.alive = false;
                 Hud.YouWin();
             }
+
             else deathTally = 0;
         }
     }

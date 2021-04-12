@@ -12,7 +12,6 @@ namespace Text_Based_RPG
         public bool hasSword = false;
         public bool hasKey = false;
         
-
         public Player(int x, int y)
         {
             this.Icon = "@";
@@ -21,11 +20,7 @@ namespace Text_Based_RPG
             this.attack = 25;
             this.health = 100;
             this.alive = true;
-            /*Console.SetCursorPosition(x, y);
-            Console.WriteLine(Icon);*/
         }
-
-        
 
         public void Update(Map map, Player player, EnemyManager enemyManager, Camera camera, Hud hud)
         {
@@ -39,162 +34,62 @@ namespace Text_Based_RPG
 
             if (input.KeyChar == 'w')
             {
-                if (map.IsFloor(y - 1, x) == true)
+                if (Movement(x, y - 1, map, player, enemyManager, camera, hud) == true)
                 {
-
-                   
-                    if (enemyManager.IsEnemy(player.y - 1, player.x, player, hud) == true)
-                    {
-                        Console.Beep(800, 200);
-                    }
-                    else if (enemyManager.IsEnemy(player.y - 1, player.x, player, hud) == false)
-                    { 
-                        y = y - 1;
-                        camera.offsetY--; ;
-
-                    }
-                    
-                                                        
+                    camera.offsetY--;
                 }
-                else if (map.IsDoor(player.y - 1, player.x, player) == true)
-                {
-                    if (hasKey == true)
-                    {
-                        Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
-                        Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);
-                        y = y - 1;
-                        camera.offsetY--;
-
-                    }
-                    
-                }
-                else { Collision(); }
             }
             else if (input.KeyChar == 'd')
             {
-                if (map.IsFloor(y, x + 1) == true)
+                if (Movement(x + 1, y, map, player, enemyManager, camera, hud) == true)
                 {
-
-                    if (enemyManager.IsEnemy(player.y, player.x + 1, player, hud) == true)
-                    {
-                        Console.Beep(800, 200);
-                    }
-                    else //(enemyManager.IsEnemy(player.y, player.x + 1, player) == false)
-                    {
-                        //Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
-                        //Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);
-                        x = x + 1;
-                        camera.offsetX++;
-                        //render.Draw(x, y, Icon, camera, map);
-                        //camera.offsetX--;
-                    }
-                    
-                                                        // previous tile is replaced by map tile
+                    camera.offsetX++;
                 }
-                else if (map.IsDoor(player.y, player.x + 1, player) == true)
-                {
-                    if (hasKey == true)
-                    {
-                        //Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
-                        //Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);
-                        x = x + 1;
-                        camera.offsetX++;
-                        //render.Draw(x, y, Icon, camera, map);
-                        //camera.offsetX--;
-                    }
-
-                }
-                else { Collision(); }
             }
             else if (input.KeyChar == 's')
             {
-                if (map.IsFloor(y + 1, x) == true)
+                if (Movement(x, y + 1, map, player, enemyManager, camera, hud) == true)
                 {
-                    /*if (itemManager.IsItem(player.y + 1, player.x, player) == true)
-                    {
-                     
-
-                    }*/
-                    if (enemyManager.IsEnemy(player.y + 1, player.x, player, hud) == true)
-                    {
-                       
-                        Console.Beep(800, 200);
-                    }
-                    else //(enemyManager.IsEnemy(player.y + 1, player.x, player) == false)
-                    {
-                        //Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
-                        //Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);                             // player moves left
-                        y = y + 1;
-                        camera.offsetY++;
-                        //render.Draw(x, y, Icon, camera, map);
-                        //camera.offsetY--;
-                    }
-                                                        // previous tile is replaced by map tile
+                    camera.offsetY++;
                 }
-                else if (map.IsDoor(player.y + 1, player.x, player) == true)
-                {
-                    if (hasKey == true)
-                    {
-                        //Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
-                        //Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);
-                        y = y +  1;
-                        camera.offsetY++;
-                        //render.Draw(x, y, Icon, camera, map);
-
-                    }
-                    else { Collision(); }
-
-                }
-                else { Collision(); }
             }
             else if (input.KeyChar == 'a')
             {
-                if (map.IsFloor(y, x - 1) == true)
+                if (Movement(x - 1, y, map, player, enemyManager, camera, hud) == true)
                 {
-                    /*if (itemManager.IsItem(player.y, player.x - 1, player) == true)
-                    {
-
-                    }*/
-                    if (enemyManager.IsEnemy(player.y, player.x - 1, player, hud) == true)
-                    {
-                        Console.Beep(800, 200);
-
-                    }
-                    else //(enemyManager.IsEnemy(player.y, player.x - 1, player) == false)
-                    {
-                        //Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
-                        //Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);                       // player moves down
-                        x = x - 1;
-                        camera.offsetX--;
-                        //render.Draw(x, y, Icon, camera, map);
-                        //camera.offsetX++;
-                    }
-                    
-                                                        // previous tile is replaced by map tile
+                    camera.offsetX--;
                 }
-                else if (map.IsDoor(player.y, player.x - 1, player) == true)
-                {
-                    if (hasKey == true)
-                    {
-                        //Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
-                        //Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);
-                        y = y - 1;
-                        //render.Draw(x, y, Icon, camera, map);
-                        //camera.offsetX++;
-                    }
-
-                }
-                else { Collision(); }
             }
-
-           
-
-
         }
 
-        public void Movement(x, y)
+        public bool Movement(int x, int y, Map map, Player player, EnemyManager enemyManager, Camera camera, Hud hud)
         {
+            if (map.IsFloor(y, x) == true)
+            {
+                if (enemyManager.IsEnemy(x, y, player, hud) == true)
+                {
+                    Console.Beep(800, 200);
+                    return false;
+                }
+                else
+                {
+                    player.y = y;
+                    player.x = x;
+                    return true;
+                }
+            }
+            else if (hasKey == true)
+            {
+                if (map.IsDoor(y, x, player) == true)
+                {
+                    player.y = y;
+                    player.x = x;
+                    return true;
+                }
 
+                return false;
+            }
+            else { Collision(); return false; }
         }
 
         public bool IsPlayerNear(int x, int y, Player player)
@@ -202,7 +97,6 @@ namespace Text_Based_RPG
             if (player.x == x - 1 && player.y == y)
             {
                 return true;
-                
             }
             else if (player.x == x + 1 && player.y == y)
             {
@@ -234,7 +128,6 @@ namespace Text_Based_RPG
             }
         }
 
-
         public void TakeDamage(Player player, Enemy enemy, Hud hud)
         {
             player.health = player.health - enemy.attack;
@@ -248,11 +141,6 @@ namespace Text_Based_RPG
             }
 
             hud.ShowPlayerStats(player);
-
         }
-
-        
-
-
     }
 }

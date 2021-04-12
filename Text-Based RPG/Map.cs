@@ -8,11 +8,8 @@ namespace Text_Based_RPG
 {
     class Map
     {
-
         public char[,] map = new char[220, 58];
         public string[] mapData;
-
-
 
         public Map(Camera camera)
         {
@@ -25,10 +22,8 @@ namespace Text_Based_RPG
                     char mapTile = currentMapLine[x];
                     map[x, y] = mapTile;
                 }
-            }
-            
+            } 
         }
-
 
         public void DisplayMap(Camera camera, Render render, Map map)
         { 
@@ -40,12 +35,10 @@ namespace Text_Based_RPG
                 {
                     render.MapDraw(x, y, camera, map);
                 }
+
                 Console.WriteLine();
-                
             }
-
         }
-
 
         public bool IsFloor(int y, int x)
         {
@@ -53,23 +46,19 @@ namespace Text_Based_RPG
             {
                 return true;
             }
-            else return false;
 
+            else return false;
         }
 
         public bool IsDoor(int y, int x, Player player)
         {
-            
             if (map[x, y] == '█')
             {
-                if (player.hasKey == true)
-                {
-                    map[x, y] = ' ';
-                }
+                map[x, y] = ' ';
                 return true;
             }
-            else return false;
 
+            else return false;
         }
 
     }

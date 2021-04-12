@@ -17,26 +17,5 @@ namespace Text_Based_RPG
 
         public int Ystart;
         public int Yend = 24;
-
-        /*public void Draw(Character character)
-        {
-            Console.SetCursorPosition(character.x + offsetX, character.y + offsetY);
-        }*/
-
-        /*public void Update()
-        {
-            if (offsetX <= -1)
-            {
-                offsetX = 0;
-            }
-            if (offsetY <= -1)
-            {
-                offsetY = 0;
-            }
-        }*/
-
-
     }
-
-    
 }

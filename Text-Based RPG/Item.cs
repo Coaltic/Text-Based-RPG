@@ -39,8 +39,6 @@ namespace Text_Based_RPG
                 Icon = "┼";
                 name = "Sword";
             }
-
-
         }
 
         public void Update(Player player, Item item, Hud hud)
@@ -49,7 +47,7 @@ namespace Text_Based_RPG
             {
                 if (item.itemType == 1)
                 {
-                    player.health = player.health + 50;
+                    player.health = player.health + 25;
                     item.active = false;
                 }
                 else if (item.itemType == 2)
@@ -61,6 +59,7 @@ namespace Text_Based_RPG
                 {
                     player.hasSword = true;
                     item.active = false;
+                    player.attack = player.attack + 25;
 
                 }
 
@@ -72,9 +71,5 @@ namespace Text_Based_RPG
         {
             render.Draw(x, y, Icon, camera);
         }
-
-
-        
-
     }
 }

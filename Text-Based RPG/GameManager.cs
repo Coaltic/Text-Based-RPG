@@ -25,9 +25,18 @@ namespace Text_Based_RPG
             EnemyManager enemyManager = new EnemyManager();
             ItemManager itemManager = new ItemManager();
 
+            Character[] gameCharacters = new Character[21];
+
             itemManager.InitItems();
             enemyManager.InitEnemies();
             hud.initHud();
+
+            for (int i = 0; i < gameCharacters.Length - 1; i++)
+            {
+                gameCharacters[i] = enemyManager.enemies[i];
+            }
+
+            gameCharacters[20] = player;
 
             hud.ShowPlayerStats(player);
 
@@ -39,12 +48,15 @@ namespace Text_Based_RPG
                 enemyManager.Update(map, player, hud);
                 itemManager.Update(player, hud);
                 map.DisplayMap(camera, render, map);
-                player.Draw(camera, render, map);
-                enemyManager.Draw(camera, render, map);
+
+                for (int i = 0; i < gameCharacters.Length; i++)
+                {
+                    gameCharacters[i].Draw(camera, render);
+                }
+
+                //player.Draw(camera, render);
+                //enemyManager.Draw(camera, render);
                 itemManager.Draw(camera, render, map);
-
-                
-
             }
         }
     }

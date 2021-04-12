@@ -8,8 +8,7 @@ namespace Text_Based_RPG
 {
     class Enemy : Character
     {
-
-        static public int EnemyLimit = 10;
+        static public int EnemyLimit = 20;
         public int deathTally;
         public bool checkpoint = false;
         public int right = 0;
@@ -25,7 +24,6 @@ namespace Text_Based_RPG
             this.x = x;
             this.y = y;
             alive = true;
-
 
             if (type == 1)
             {
@@ -45,10 +43,6 @@ namespace Text_Based_RPG
                 health = 50;
                 attack = 15;
             }
-
-            /*Console.SetCursorPosition(x, y);
-            Console.WriteLine(Icon);*/
-
         }
 
 
@@ -100,14 +94,12 @@ namespace Text_Based_RPG
         {
             if (player.hasSword == true)
             {
-                enemy.health = enemy.health - (player.attack + 15);
+                enemy.health = enemy.health - (player.attack);
             }
             else if (player.hasSword == false)
             {
                 enemy.health = enemy.health - player.attack;
             }
-
-            
 
             if (enemy.health <= 0)
             {
@@ -118,20 +110,14 @@ namespace Text_Based_RPG
                 Console.Write(" ");
                 enemy.x = 0;
                 enemy.y = 0;
-
-                
-                
             }
 
             hud.ShowEnemyStats(enemy);
-
         }
 
         public void EnemyAI1(Map map, Enemy enemy)
         {
             int num = rnd.Next(5);
-
-            //Console.Write(enemy.x + ", " + enemy.y);
 
             if (num == 1 && map.IsFloor(enemy.y - 1, enemy.x) == true)
             {
@@ -157,7 +143,6 @@ namespace Text_Based_RPG
                 Console.Write(map.map[x, y]);
                 enemy.x--;
             }
-
         }
 
         public void EnemyAI2(Map map, Enemy enemy, Player player)
@@ -195,46 +180,18 @@ namespace Text_Based_RPG
 
                 if (map.IsFloor(y, x + 1) == true)
                 {
-                    /*if (item.IsItem(enemy.x, enemy.y + 1, item) == true)
-                    {
-                        right = 10;
-                    }*/
-
-                    //right = right + 1;
-                    Console.SetCursorPosition(x, y);
-                    Console.Write(map.map[x, y]);
-                    enemy.x++; ;
+                    enemy.x++;
                 }
                 else { enemy.checkpoint = true; }
-
-
-                /*if (right >= 10)
-                {
-                    right = 0;
-                    enemy.checkpoint = true;
-                }*/
-
             }
             else if (enemy.checkpoint == true)
             {
                 if (map.IsFloor(y, x - 1) == true)
-                {
-                    //left = left + 1;
-                    Console.SetCursorPosition(x, y);
-                    Console.Write(map.map[x, y]);
+                { 
                     x--;
                 }
                 else { enemy.checkpoint = false; }
-
-
-                /*if (left >= 10)
-                {
-                    left = 0;
-                    enemy.checkpoint = false;
-                }*/
             }
         }
-
-        
     }
 }
