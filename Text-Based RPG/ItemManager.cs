@@ -35,14 +35,13 @@ namespace Text_Based_RPG
             items[9].SetItem(28, 48, 3);
         }
 
-        public void Update(Player player)
+        public void Update(Player player, Hud hud)
         {
             for (int i = 0; i < ItemLimit; i++)
             {
                 if (items[i].x == player.x && items[i].y == player.y)
                 {
-                    Hud.ItemCollected(items[i]);
-                    items[i].Update(player, items[i]);
+                    items[i].Update(player, items[i], hud);
                     
                 }
             }

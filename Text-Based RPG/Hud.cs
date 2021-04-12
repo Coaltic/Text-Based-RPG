@@ -6,13 +6,63 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    class Hud : GameManager
+    class Hud
     {
-        static public int hudLine = 1;
+        public int currentHudLine = 25;
+        public int currentHudText = 0;
+        public int previousHudText = 1;
+
         public string titleScreen = System.IO.File.ReadAllText("titlescreen.txt");
         static public string gameoverScreen = System.IO.File.ReadAllText("gameoverscreen.txt");
         static public string youwinScreen = System.IO.File.ReadAllText("youwinscreen.txt");
 
+        public string[] hudLine = new string[6];
+
+        
+
+        public void initHud()
+        {
+            hudLine[0] = "0        ";
+            hudLine[1] = "1        ";
+            hudLine[2] = "2        ";
+            hudLine[3] = "3        ";
+            hudLine[4] = "4        ";
+            hudLine[5] = "5        ";
+
+            
+        }
+
+        public void DisplayHud(String text)
+        {
+            currentHudLine = 25;
+            previousHudText = currentHudText - 1;
+            hudLine[currentHudText] = (text);
+
+            Console.SetCursorPosition(5, currentHudLine);
+            Console.Write(hudLine[currentHudText] + "                                         ");
+
+            for (int i = 0; i <= 4; i++)
+            {
+                if (previousHudText < 0)
+                {
+                    previousHudText = 5;
+                }
+
+                currentHudLine++;
+                Console.SetCursorPosition(5, currentHudLine);
+                Console.Write(hudLine[previousHudText] + "                                           ");
+                previousHudText--;
+                
+                
+            }
+
+            currentHudText++;
+
+            if (currentHudText > 5)
+            {
+                currentHudText = 0;
+            }
+        }
         public void DisplayMenu()
         {
             Console.Clear();
@@ -41,35 +91,19 @@ namespace Text_Based_RPG
             Console.ReadKey(true);
         }
 
-        static public void ShowPlayerStats(Player player, Map map)
+        public void ShowPlayerStats(Player player)
         {
-            /*if (hudLine > 6)
-            {
-                Console.Clear();
-                map.DisplayMap();
-                hudLine = 1;
-            }*/
-
-            Console.SetCursorPosition(170, hudLine);
-            Console.WriteLine("Player Health: " + player.health + "    ");
-            
-            
+            DisplayHud("Player Health: " + player.health);
         }
 
-        static public void ShowEnemyStats(Enemy enemy)
+        public void ShowEnemyStats(Enemy enemy)
         {
-            hudLine++;
-            Console.SetCursorPosition(170, hudLine);
-            Console.WriteLine("Enemy Health: " + enemy.health + "    ");
-            hudLine++;
+            DisplayHud("Enemy Health: " + enemy.health);
         }
 
-        static public void ItemCollected(Item item)
+        public void ItemCollected(Item item)
         {
-            hudLine++;
-            Console.SetCursorPosition(170, hudLine);
-            Console.WriteLine(item.name + " has been picked up");
-            hudLine++;
+            DisplayHud(item.name + " has been picked up");
         }
 
         

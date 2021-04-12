@@ -52,7 +52,7 @@ namespace Text_Based_RPG
         }
 
 
-        public void Update(Map map, Player player, Enemy enemy, Camera camera)
+        public void Update(Map map, Player player, Enemy enemy, Hud hud)
         {
             if (enemy.alive == true)
             {
@@ -60,7 +60,7 @@ namespace Text_Based_RPG
                 {
                     if (player.IsPlayerNear(enemy.x, enemy.y, player) == true)
                     {
-                        player.TakeDamage(player, enemy);
+                        player.TakeDamage(player, enemy, hud);
                         Console.Beep(100, 100);
                     }
                     else if (player.IsPlayerNear(enemy.x, enemy.y, player) == false)
@@ -72,7 +72,7 @@ namespace Text_Based_RPG
                 {
                     if (player.IsPlayerNear(enemy.x, enemy.y, player) == true)
                     {
-                        player.TakeDamage(player, enemy);
+                        player.TakeDamage(player, enemy, hud);
                         Console.Beep(100, 100);
                     }
                     else if (player.IsPlayerFar(enemy.x, enemy.y, player) == true)
@@ -84,7 +84,7 @@ namespace Text_Based_RPG
                 {
                     if (player.IsPlayerNear(enemy.x, enemy.y, player) == true)
                     {
-                        player.TakeDamage(player, enemy);
+                        player.TakeDamage(player, enemy, hud);
                         Console.Beep(100, 100);
                     }
                     else if (player.IsPlayerNear(enemy.x, enemy.y, player) == false)
@@ -96,7 +96,7 @@ namespace Text_Based_RPG
             
         }
 
-        public void TakeDamage(Enemy enemy, Player player)
+        public void TakeDamage(Enemy enemy, Player player, Hud hud)
         {
             if (player.hasSword == true)
             {
@@ -123,7 +123,7 @@ namespace Text_Based_RPG
                 
             }
 
-            Hud.ShowEnemyStats(enemy);
+            hud.ShowEnemyStats(enemy);
 
         }
 

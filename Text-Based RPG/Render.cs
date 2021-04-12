@@ -15,8 +15,6 @@ namespace Text_Based_RPG
             mapYend = camera.Yend + camera.offsetY;
             mapXstart = camera.Xstart + camera.offsetX;
             mapYstart = camera.Ystart + camera.offsetY;
-            //Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
-            //Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);
 
             if (x < mapXend && y < mapYend && x > mapXstart && y > mapYstart)
             {
@@ -27,8 +25,20 @@ namespace Text_Based_RPG
 
         public void MapDraw(int x, int y, Camera camera, Map map)
         {
-            
-            Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);
+            string currentMapLine = map.mapData[y];
+
+            if (x + camera.offsetX > currentMapLine.Length || x + camera.offsetX < 0)
+            {
+                Console.Write(" ");
+            }
+            else if (y + camera.offsetY > map.mapData.Length || y + camera.offsetY < 0)
+            {
+                Console.Write(" ");
+            }
+            else
+            {
+                Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);
+            }
         }
     }
 }

@@ -43,7 +43,7 @@ namespace Text_Based_RPG
 
         }
 
-        public void Update(Player player, Item item)
+        public void Update(Player player, Item item, Hud hud)
         {
             if (item.active == true)
             {
@@ -61,7 +61,10 @@ namespace Text_Based_RPG
                 {
                     player.hasSword = true;
                     item.active = false;
+
                 }
+
+                hud.ItemCollected(item);
             }
         }
 

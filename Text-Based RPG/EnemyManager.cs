@@ -37,11 +37,11 @@ namespace Text_Based_RPG
 
         }
 
-        public void Update(Map map, Player player, Camera camera)
+        public void Update(Map map, Player player, Hud hud)
         {
             for (int i = 0; i < EnemyLimit; i++)
             {
-                enemies[i].Update(map, player, enemies[i], camera);
+                enemies[i].Update(map, player, enemies[i], hud);
                 endGameCheck(player);
                 
             }
@@ -55,13 +55,13 @@ namespace Text_Based_RPG
             }
         }
 
-        public bool IsEnemy(int y, int x, Player player)
+        public bool IsEnemy(int y, int x, Player player, Hud hud)
         {
             for (int i = 0; i < EnemyLimit; i++)
             {
                 if (enemies[i].x == x && enemies[i].y == y)
                 {
-                    enemies[i].TakeDamage(enemies[i], player);
+                    enemies[i].TakeDamage(enemies[i], player, hud);
                     return true;
                 }
             }

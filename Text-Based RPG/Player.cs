@@ -27,7 +27,7 @@ namespace Text_Based_RPG
 
         
 
-        public void Update(Map map, Player player, EnemyManager enemyManager, Camera camera, Render render)
+        public void Update(Map map, Player player, EnemyManager enemyManager, Camera camera, Hud hud)
         {
             while (Console.KeyAvailable)
             {
@@ -42,24 +42,16 @@ namespace Text_Based_RPG
                 if (map.IsFloor(y - 1, x) == true)
                 {
 
-                    /*if (itemManager.IsItem(player.y - 1, player.x, player) == true)
-                    {
-                        if (itemManager.name == "Sword") { hasSword = true; }
-                        if (itemManager.name == "Key") { hasKey = true;}
-
-                    }*/
-                    if (enemyManager.IsEnemy(player.y - 1, player.x, player) == true)
+                   
+                    if (enemyManager.IsEnemy(player.y - 1, player.x, player, hud) == true)
                     {
                         Console.Beep(800, 200);
                     }
-                    else if (enemyManager.IsEnemy(player.y - 1, player.x, player) == false)
+                    else if (enemyManager.IsEnemy(player.y - 1, player.x, player, hud) == false)
                     { 
-                        //Console.SetCursorPosition(x + camera.offsetX, y + camera.offsetY);
-                        //Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);
                         y = y - 1;
                         camera.offsetY--; ;
-                        //render.Draw(x, y, Icon, camera, map);
-                        //camera.offsetY++;
+
                     }
                     
                                                         
@@ -72,8 +64,7 @@ namespace Text_Based_RPG
                         Console.Write(map.map[x + camera.offsetX, y + camera.offsetY]);
                         y = y - 1;
                         camera.offsetY--;
-                        //render.Draw(x, y, Icon, camera, map);
-                        //camera.offsetY++;
+
                     }
                     
                 }
@@ -83,13 +74,8 @@ namespace Text_Based_RPG
             {
                 if (map.IsFloor(y, x + 1) == true)
                 {
-                    /*if (itemManager.IsItem(player.y, player.x + 1, player) == true)
-                    {
-                        if (itemManager.name == "Sword") { hasSword = true; }
-                        if (itemManager.name == "Key") { hasKey = true; }
 
-                    }*/
-                    if (enemyManager.IsEnemy(player.y, player.x + 1, player) == true)
+                    if (enemyManager.IsEnemy(player.y, player.x + 1, player, hud) == true)
                     {
                         Console.Beep(800, 200);
                     }
@@ -129,7 +115,7 @@ namespace Text_Based_RPG
                      
 
                     }*/
-                    if (enemyManager.IsEnemy(player.y + 1, player.x, player) == true)
+                    if (enemyManager.IsEnemy(player.y + 1, player.x, player, hud) == true)
                     {
                        
                         Console.Beep(800, 200);
@@ -169,7 +155,7 @@ namespace Text_Based_RPG
                     {
 
                     }*/
-                    if (enemyManager.IsEnemy(player.y, player.x - 1, player) == true)
+                    if (enemyManager.IsEnemy(player.y, player.x - 1, player, hud) == true)
                     {
                         Console.Beep(800, 200);
 
@@ -203,6 +189,11 @@ namespace Text_Based_RPG
 
            
 
+
+        }
+
+        public void Movement(x, y)
+        {
 
         }
 
@@ -244,7 +235,7 @@ namespace Text_Based_RPG
         }
 
 
-        public void TakeDamage(Player player, Enemy enemy)
+        public void TakeDamage(Player player, Enemy enemy, Hud hud)
         {
             player.health = player.health - enemy.attack;
 
@@ -256,7 +247,7 @@ namespace Text_Based_RPG
                 Hud.GameOver();
             }
 
-            //Hud.ShowPlayerStats(player, map);
+            hud.ShowPlayerStats(player);
 
         }
 

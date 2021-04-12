@@ -31,27 +31,13 @@ namespace Text_Based_RPG
 
 
         public void DisplayMap(Camera camera, Render render, Map map)
-        {
-            if (camera.offsetX < 0)
-            {
-                //Console.SetCursorPosition(10 , 0);
-                camera.offsetX = 0;
-            }
-            if (camera.offsetY < 0)
-            {
-                //Console.SetCursorPosition(0 + camera.offsetX, 0 + camera.offsetY);
-                //camera.offsetY = 0;
-            }
-            
-            
-                Console.SetCursorPosition(0, 0);
-            
+        { 
+            Console.SetCursorPosition(0, 0);
 
             for (int y = camera.Ystart; y < camera.Yend; y++)
             {
                 for (int x = camera.Xstart; x < camera.Xend; x++)
                 {
-                    //string Icon = this.map[x, y].ToString();
                     render.MapDraw(x, y, camera, map);
                 }
                 Console.WriteLine();
