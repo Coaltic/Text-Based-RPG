@@ -4,3 +4,11 @@
  |    |   \/    |    \    |     |    |   |    |___  |        \             |    |   \/    |    \____   /    |    \    |___ 
  |______  /\____|__  /____|     |____|   |_______ \/_______  /             |____|_  /\_______  / ______\____|__  /_______ \
         \/         \/                            \/        \/                     \/         \/\/              \/        \/
+
+ 
+ <<<Play in fullscreen for best experience>>>
+
+ --Type your choice--
+
+ a - Scrolling Camera
+ b - Standard Camera

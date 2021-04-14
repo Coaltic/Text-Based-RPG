@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
@@ -18,20 +14,14 @@ namespace Text_Based_RPG
 
         public string Icon;
 
-
-
-        public void Draw(Camera camera, Render render)
+        public virtual void Draw(Camera camera, Render render)
         {
             render.Draw(x, y, Icon, camera);
-
         }
 
         public void Collision()
         {
             Console.Beep(100, 200);
         }
-
     }
-
-    
 }

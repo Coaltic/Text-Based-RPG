@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Text_Based_RPG
+﻿namespace Text_Based_RPG
 {
     class EnemyManager : Enemy
     {
@@ -37,7 +31,7 @@ namespace Text_Based_RPG
             enemies[12].SetEnemy(195, 29, 2);
             enemies[13].SetEnemy(196, 18, 3);
             enemies[14].SetEnemy(39, 24, 3);
-            enemies[15].SetEnemy(14, 15, 3);
+            enemies[15].SetEnemy(14, 14, 3);
             enemies[16].SetEnemy(104, 20, 3);
             enemies[17].SetEnemy(197, 37, 3);
             enemies[18].SetEnemy(169, 25, 3);
@@ -53,7 +47,7 @@ namespace Text_Based_RPG
             }
         }
 
-        public new void Draw(Camera camera, Render render)
+        public override void Draw(Camera camera, Render render)
         {
             for (int i = 0; i < EnemyLimit; i++)
             {

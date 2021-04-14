@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
@@ -36,28 +32,40 @@ namespace Text_Based_RPG
             {
                 if (Movement(x, y - 1, map, player, enemyManager, camera, hud) == true)
                 {
-                    camera.offsetY--;
+                    if (GameManager.scrollingCamera == false)
+                    {
+                        camera.offsetY--;
+                    }
                 }
             }
             else if (input.KeyChar == 'd')
             {
                 if (Movement(x + 1, y, map, player, enemyManager, camera, hud) == true)
                 {
-                    camera.offsetX++;
+                    if (GameManager.scrollingCamera == false)
+                    {
+                        camera.offsetX++;
+                    }
                 }
             }
             else if (input.KeyChar == 's')
             {
                 if (Movement(x, y + 1, map, player, enemyManager, camera, hud) == true)
                 {
-                    camera.offsetY++;
+                    if (GameManager.scrollingCamera == false)
+                    {
+                        camera.offsetY++;
+                    }
                 }
             }
             else if (input.KeyChar == 'a')
             {
                 if (Movement(x - 1, y, map, player, enemyManager, camera, hud) == true)
                 {
-                    camera.offsetX--;
+                    if (GameManager.scrollingCamera == false)
+                    {
+                        camera.offsetX--;
+                    }
                 }
             }
         }
@@ -80,7 +88,7 @@ namespace Text_Based_RPG
             }
             else if (hasKey == true)
             {
-                if (map.IsDoor(y, x, player) == true)
+                if (map.IsDoor(y, x) == true)
                 {
                     player.y = y;
                     player.x = x;

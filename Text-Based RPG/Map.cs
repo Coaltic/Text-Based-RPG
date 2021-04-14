@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
     class Map
     {
-        public char[,] map = new char[220, 58];
+        public char[,] map = new char[240, 58];
         public string[] mapData;
 
         public Map(Camera camera)
@@ -50,7 +46,7 @@ namespace Text_Based_RPG
             else return false;
         }
 
-        public bool IsDoor(int y, int x, Player player)
+        public bool IsDoor(int y, int x)
         {
             if (map[x, y] == '█')
             {

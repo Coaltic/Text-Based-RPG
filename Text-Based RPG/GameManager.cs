@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    
+
     class GameManager
     {
-        public static bool gameplay = false;
+
+        public static bool scrollingCamera;
 
         public void RunGame()
         {
@@ -57,6 +54,11 @@ namespace Text_Based_RPG
                 //player.Draw(camera, render);
                 //enemyManager.Draw(camera, render);
                 itemManager.Draw(camera, render, map);
+
+                if (scrollingCamera)
+                {
+                    render.ScrollSetMap(player, camera, map);
+                }
             }
         }
     }

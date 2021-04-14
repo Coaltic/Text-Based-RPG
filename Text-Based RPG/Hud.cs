@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
@@ -11,6 +7,8 @@ namespace Text_Based_RPG
         public int currentHudLine = 25;
         public int currentHudText = 0;
         public int previousHudText = 1;
+
+        private bool playerInput;
 
         public string titleScreen = System.IO.File.ReadAllText("titlescreen.txt");
         static public string gameoverScreen = System.IO.File.ReadAllText("gameoverscreen.txt");
@@ -64,11 +62,37 @@ namespace Text_Based_RPG
             Console.Clear();
             Console.WriteLine(titleScreen);
             Console.WriteLine();
-            Console.WriteLine("MAXIMIZE BEFORE CONTINUING");
-            Console.WriteLine();
-            Console.WriteLine("Press any key to play...");
-            Console.ReadKey(true);
-            Console.Clear();
+
+            playerInput = true;
+
+            while (playerInput)
+            {
+                while (Console.KeyAvailable)
+                {
+                    Console.ReadKey(true);
+                }
+
+                ConsoleKeyInfo input;
+                input = Console.ReadKey(true);
+
+
+                if (input.KeyChar == 'a')
+                {
+                    playerInput = false;
+                    Console.Clear();
+                    GameManager.scrollingCamera = true;
+                }
+                else if (input.KeyChar == 'b')
+                {
+                    playerInput = false;
+                    Console.Clear();
+                    GameManager.scrollingCamera = false;
+                }
+                else
+                {
+                    Console.Beep(100, 200);
+                }
+            }
         }
 
         static public void GameOver()

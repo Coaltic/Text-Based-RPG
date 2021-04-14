@@ -13,9 +13,15 @@ namespace Text_Based_RPG
 
 
         public int Xstart;
-        public int Xend = 50;
+        public int Xend = 54;
 
         public int Ystart;
-        public int Yend = 24;
+        public int Yend = 22;
+
+        public int scrollRight;
+        public int scrollLeft;
+        public int scrollUp;
+        public int scrollDown;
+
     }
 }
