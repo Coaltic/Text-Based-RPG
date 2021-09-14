@@ -12,28 +12,21 @@ namespace Text_Based_RPG
         {
             Camera camera = new Camera();
             Render render = new Render();
-            Map map = new Map(camera);
+            EnemyManager enemyManager = new EnemyManager();
+            Map map = new Map(enemyManager);
             Hud hud = new Hud();
             
             hud.DisplayMenu();
-            map.DisplayMap(camera, render, map);
+            map.DisplayMap(camera, render, map); 
 
             Player player = new Player(22, 10);
-            EnemyManager enemyManager = new EnemyManager();
+            Inventory inventory = new Inventory();
+            
             ItemManager itemManager = new ItemManager();
-
-            Character[] gameCharacters = new Character[21];
 
             itemManager.InitItems();
             enemyManager.InitEnemies();
             hud.initHud();
-
-            for (int i = 0; i < gameCharacters.Length - 1; i++)
-            {
-                gameCharacters[i] = enemyManager.enemies[i];
-            }
-
-            gameCharacters[20] = player;
 
             hud.ShowPlayerStats(player);
 
@@ -41,19 +34,14 @@ namespace Text_Based_RPG
             {
                 Console.CursorVisible = false;
 
-                player.Update(map, player, enemyManager, camera, hud);
+                player.Update(map, player, enemyManager, camera, hud, inventory);
                 enemyManager.Update(map, player, hud);
-                itemManager.Update(player, hud);
+                itemManager.Update(player, hud, inventory);
                 map.DisplayMap(camera, render, map);
-
-                for (int i = 0; i < gameCharacters.Length; i++)
-                {
-                    gameCharacters[i].Draw(camera, render);
-                }
-
-                //player.Draw(camera, render);
-                //enemyManager.Draw(camera, render);
+                player.Draw(camera, render);
+                enemyManager.Draw(camera, render);
                 itemManager.Draw(camera, render, map);
+                inventory.Draw();
 
                 if (scrollingCamera)
                 {

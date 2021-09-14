@@ -2,6 +2,7 @@
 {
     class Item
     {
+
         public int x;
         public int y;
 
@@ -10,6 +11,7 @@
         public string Icon;
         public string name;
         public int itemType;
+
 
         public void SetItem(int x, int y, int type)
         {
@@ -37,8 +39,6 @@
 
         public void Update(Player player, Item item, Hud hud)
         {
-            if (item.active == true)
-            {
                 if (item.itemType == 1)
                 {
                     player.health = player.health + 25;
@@ -58,10 +58,9 @@
                 }
 
                 hud.ItemCollected(item);
-            }
         }
 
-        public void Draw(Camera camera, Render render, Map map)
+        public void Draw(Camera camera, Render render)
         {
             render.Draw(x, y, Icon, camera);
         }

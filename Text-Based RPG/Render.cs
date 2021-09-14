@@ -97,7 +97,7 @@ namespace Text_Based_RPG
         private static void SetTimer()
         {
             // Create a timer with a two second interval.
-            scrollTimer = new Timer(1000);
+            //scrollTimer = new Timer(1000);
             // Hook up the Elapsed event for the timer. 
             
         }

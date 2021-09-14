@@ -7,7 +7,7 @@ namespace Text_Based_RPG
         public char[,] map = new char[240, 58];
         public string[] mapData;
 
-        public Map(Camera camera)
+        public Map(EnemyManager enemy)
         {
             mapData = System.IO.File.ReadAllLines("Map.txt");
             for (int y = 0; y <= mapData.Length - 1; y++)

@@ -4,7 +4,11 @@ namespace Text_Based_RPG
 {
     class Player : Character
     {
-        public int sword = 0;
+        public int level = 1;
+        public int exp = 0;
+        private int levelUpLimit = 30;
+
+        private int sword = 0;
         public bool hasSword = false;
         public bool hasKey = false;
         
@@ -18,8 +22,18 @@ namespace Text_Based_RPG
             this.alive = true;
         }
 
-        public void Update(Map map, Player player, EnemyManager enemyManager, Camera camera, Hud hud)
+        public void Update(Map map, Player player, EnemyManager enemyManager, Camera camera, Hud hud, Inventory inventory)
         {
+            if (player.exp >= player.levelUpLimit)
+            {
+                player.exp = player.exp - player.levelUpLimit;
+                player.level++;
+                player.attack = (int)(player.attack * 1.5d);
+                player.levelUpLimit = (int)(player.levelUpLimit * 1.5d);
+
+                hud.PlayerLevelUp(player);
+            }
+
             while (Console.KeyAvailable)
             {
                 Console.ReadKey(true);
@@ -67,6 +81,10 @@ namespace Text_Based_RPG
                         camera.offsetX--;
                     }
                 }
+            }
+            else
+            {
+                inventory.UseInventory(player, input, hud);
             }
         }
 

@@ -11,6 +11,8 @@ namespace Text_Based_RPG
         private static int ItemLimit = 20;
         public Item[] items = new Item[ItemLimit];
 
+        //Inventory inventory = new Inventory();
+
         public void InitItems()
         {
             for (int i = 0; i < ItemLimit; i++)
@@ -45,15 +47,17 @@ namespace Text_Based_RPG
             items[19].SetItem(208, 2, 1);
         }
 
-        public void Update(Player player, Hud hud)
+        public void Update(Player player, Hud hud, Inventory inventory)
         {
             for (int i = 0; i < ItemLimit; i++)
             {
-                if (items[i].x == player.x && items[i].y == player.y)
+                if (items[i].x == player.x && items[i].y == player.y && items[i].active == true)
                 {
-                    items[i].Update(player, items[i], hud);
+                    inventory.Update(items[i]);
                 }
+                
             }
+
         }
 
         public new void Draw(Camera camera, Render render, Map map)
@@ -62,7 +66,7 @@ namespace Text_Based_RPG
             {
                 if (items[i].active == true)
                 {
-                    items[i].Draw(camera, render, map);
+                    items[i].Draw(camera, render);
                 }
             }
         }

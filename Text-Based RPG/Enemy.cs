@@ -6,13 +6,15 @@ namespace Text_Based_RPG
     {
         static public int EnemyLimit = 20;
         public int deathTally;
-        public bool checkpoint = false;
-        public int right = 0;
-        public int left = 0;
+        private bool checkpoint = false;
+        private int right = 0;
+        private int left = 0;
 
-        private int enemyType;
+        public int enemyType;
+        private int exp;
 
         Random rnd = new Random();
+
 
         public void SetEnemy(int x, int y, int type)
         {
@@ -26,18 +28,21 @@ namespace Text_Based_RPG
                 Icon = "S";
                 health = 200;
                 attack = 30;
+                exp = 30;
             }
             else if (type == 2)
             {
                 Icon = "Z";
                 health = 100;
                 attack = 20;
+                exp = 20;
             }
             else if (type == 3)
             {
                 Icon = "R";
                 health = 50;
                 attack = 15;
+                exp = 15;
             }
         }
 
@@ -102,10 +107,12 @@ namespace Text_Based_RPG
                 enemy.health = 0;
                 enemy.alive = false;
                 Icon = "";
-                Console.SetCursorPosition(enemy.x, enemy.y);
+                //Console.SetCursorPosition(enemy.x, enemy.y);
                 Console.Write(" ");
                 enemy.x = 0;
                 enemy.y = 0;
+
+                player.exp = player.exp + enemy.exp;
             }
 
             hud.ShowEnemyStats(enemy);

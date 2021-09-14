@@ -33,7 +33,7 @@ namespace Text_Based_RPG
             hudLine[currentHudText] = (text);
 
             Console.SetCursorPosition(5, currentHudLine);
-            Console.Write(hudLine[currentHudText] + "                                         ");
+            Console.Write(hudLine[currentHudText] + "                  ");
 
             for (int i = 0; i <= 4; i++)
             {
@@ -44,7 +44,7 @@ namespace Text_Based_RPG
 
                 currentHudLine++;
                 Console.SetCursorPosition(5, currentHudLine);
-                Console.Write(hudLine[previousHudText] + "                                           ");
+                Console.Write(hudLine[previousHudText] + "                ");
                 previousHudText--;
 
             }
@@ -114,6 +114,11 @@ namespace Text_Based_RPG
             DisplayHud("Player Health: " + player.health);
         }
 
+        public void PlayerLevelUp(Player player)
+        {
+            DisplayHud("Player reached level " + player.level);
+        }
+
         public void ShowEnemyStats(Enemy enemy)
         {
             DisplayHud("Enemy Health: " + enemy.health);
@@ -121,7 +126,7 @@ namespace Text_Based_RPG
 
         public void ItemCollected(Item item)
         {
-            DisplayHud(item.name + " has been picked up");
+            DisplayHud("You used the " + item.name);
         }
     }
 }

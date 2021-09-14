@@ -49,6 +49,7 @@
     <Compile Include="EnemyManager.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="Hud.cs" />
+    <Compile Include="Inventory.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemManager.cs" />
     <Compile Include="Map.cs" />

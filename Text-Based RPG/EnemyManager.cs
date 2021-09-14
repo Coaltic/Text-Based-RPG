@@ -1,9 +1,11 @@
-﻿namespace Text_Based_RPG
+﻿using System;
+
+namespace Text_Based_RPG
 {
     class EnemyManager : Enemy
     {
         public Enemy[] enemies = new Enemy[EnemyLimit];
-
+        //private int i = 0;
         public void InitEnemies()
         {
             for (int i = 0; i < EnemyLimit; i++)
@@ -14,8 +16,28 @@
             LoadEnemy();
         }
 
+        public bool CheckForEnemy(Char character, int x, int y)
+        {
+            //ToEnemy(x, y, 3);
+            if (character == 'R')
+            {
+                ToEnemy(x, y, 3);
+                return true;
+            }
+            return false;
+        }
+
+        public void ToEnemy(int x, int y, int type)
+        {
+            //enemies[i] = new Enemy();
+            //enemies[i].SetEnemy(x, y, type);
+        }
+
+
         public void LoadEnemy()
         {
+            
+
             enemies[0].SetEnemy(105, 6, 3);
             enemies[1].SetEnemy(66, 3, 3);
             enemies[2].SetEnemy(98, 13, 2);
@@ -57,7 +79,7 @@
 
         public bool IsEnemy(int x, int y, Player player, Hud hud)
         {
-            for (int i = 0; i < EnemyLimit; i++)
+            for (int i = 0; i < enemies.Length; i++)
             {
                 if (enemies[i].x == x && enemies[i].y == y)
                 {
