@@ -5,18 +5,22 @@ namespace Text_Based_RPG
 
     class GameManager
     {
-
+        
         public static bool scrollingCamera;
+        public enum GameState { InMenu, InGame, InResults, InShop };
+        public GameState gameState;
 
+        Hud hud = new Hud();
+        
         public void RunGame()
         {
             Camera camera = new Camera();
             Render render = new Render();
             EnemyManager enemyManager = new EnemyManager();
             Map map = new Map(enemyManager);
-            Hud hud = new Hud();
+
+            OnStateChanged(GameState.InMenu);
             
-            hud.DisplayMenu();
             map.DisplayMap(camera, render, map); 
 
             Player player = new Player(22, 10);
@@ -47,6 +51,27 @@ namespace Text_Based_RPG
                 {
                     render.ScrollSetMap(player, camera, map);
                 }
+            }
+        }
+        public void OnStateChanged(GameState state)
+        {
+
+            switch (gameState)
+            {
+                case GameState.InMenu:
+                    Console.Clear();
+                    hud.DisplayMenu();
+                    break;
+                case GameState.InGame:
+
+                    break;
+                case GameState.InShop:
+
+                    break;
+                case GameState.InResults:
+                    break;
+                default:
+                    break;
             }
         }
     }

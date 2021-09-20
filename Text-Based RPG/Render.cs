@@ -10,8 +10,6 @@ namespace Text_Based_RPG
         private int mapXend;
         private int mapYend;
 
-        private static System.Timers.Timer scrollTimer;
-
         public void Draw(int x, int y, string character, Camera camera)
         {
             mapXend = camera.Xend + camera.offsetX;
@@ -72,6 +70,7 @@ namespace Text_Based_RPG
                 MapDraw(player.x, player.y, camera, map);
             }
         }
+
         public void ScrollDrawMap(int direction, Camera camera, Player player, Map map)
         {
             if (direction == 1)
@@ -86,20 +85,6 @@ namespace Text_Based_RPG
                     MapDraw(player.x, player.y, camera, map);
                 }
             }
-        }
-
-        /*private static void OnTimedEvent(Object source, ElapsedEventArgs e, Camera camera, Player player, Map map)
-        {
-            camera.offsetX++;
-            MapDraw(player.x, player.y, camera, map);
-        }*/
-
-        private static void SetTimer()
-        {
-            // Create a timer with a two second interval.
-            //scrollTimer = new Timer(1000);
-            // Hook up the Elapsed event for the timer. 
-            
         }
     }
 }
