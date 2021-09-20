@@ -8,15 +8,20 @@ namespace Text_Based_RPG
 {
     class Shop
     {
+        public int shopType;
+        public int x;
+        public int y;
         //public int shopMin;
         //public int shopMax;
 
         //public Item[] shopItems = new Item[shopMax];
         public string shopScreen = System.IO.File.ReadAllText("Shop.txt");
 
-        public void SetShop(string type, int shopMin, int shopMax)
+        public void SetShops(int x, int y, int type)
         {
-
+            this.shopType = type;
+            this.x = x;
+            this.y = y;
         }
 
         public void Draw()
@@ -28,7 +33,7 @@ namespace Text_Based_RPG
         public void Update()
         {
             Console.Clear();
-            //Console.WriteLine(titleScreen);
+            Console.WriteLine(shopScreen);
             Console.WriteLine();
         }
     }

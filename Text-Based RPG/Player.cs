@@ -11,7 +11,9 @@ namespace Text_Based_RPG
         private int sword = 0;
         public bool hasSword = false;
         public bool hasKey = false;
-        
+
+        GameManager gameManager;
+
         public Player(int x, int y)
         {
             this.Icon = "@";
@@ -44,7 +46,7 @@ namespace Text_Based_RPG
 
             if (input.KeyChar == 'w')
             {
-                if (Movement(x, y - 1, map, player, enemyManager, camera, hud) == true)
+                if (Movement(x, y - 1, map, player, enemyManager, hud) == true)
                 {
                     if (GameManager.scrollingCamera == false)
                     {
@@ -54,7 +56,7 @@ namespace Text_Based_RPG
             }
             else if (input.KeyChar == 'd')
             {
-                if (Movement(x + 1, y, map, player, enemyManager, camera, hud) == true)
+                if (Movement(x + 1, y, map, player, enemyManager, hud) == true)
                 {
                     if (GameManager.scrollingCamera == false)
                     {
@@ -64,7 +66,7 @@ namespace Text_Based_RPG
             }
             else if (input.KeyChar == 's')
             {
-                if (Movement(x, y + 1, map, player, enemyManager, camera, hud) == true)
+                if (Movement(x, y + 1, map, player, enemyManager, hud) == true)
                 {
                     if (GameManager.scrollingCamera == false)
                     {
@@ -74,7 +76,7 @@ namespace Text_Based_RPG
             }
             else if (input.KeyChar == 'a')
             {
-                if (Movement(x - 1, y, map, player, enemyManager, camera, hud) == true)
+                if (Movement(x - 1, y, map, player, enemyManager, hud) == true)
                 {
                     if (GameManager.scrollingCamera == false)
                     {
@@ -88,7 +90,7 @@ namespace Text_Based_RPG
             }
         }
 
-        public bool Movement(int x, int y, Map map, Player player, EnemyManager enemyManager, Camera camera, Hud hud)
+        public bool Movement(int x, int y, Map map, Player player, EnemyManager enemyManager, Hud hud)
         {
             if (map.IsFloor(y, x) == true)
             {
@@ -96,6 +98,11 @@ namespace Text_Based_RPG
                 {
                     Console.Beep(800, 200);
                     return false;
+                }
+                else if (map.IsDoor(y, x) == true)
+                {
+                    gameManager.OnStateChanged(GameManager.GameState.InShop);
+                    return true;
                 }
                 else
                 {
@@ -106,7 +113,7 @@ namespace Text_Based_RPG
             }
             else if (hasKey == true)
             {
-                if (map.IsDoor(y, x) == true)
+                if (map.IsLockedDoor(y, x) == true)
                 {
                     player.y = y;
                     player.x = x;

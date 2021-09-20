@@ -7,7 +7,7 @@ namespace Text_Based_RPG
         public char[,] map = new char[240, 58];
         public string[] mapData;
 
-        public Map(EnemyManager enemy)
+        public Map()
         {
             mapData = System.IO.File.ReadAllLines("Map.txt");
             for (int y = 0; y <= mapData.Length - 1; y++)
@@ -38,7 +38,7 @@ namespace Text_Based_RPG
 
         public bool IsFloor(int y, int x)
         {
-            if (map[x, y] == ' ')
+            if (map[x, y] == ' ' || (map[x, y] == '–'))
             {
                 return true;
             }
@@ -47,6 +47,17 @@ namespace Text_Based_RPG
         }
 
         public bool IsDoor(int y, int x)
+        {
+            if (map[x, y] == '–')
+            {
+                map[x, y] = ' ';
+                return true;
+            }
+
+            else return false;
+        }
+
+        public bool IsLockedDoor(int y, int x)
         {
             if (map[x, y] == '█')
             {

@@ -24,7 +24,8 @@ namespace Text_Based_RPG
 
         public void LoadShops()
         {
-
+            shops[0].SetShops(120, 4, 1);
         }
+
     }
 }
