@@ -8,10 +8,16 @@ namespace Text_Based_RPG
 {
     class Wallet
     {
+        public int walletMax = 0;
+
         public void Update(Player player)
         {
             Console.SetCursorPosition(60, 2);
             Console.Write("Gold: " + player.gold);
+            if (player.gold > walletMax)
+            {
+                player.gold = walletMax;
+            }
         }
     }
 }

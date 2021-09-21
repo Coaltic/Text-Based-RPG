@@ -46,6 +46,7 @@ namespace Text_Based_RPG
             {
                 Console.SetCursorPosition(0, 0);
                 Console.Write(potionSprites);
+                Shopping();
             }
             else if (type == 2)
             {
