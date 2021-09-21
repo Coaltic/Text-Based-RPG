@@ -12,7 +12,9 @@ namespace Text_Based_RPG
         public bool hasSword = false;
         public bool hasKey = false;
 
-        GameManager gameManager;
+        Wallet wallet = new Wallet();
+        //GameManager gameManager;
+        
 
         public Player(int x, int y)
         {
@@ -22,6 +24,7 @@ namespace Text_Based_RPG
             this.attack = 25;
             this.health = 100;
             this.alive = true;
+            this.gold = 0;
         }
 
         public void Update(Map map, Player player, EnemyManager enemyManager, Camera camera, Hud hud, Inventory inventory)
@@ -88,6 +91,8 @@ namespace Text_Based_RPG
             {
                 inventory.UseInventory(player, input, hud);
             }
+
+            wallet.Update(player);
         }
 
         public bool Movement(int x, int y, Map map, Player player, EnemyManager enemyManager, Hud hud)
@@ -98,11 +103,6 @@ namespace Text_Based_RPG
                 {
                     Console.Beep(800, 200);
                     return false;
-                }
-                else if (map.IsDoor(y, x) == true)
-                {
-                    gameManager.OnStateChanged(GameManager.GameState.InShop);
-                    return true;
                 }
                 else
                 {
@@ -161,6 +161,11 @@ namespace Text_Based_RPG
             }
         }
 
+        public bool HasGold()
+        {
+            return true;
+        }
+
         public void TakeDamage(Player player, Enemy enemy, Hud hud)
         {
             player.health = player.health - enemy.attack;
@@ -175,5 +180,7 @@ namespace Text_Based_RPG
 
             hud.ShowPlayerStats(player);
         }
+
+        
     }
 }

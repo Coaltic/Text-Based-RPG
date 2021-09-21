@@ -22,6 +22,7 @@ namespace Text_Based_RPG
             this.x = x;
             this.y = y;
             alive = true;
+            this.gold = rnd.Next(10);
 
             if (type == 1)
             {
@@ -29,6 +30,7 @@ namespace Text_Based_RPG
                 health = 200;
                 attack = 30;
                 exp = 30;
+                this.gold = rnd.Next(15, 20);
             }
             else if (type == 2)
             {
@@ -36,6 +38,7 @@ namespace Text_Based_RPG
                 health = 100;
                 attack = 20;
                 exp = 20;
+                this.gold = rnd.Next(10, 15);
             }
             else if (type == 3)
             {
@@ -43,6 +46,7 @@ namespace Text_Based_RPG
                 health = 50;
                 attack = 15;
                 exp = 15;
+                this.gold = rnd.Next(5, 10);
             }
         }
 
@@ -93,14 +97,7 @@ namespace Text_Based_RPG
 
         public void TakeDamage(Enemy enemy, Player player, Hud hud)
         {
-            if (player.hasSword == true)
-            {
-                enemy.health = enemy.health - (player.attack);
-            }
-            else if (player.hasSword == false)
-            {
-                enemy.health = enemy.health - player.attack;
-            }
+            enemy.health = enemy.health - (player.attack);
 
             if (enemy.health <= 0)
             {
@@ -108,11 +105,12 @@ namespace Text_Based_RPG
                 enemy.alive = false;
                 Icon = "";
                 //Console.SetCursorPosition(enemy.x, enemy.y);
-                Console.Write(" ");
+                //Console.Write(" ");
                 enemy.x = 0;
                 enemy.y = 0;
 
                 player.exp = player.exp + enemy.exp;
+                player.gold = player.gold + enemy.gold;
             }
 
             hud.ShowEnemyStats(enemy);

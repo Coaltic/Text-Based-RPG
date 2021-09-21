@@ -59,6 +59,7 @@
     <Compile Include="Render.cs" />
     <Compile Include="Shop.cs" />
     <Compile Include="ShopManager.cs" />
+    <Compile Include="Wallet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -71,7 +72,12 @@
     <Content Include="Map.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Shop.txt" />
+    <Content Include="Potions.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Shop.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="TitleScreen.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

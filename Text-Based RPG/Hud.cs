@@ -55,6 +55,7 @@ namespace Text_Based_RPG
             {
                 currentHudText = 0;
             }
+
         }
 
         public void DisplayMenu()

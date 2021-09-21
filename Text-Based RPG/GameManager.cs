@@ -2,12 +2,13 @@
 
 namespace Text_Based_RPG
 {
+    enum GameState { InMenu, InGame, InResults, InShop };
 
     public class GameManager
     {
         
         public static bool scrollingCamera;
-        public enum GameState { InMenu, InGame, InResults, InShop };
+        
         //public GameState gameState;
 
         Hud hud = new Hud();
@@ -20,6 +21,7 @@ namespace Text_Based_RPG
         Inventory inventory = new Inventory();
 
         ItemManager itemManager = new ItemManager();
+        ShopManager shopManager = new ShopManager();
 
         public void RunGame()
         {
@@ -30,10 +32,9 @@ namespace Text_Based_RPG
 
         public void PlayGame()
         {
-            
-
             itemManager.InitItems();
             enemyManager.InitEnemies();
+            shopManager.InitShops();
             hud.initHud();
 
             hud.ShowPlayerStats(player);
@@ -45,11 +46,16 @@ namespace Text_Based_RPG
                 player.Update(map, player, enemyManager, camera, hud, inventory);
                 enemyManager.Update(map, player, hud);
                 itemManager.Update(player, hud, inventory);
+                
+                //shopManager.SwitchState()
                 map.DisplayMap(camera, render, map);
                 player.Draw(camera, render);
                 enemyManager.Draw(camera, render);
                 itemManager.Draw(camera, render, map);
+                shopManager.Draw(camera, render);
                 inventory.Draw();
+                shopManager.Update(player);
+
 
                 if (scrollingCamera)
                 {
@@ -58,7 +64,7 @@ namespace Text_Based_RPG
             }
         }
         
-        public void OnStateChanged(GameState state)
+        void OnStateChanged(GameState state)
         {
 
             switch (state)
