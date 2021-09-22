@@ -8,7 +8,7 @@ namespace Text_Based_RPG
         public int exp = 0;
         private int levelUpLimit = 30;
 
-        private int sword = 0;
+        public int sword = 0;
         public bool hasSword = false;
         public bool hasKey = false;
 

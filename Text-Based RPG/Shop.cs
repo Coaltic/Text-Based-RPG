@@ -22,6 +22,7 @@ namespace Text_Based_RPG
         //public Item[] shopItems = new Item[shopMax];
         public string shopScreen = System.IO.File.ReadAllText("Shop.txt");
         public string potionSprites= System.IO.File.ReadAllText("Potions.txt");
+        public string swordSprites = System.IO.File.ReadAllText("Swords.txt");
 
         public void SetShops(int x, int y, int type)
         {
@@ -50,7 +51,9 @@ namespace Text_Based_RPG
             }
             else if (type == 2)
             {
-
+                Console.SetCursorPosition(0, 0);
+                Console.Write(swordSprites);
+                Shopping();
             }
             else if (type == 3)
             {

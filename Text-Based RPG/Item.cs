@@ -11,6 +11,7 @@
         public string Icon;
         public string name;
         public int itemType;
+        public int swordType;
 
 
         public void SetItem(int x, int y, int type)
@@ -32,8 +33,18 @@
             }
             else if (type == 3)
             {
-                Icon = "┼";
                 name = "Sword";
+                swordType = 1;
+            }
+            else if (type == 4)
+            {
+                name = "Sword";
+                swordType = 2;
+            }
+            else if (type == 5)
+            {
+                name = "Sword";
+                swordType = 3;
             }
         }
 
