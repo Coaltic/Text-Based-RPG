@@ -75,6 +75,9 @@
     <Content Include="Potions.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Swords.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Shop.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
