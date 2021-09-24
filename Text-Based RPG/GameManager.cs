@@ -41,7 +41,7 @@ namespace Text_Based_RPG
             
 
             hud.ShowPlayerStats(player);
-
+            SetUp();
             while (player.alive == true)
             {
                 Console.CursorVisible = false;
@@ -66,6 +66,21 @@ namespace Text_Based_RPG
                     render.ScrollSetMap(player, camera, map);
                 }
             }
+        }
+
+        public void SetUp()
+        {
+            enemyManager.Update(map, player, hud);
+            itemManager.Update(player, hud, inventory);
+            shopManager.Update(player, inventory);
+
+            //shopManager.SwitchState()
+            map.DisplayMap(camera, render, map);
+            player.Draw(camera, render);
+            enemyManager.Draw(camera, render);
+            itemManager.Draw(camera, render, map);
+            shopManager.Draw(camera, render);
+            inventory.Draw();
         }
         
         void OnStateChanged(GameState state)
