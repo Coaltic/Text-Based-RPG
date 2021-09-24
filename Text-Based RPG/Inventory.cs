@@ -53,19 +53,20 @@ namespace Text_Based_RPG
             }
         }
 
+        public Item GetItemInfo(int input)
+        {
+            if (invItem[input - 1] != null)
+            {
+                Item item = invItem[input - 1];
+                invItem[input - 1].active = false;
+                invItem[input - 1] = null;
+                return item;
+            }
+
+            return null;
+        }
         public void UseInventory(Player player, ConsoleKeyInfo playerInput, Hud hud)
         {
-            /*for (int i = 0; i < invItem.Length; i++)
-            {
-                if (playerInput.KeyChar == i)
-                {
-                    if (invItem[i] != null)
-                    {
-                        invItem[i].Update(player, invItem[i], hud);
-                        invItem[i] = null;
-                    }
-                }
-            }*/
 
             if (playerInput.KeyChar == '1')
             {

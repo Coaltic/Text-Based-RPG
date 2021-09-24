@@ -19,6 +19,7 @@ namespace Text_Based_RPG
 
         Player player = new Player(22, 10);
         Inventory inventory = new Inventory();
+        //CoinGeneration coinGeneration = new CoinGeneration();
 
         ItemManager itemManager = new ItemManager();
         ShopManager shopManager = new ShopManager();
@@ -33,9 +34,11 @@ namespace Text_Based_RPG
         public void PlayGame()
         {
             itemManager.InitItems();
+            itemManager.InitCoins(map);
             enemyManager.InitEnemies();
             shopManager.InitShops();
             hud.initHud();
+            
 
             hud.ShowPlayerStats(player);
 
@@ -46,7 +49,8 @@ namespace Text_Based_RPG
                 player.Update(map, player, enemyManager, camera, hud, inventory);
                 enemyManager.Update(map, player, hud);
                 itemManager.Update(player, hud, inventory);
-                
+                shopManager.Update(player, inventory);
+
                 //shopManager.SwitchState()
                 map.DisplayMap(camera, render, map);
                 player.Draw(camera, render);
@@ -54,7 +58,7 @@ namespace Text_Based_RPG
                 itemManager.Draw(camera, render, map);
                 shopManager.Draw(camera, render);
                 inventory.Draw();
-                shopManager.Update(player);
+                
 
 
                 if (scrollingCamera)

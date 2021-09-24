@@ -97,7 +97,7 @@ namespace Text_Based_RPG
 
         public void TakeDamage(Enemy enemy, Player player, Hud hud)
         {
-            enemy.health = enemy.health - (player.attack + player.sword);
+            enemy.health = enemy.health - (player.attack + player.weaponAttack);
 
             if (enemy.health <= 0)
             {

@@ -11,7 +11,13 @@
         public string Icon;
         public string name;
         public int itemType;
-        public int swordType;
+       // public int shopType;
+        //public int swordType;
+
+        public int buyPrice;
+        public int sellPrice;
+        public int swordStrength;
+        public int potionType;
 
 
         public void SetItem(int x, int y, int type)
@@ -25,51 +31,51 @@
             {
                 Icon = "+";
                 name = "Healthpack";
+                buyPrice = 15;
+                sellPrice = 8;
             }
             else if (type == 2)
             {
                 Icon = "ð";
                 name = "Key";
+                buyPrice = 15;
+                sellPrice = 8;
             }
             else if (type == 3)
             {
-                name = "Sword";
-                swordType = 1;
-            }
-            else if (type == 4)
-            {
-                name = "Sword";
-                swordType = 2;
-            }
-            else if (type == 5)
-            {
-                name = "Sword";
-                swordType = 3;
+                Icon = "o";
+                name = "Gold";
+
             }
         }
 
         public void Update(Player player, Item item, Hud hud)
         {
-                if (item.itemType == 1)
-                {
-                    player.health = player.health + 25;
-                    item.active = false;
-                }
-                else if (item.itemType == 2)
-                {
-                    player.hasKey = true;
-                    item.active = false;
-                }
-                else if (item.itemType == 3)
-                {
-                    player.hasSword = true;
-                    item.active = false;
-                    player.attack = player.attack + 25;
-
-                }
-
+            if (item.itemType == 1)
+            {
+                player.health = player.health + 25;
+                item.active = false;
                 hud.ItemCollected(item);
+            }
+            else if (item.itemType == 2)
+            {
+                player.hasKey = true;
+                item.active = false;
+                hud.ItemCollected(item);
+            }
+            else if (item.itemType == 3)
+            {
+                player.gold++;
+                item.active = false;
+                hud.CoinCollected(item);
+            }
+
+
+            
+            hud.ShowPlayerStats(player);
         }
+
+        
 
         public void Draw(Camera camera, Render render)
         {

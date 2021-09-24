@@ -129,5 +129,10 @@ namespace Text_Based_RPG
         {
             DisplayHud("You used the " + item.name);
         }
+
+        public void CoinCollected(Item item)
+        {
+            DisplayHud("You found " + item.name);
+        }
     }
 }

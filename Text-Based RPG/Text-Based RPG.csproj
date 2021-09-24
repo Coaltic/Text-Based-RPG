@@ -59,6 +59,9 @@
     <Compile Include="Render.cs" />
     <Compile Include="Shop.cs" />
     <Compile Include="ShopManager.cs" />
+    <Compile Include="PotionShop.cs" />
+    <Compile Include="SwordShop.cs" />
+    <Compile Include="UtilityShop.cs" />
     <Compile Include="Wallet.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +76,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Potions.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Buy.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sell.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Utilities.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Swords.txt">

@@ -11,6 +11,13 @@ namespace Text_Based_RPG
         private static int ItemLimit = 20;
         public Item[] items = new Item[ItemLimit];
 
+        Random rnd = new Random();
+        static public int CoinLimit = 100;
+
+        public Item[] coins = new Item[CoinLimit];
+        public int rndX;
+        public int rndY;
+
         //Inventory inventory = new Inventory();
 
         public void InitItems()
@@ -21,6 +28,30 @@ namespace Text_Based_RPG
             }
 
             LoadItems();
+        }
+
+        public void InitCoins(Map map)
+        {
+            for (int i = 0; i < CoinLimit; i++)
+            {
+                coins[i] = new Item();
+            }
+
+            LoadCoins(map);
+        }
+
+        public void LoadCoins(Map map)
+        {
+            for (int i = 0; i < CoinLimit; i++)
+            {
+                rndX = rnd.Next(210);
+                rndY = rnd.Next(40);
+                if (map.IsFloor(rndY, rndX))
+                {
+                    coins[i].SetItem(rndX, rndY, 3);
+                }
+            }
+
         }
 
         public void LoadItems()
@@ -58,6 +89,15 @@ namespace Text_Based_RPG
                 
             }
 
+            for (int i = 0; i < CoinLimit; i++)
+            {
+                if (coins[i].x == player.x && coins[i].y == player.y && coins[i].active == true)
+                {
+                    coins[i].Update(player, coins[i], hud);
+                }
+
+            }
+
         }
 
         public new void Draw(Camera camera, Render render, Map map)
@@ -67,6 +107,14 @@ namespace Text_Based_RPG
                 if (items[i].active == true)
                 {
                     items[i].Draw(camera, render);
+                }
+            }
+
+            for (int i = 0; i < CoinLimit; i++)
+            {
+                if (coins[i].active == true)
+                {
+                    coins[i].Draw(camera, render);
                 }
             }
         }

@@ -8,31 +8,37 @@ namespace Text_Based_RPG
 {
     class ShopManager : Shop
     {
-        private const int shopsAmount = 1;
+        private const int shopsAmount = 3;
         public Shop[] shops = new Shop[shopsAmount];
-        
+        SwordShop swordShop = new SwordShop();
+        PotionShop potionShop = new PotionShop();
+        UtilityShop utilityShop = new UtilityShop();
 
         public void InitShops()
         {
-            for (int i = 0; i < shopsAmount; i++)
-            {
-                shops[i] = new Shop();
-            }
+
+            shops[0] = swordShop;
+            shops[1] = potionShop;
+            shops[2] = utilityShop;
 
             LoadShops();
         }
 
+        
+
         public void LoadShops()
         {
-            shops[0].SetShops(118, 3, 1);
+            swordShop.SetShops(118, 3);
+            utilityShop.SetShops(207, 12);
+            potionShop.SetShops(62, 37);
         }
 
-        public void Update(Player player)
+        public void Update(Player player, Inventory inventory)
         {
-            for (int i = 0; i < shopsAmount; i++)
-            {
-                shops[i].Update(player, shops[i]);
-            }
+            swordShop.Update(player, swordShop, inventory);
+            utilityShop.Update(player, utilityShop, inventory);
+            potionShop.Update(player, potionShop, inventory);
+
         }
 
         public void Draw(Camera camera, Render render)

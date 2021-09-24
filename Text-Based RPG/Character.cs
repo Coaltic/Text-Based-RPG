@@ -9,6 +9,8 @@ namespace Text_Based_RPG
 
         public int health;
         public int attack;
+        public int weaponAttack;
+        public int speed;
         public int gold;
 
         public bool alive;

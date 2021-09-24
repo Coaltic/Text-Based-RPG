@@ -8,9 +8,9 @@ namespace Text_Based_RPG
         public int exp = 0;
         private int levelUpLimit = 30;
 
-        public int sword = 0;
-        public bool hasSword = false;
+        //public int sword = 0;
         public bool hasKey = false;
+        
 
         Wallet wallet = new Wallet();
         //GameManager gameManager;
@@ -23,8 +23,10 @@ namespace Text_Based_RPG
             this.y = y;
             this.attack = 25;
             this.health = 100;
+            this.speed = 1;
             this.alive = true;
             this.gold = 0;
+            //wallet.walletMax = 20;
         }
 
         public void Update(Map map, Player player, EnemyManager enemyManager, Camera camera, Hud hud, Inventory inventory)
@@ -49,7 +51,7 @@ namespace Text_Based_RPG
 
             if (input.KeyChar == 'w')
             {
-                if (Movement(x, y - 1, map, player, enemyManager, hud) == true)
+                if (Movement(x, y - speed, map, player, enemyManager, hud) == true)
                 {
                     if (GameManager.scrollingCamera == false)
                     {
@@ -59,7 +61,7 @@ namespace Text_Based_RPG
             }
             else if (input.KeyChar == 'd')
             {
-                if (Movement(x + 1, y, map, player, enemyManager, hud) == true)
+                if (Movement(x + speed, y, map, player, enemyManager, hud) == true)
                 {
                     if (GameManager.scrollingCamera == false)
                     {
@@ -69,7 +71,7 @@ namespace Text_Based_RPG
             }
             else if (input.KeyChar == 's')
             {
-                if (Movement(x, y + 1, map, player, enemyManager, hud) == true)
+                if (Movement(x, y + speed, map, player, enemyManager, hud) == true)
                 {
                     if (GameManager.scrollingCamera == false)
                     {
@@ -79,7 +81,7 @@ namespace Text_Based_RPG
             }
             else if (input.KeyChar == 'a')
             {
-                if (Movement(x - 1, y, map, player, enemyManager, hud) == true)
+                if (Movement(x - speed, y, map, player, enemyManager, hud) == true)
                 {
                     if (GameManager.scrollingCamera == false)
                     {
@@ -97,6 +99,8 @@ namespace Text_Based_RPG
 
         public bool Movement(int x, int y, Map map, Player player, EnemyManager enemyManager, Hud hud)
         {
+            
+
             if (map.IsFloor(y, x) == true)
             {
                 if (enemyManager.IsEnemy(x, y, player, hud) == true)
@@ -181,6 +185,35 @@ namespace Text_Based_RPG
             hud.ShowPlayerStats(player);
         }
 
-        
+        public void WalletUpgrade()
+        {
+            wallet.UpdateMax();
+        }
+
+        public void PotionEffect(Player player, Item item)
+        { 
+            if (item.name == "Strength")
+            {
+
+                player.attack = player.attack + 10;
+                
+                //PotionEffectTimer();
+            }
+            if (item.name == "Regen")
+            {
+                player.health = player.health + 50;
+                //hasRegenEffect = true;
+            }
+            if (item.name == "Luck")
+            {
+                player.gold = (int)(player.gold * 1.5d);
+
+            }
+        }
+
+
+
+
+
     }
 }
