@@ -25,14 +25,11 @@ namespace Text_Based_RPG
         public Item item1 = new Item();
         public Item item2 = new Item();
         public Item item3 = new Item();
-        //GameState switchState;
 
-        //public Item[] shopItems = new Item[shopMax];
         public string shopScreen = System.IO.File.ReadAllText("Shop.txt");
         public string buyScreen = System.IO.File.ReadAllText("Buy.txt");
         public string sellScreen = System.IO.File.ReadAllText("Sell.txt");
-        //public string potionSprites= System.IO.File.ReadAllText("Potions.txt");
-        //public string swordSprites = System.IO.File.ReadAllText("Swords.txt");
+
         public string shopSprites;
 
         public void SetShops(int x, int y)
