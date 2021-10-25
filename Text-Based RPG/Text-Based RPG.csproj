@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="castle.txt" />
+    <Content Include="EnemyLocationData.txt" />
     <Content Include="GameOverScreen.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -84,7 +85,9 @@
     <Content Include="Sell.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="PlayerData.txt" />
+    <Content Include="PlayerData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Utilities.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
