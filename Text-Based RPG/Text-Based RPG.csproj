@@ -84,6 +84,7 @@
     <Content Include="Sell.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="PlayerData.txt" />
     <Content Include="Utilities.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
