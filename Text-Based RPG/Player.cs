@@ -8,12 +8,10 @@ namespace Text_Based_RPG
         public int exp = 0;
         private int levelUpLimit = 30;
 
-        //public int sword = 0;
         public bool hasKey = false;
         
 
         Wallet wallet = new Wallet();
-        //GameManager gameManager;
         
 
         public Player(int x, int y)
@@ -26,7 +24,6 @@ namespace Text_Based_RPG
             this.speed = 1;
             this.alive = true;
             this.gold = 0;
-            //wallet.walletMax = 20;
         }
 
         public void Update(Map map, Player player, EnemyManager enemyManager, Camera camera, Hud hud, Inventory inventory)

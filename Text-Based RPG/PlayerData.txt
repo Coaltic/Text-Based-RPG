@@ -1,0 +1,11 @@
+﻿PLAYER
+
+Level;1;
+Exp;0;
+LevelUpLimit;30;
+X;22
+Y;10
+Attack;25;
+Health;100;
+Speed;1;
+Gold;0;
