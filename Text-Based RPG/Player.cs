@@ -1,12 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO; //File.
 
 namespace Text_Based_RPG
 {
     class Player : Character
     {
-        public int level = 1;
-        public int exp = 0;
-        private int levelUpLimit = 30;
+
+        public string[] data = System.IO.File.ReadAllLines("PlayerData.txt");
+        public string[] gottenData;
+
+        public int level;
+        public int exp;
+        private int levelUpLimit;
+
 
         //public int sword = 0;
         public bool hasKey = false;
@@ -18,15 +28,38 @@ namespace Text_Based_RPG
 
         public Player(int x, int y)
         {
+            
             this.Icon = "@";
+            GetDataFromText(2);
             this.x = x;
+            GetDataFromText(3);
             this.y = y;
-            this.attack = 25;
-            this.health = 100;
-            this.speed = 1;
-            this.alive = true;
-            this.gold = 0;
-            //wallet.walletMax = 20;
+
+            GetDataFromText(4);
+            level = int.Parse(gottenData[1]);
+            GetDataFromText(5);
+            exp = int.Parse(gottenData[1]);
+            GetDataFromText(6);
+            levelUpLimit = int.Parse(gottenData[1]);
+            GetDataFromText(7);
+            attack = int.Parse(gottenData[1]);
+            GetDataFromText(8);
+            health = int.Parse(gottenData[1]);
+            GetDataFromText(9);
+            speed = int.Parse(gottenData[1]);
+            GetDataFromText(10);
+            gold = int.Parse(gottenData[1]);
+            alive = true;
+        }
+
+        /*public void SetData(int variable, int dataRow)
+        {
+            GetDataFromText(data);
+        }*/
+
+        public void GetDataFromText(int row)
+        {
+            gottenData = data[row].Split(';');
         }
 
         public void Update(Map map, Player player, EnemyManager enemyManager, Camera camera, Hud hud, Inventory inventory)
