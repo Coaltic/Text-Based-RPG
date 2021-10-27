@@ -31,9 +31,9 @@ namespace Text_Based_RPG
             
             this.Icon = "@";
             GetDataFromText(2);
-            this.x = x;
+            this.x = int.Parse(gottenData[1]);
             GetDataFromText(3);
-            this.y = y;
+            this.y = int.Parse(gottenData[1]);
 
             GetDataFromText(4);
             level = int.Parse(gottenData[1]);

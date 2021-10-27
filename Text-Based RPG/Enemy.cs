@@ -4,11 +4,12 @@ namespace Text_Based_RPG
 {
     class Enemy : Character
     {
+        static public string[] data = System.IO.File.ReadAllLines("EnemyData.txt");
+        static public string[] gottenData;
+
         static public int EnemyLimit = 20;
         public int deathTally;
         private bool checkpoint = false;
-        private int right = 0;
-        private int left = 0;
 
         public int enemyType;
         private int exp;
@@ -22,32 +23,14 @@ namespace Text_Based_RPG
             this.x = x;
             this.y = y;
             alive = true;
-            this.gold = rnd.Next(10);
 
-            if (type == 1)
-            {
-                Icon = "S";
-                health = 200;
-                attack = 30;
-                exp = 30;
-                this.gold = rnd.Next(15, 20);
-            }
-            else if (type == 2)
-            {
-                Icon = "Z";
-                health = 100;
-                attack = 20;
-                exp = 20;
-                this.gold = rnd.Next(10, 15);
-            }
-            else if (type == 3)
-            {
-                Icon = "R";
-                health = 50;
-                attack = 15;
-                exp = 15;
-                this.gold = rnd.Next(5, 10);
-            }
+            gottenData = data[type].Split(';');
+
+            Icon = gottenData[1];
+            health = int.Parse(gottenData[2]);
+            attack = int.Parse(gottenData[3]);
+            exp = int.Parse(gottenData[4]);
+            gold = rnd.Next(int.Parse(gottenData[5]), int.Parse(gottenData[6]));
         }
 
 

@@ -2,6 +2,8 @@
 {
     class Item
     {
+        static public string[] data = System.IO.File.ReadAllLines("ItemData.txt");
+        static public string[] gottenData;
 
         public int x;
         public int y;
@@ -27,26 +29,12 @@
             this.x = x;
             this.y = y;
 
-            if (type <= 1)
-            {
-                Icon = "+";
-                name = "Healthpack";
-                buyPrice = 15;
-                sellPrice = 8;
-            }
-            else if (type == 2)
-            {
-                Icon = "ð";
-                name = "Key";
-                buyPrice = 15;
-                sellPrice = 8;
-            }
-            else if (type == 3)
-            {
-                Icon = "o";
-                name = "Gold";
+            gottenData = data[type].Split(';');
 
-            }
+            Icon = gottenData[1];
+            name = gottenData[2];
+            buyPrice = int.Parse(gottenData[3]);
+            sellPrice = int.Parse(gottenData[4]);
         }
 
         public void Update(Player player, Item item, Hud hud)

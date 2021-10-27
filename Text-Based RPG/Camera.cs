@@ -8,15 +8,18 @@ namespace Text_Based_RPG
 {
     class Camera
     {
+        static public string[] data = System.IO.File.ReadAllLines("CameraData.txt");
+        static public string[] gottenData = data[1].Split(';');
+
         public int offsetX;
         public int offsetY;
 
-
+        
         public int Xstart;
-        public int Xend = 54;
+        public int Xend = int.Parse(gottenData[0]);
 
         public int Ystart;
-        public int Yend = 22;
+        public int Yend = int.Parse(gottenData[1]);
 
         public int scrollRight;
         public int scrollLeft;

@@ -1,0 +1,4 @@
+﻿Type;Icon;Health;Attack;EXP;Goldmin;Goldmax;
+1;S;200;30;30;15;20
+2;Z;100;20;20;10;15
+3;R;50;15;15;5;10;
