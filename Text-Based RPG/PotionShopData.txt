@@ -1,0 +1,4 @@
+﻿buyPrice;sellPrice;potionType;name;
+25;13;Strength;
+25;13;Regen;
+25;13;Luck;

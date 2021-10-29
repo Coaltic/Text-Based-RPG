@@ -4,9 +4,12 @@ namespace Text_Based_RPG
 {
     class Inventory
     {
-        private const int invLimit = 8;
+        static public string[] data = System.IO.File.ReadAllLines("InventoryData.txt");
+        static public string[] gottenData = data[1].Split(';');
+
+        static public int invLimit = int.Parse(gottenData[0]);
         public Item[] invItem = new Item[invLimit];
-        private int startLine = 22;
+        private int startLine = int.Parse(gottenData[1]);
 
         public Inventory()
         {

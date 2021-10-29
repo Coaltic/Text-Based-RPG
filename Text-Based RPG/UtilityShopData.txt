@@ -1,0 +1,4 @@
+﻿buyPrice;sellPrice;Icon;name;
+10;5;+;Health Pack;
+10;0;d;Key;
+20;0;0;Wallet;

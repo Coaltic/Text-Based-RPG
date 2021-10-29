@@ -1,5 +1,5 @@
 ﻿PLAYER DATA
-
+Icon;@;
 x;22;
 y;10;
 level;1;

@@ -1,0 +1,3 @@
+﻿swordShop;118;3;
+utilityShop;207;12;
+potionShop;62;37;

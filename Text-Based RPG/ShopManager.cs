@@ -8,6 +8,9 @@ namespace Text_Based_RPG
 {
     class ShopManager : Shop
     {
+        public string[] data = System.IO.File.ReadAllLines("ShopLocationData.txt");
+        public string[] gottenData;
+
         private const int shopsAmount = 3;
         public Shop[] shops = new Shop[shopsAmount];
         SwordShop swordShop = new SwordShop();
@@ -28,9 +31,12 @@ namespace Text_Based_RPG
 
         public void LoadShops()
         {
-            swordShop.SetShops(118, 3);
-            utilityShop.SetShops(207, 12);
-            potionShop.SetShops(62, 37);
+            gottenData = data[0].Split(';');
+            swordShop.SetShops(int.Parse(gottenData[1]), int.Parse(gottenData[2]));
+            gottenData = data[1].Split(';');
+            utilityShop.SetShops(int.Parse(gottenData[1]), int.Parse(gottenData[2]));
+            gottenData = data[2].Split(';');
+            potionShop.SetShops(int.Parse(gottenData[1]), int.Parse(gottenData[2]));
         }
 
         public void Update(Player player, Inventory inventory)

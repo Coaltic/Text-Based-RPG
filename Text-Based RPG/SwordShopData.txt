@@ -1,0 +1,4 @@
+﻿buyPrice;sellPrice;name;
+40;25;Upgrade;
+60;50;Good Upgrade;
+100;100;Great Upgrade;

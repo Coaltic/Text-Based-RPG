@@ -8,23 +8,34 @@ namespace Text_Based_RPG
 {
     class UtilityShop : Shop
     {
+        public string[] data = System.IO.File.ReadAllLines("UtilityShopData.txt");
+        public string[] gottenData;
+
         public string utilitiesSprites = System.IO.File.ReadAllText("Utilities.txt");
 
         public UtilityShop()
         {
             shopSprites = utilitiesSprites;
-            item3.buyPrice = 20;
-            item3.name = "Wallet";
 
-            item2.buyPrice = 10;
-            item2.name = "Key";
-            item2.Icon = "d";
+            gottenData = data[3].Split(';');
 
-            item1.buyPrice = 10;
-            item1.sellPrice = 5;
-            item1.name = "Health Pack";
-            item1.Icon = "+";
+            item3.buyPrice = int.Parse(gottenData[0]);
+            item3.sellPrice = int.Parse(gottenData[1]);
+            item3.name = gottenData[3];
 
+            gottenData = data[2].Split(';');
+
+            item2.buyPrice = int.Parse(gottenData[0]);
+            item2.sellPrice = int.Parse(gottenData[1]);
+            item2.Icon = gottenData[2];
+            item2.name = gottenData[3];
+
+            gottenData = data[1].Split(';');
+
+            item1.buyPrice = int.Parse(gottenData[0]);
+            item1.sellPrice = int.Parse(gottenData[1]);
+            item1.Icon = gottenData[2];
+            item1.name = gottenData[3];
         }
 
 

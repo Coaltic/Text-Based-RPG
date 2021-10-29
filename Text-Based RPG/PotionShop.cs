@@ -8,27 +8,34 @@ namespace Text_Based_RPG
 {
     class PotionShop : Shop
     {
-        
+
         //public int potionType;
+        public string[] data = System.IO.File.ReadAllLines("PotionShopData.txt");
+        public string[] gottenData;
 
         public string potionSprites = System.IO.File.ReadAllText("Potions.txt");
 
         public PotionShop()
         {
             shopSprites = potionSprites;
-            item1.buyPrice = 25;
-            item1.sellPrice = 13;
-            item1.potionType = 1;
-            item1.name = "Strength";
 
+            gottenData = data[1].Split(';');
+            
+            item1.buyPrice = int.Parse(gottenData[0]);
+            item1.sellPrice = int.Parse(gottenData[1]);
+            item1.name = gottenData[2];
 
-            item2.buyPrice = 25;
-            item2.sellPrice = 13;
-            item2.name = "Regen";
+            gottenData = data[2].Split(';');
 
-            item3.buyPrice = 25;
-            item3.sellPrice = 13;
-            item3.name = "Luck";
+            item2.buyPrice = int.Parse(gottenData[0]);
+            item2.sellPrice = int.Parse(gottenData[1]);
+            item2.name = gottenData[2];
+
+            gottenData = data[3].Split(';');
+
+            item3.buyPrice = int.Parse(gottenData[0]);
+            item3.sellPrice = int.Parse(gottenData[1]);
+            item3.name = gottenData[2];
 
         }
        

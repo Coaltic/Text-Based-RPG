@@ -5,9 +5,9 @@ namespace Text_Based_RPG
     class Enemy : Character
     {
         static public string[] data = System.IO.File.ReadAllLines("EnemyData.txt");
-        static public string[] gottenData;
+        static public string[] gottenData = data[1].Split(';');
 
-        static public int EnemyLimit = 20;
+        static public int EnemyLimit = int.Parse(gottenData[1]);
         public int deathTally;
         private bool checkpoint = false;
 
@@ -24,7 +24,7 @@ namespace Text_Based_RPG
             this.y = y;
             alive = true;
 
-            gottenData = data[type].Split(';');
+            gottenData = data[type + 1].Split(';');
 
             Icon = gottenData[1];
             health = int.Parse(gottenData[2]);

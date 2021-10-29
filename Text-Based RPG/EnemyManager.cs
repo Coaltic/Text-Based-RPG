@@ -8,6 +8,9 @@ namespace Text_Based_RPG
         public string[] data = System.IO.File.ReadAllLines("EnemyLocationData.txt");
         public string[] gottenData;
 
+        public string[] enemyData = System.IO.File.ReadAllLines("EnemyData.txt");
+        public string[] gottenEnemyData;
+
         public void InitEnemies()
         {
             for (int i = 0; i < EnemyLimit; i++)
@@ -20,7 +23,7 @@ namespace Text_Based_RPG
 
         public bool CheckForEnemy(Char character, int x, int y)
         {
-            //ToEnemy(x, y, 3);
+            gottenData = data[4].Split(';');
             if (character == 'R')
             {
                 ToEnemy(x, y, 3);

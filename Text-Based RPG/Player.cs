@@ -28,8 +28,8 @@ namespace Text_Based_RPG
 
         public Player(int x, int y)
         {
-            
-            this.Icon = "@";
+            GetDataFromText(1);
+            Icon = gottenData[1];
             GetDataFromText(2);
             this.x = int.Parse(gottenData[1]);
             GetDataFromText(3);
