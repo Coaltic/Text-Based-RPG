@@ -4,10 +4,6 @@ namespace Text_Based_RPG
 {
     class Hud
     {
-        static public string[] data = System.IO.File.ReadAllLines("HudData.txt");
-        static public string[] gottenData;
-
-
         public int currentHudLine = 25;
         public int currentHudText = 0;
         public int previousHudText = 1;
@@ -116,32 +112,27 @@ namespace Text_Based_RPG
 
         public void ShowPlayerStats(Player player)
         {
-            gottenData = data[0].Split(';');
-            DisplayHud(gottenData[0] + player.health);
+            DisplayHud("Player Health: " + player.health);
         }
 
         public void PlayerLevelUp(Player player)
         {
-            gottenData = data[1].Split(';');
-            DisplayHud(gottenData[0] + player.level);
+            DisplayHud("Player reached level " + player.level);
         }
 
         public void ShowEnemyStats(Enemy enemy)
         {
-            gottenData = data[2].Split(';');
-            DisplayHud(gottenData[0] + enemy.health);
+            DisplayHud("Enemy Health: " + enemy.health);
         }
 
         public void ItemCollected(Item item)
         {
-            gottenData = data[3].Split(';');
-            DisplayHud(gottenData[0] + item.name);
+            DisplayHud("You used the " + item.name);
         }
 
         public void CoinCollected(Item item)
         {
-            gottenData = data[4].Split(';');
-            DisplayHud(gottenData[0] + item.name);
+            DisplayHud("You found " + item.name);
         }
     }
 }

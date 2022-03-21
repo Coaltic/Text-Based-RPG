@@ -76,7 +76,6 @@
     <Content Include="GameOverScreen.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="HudData.txt" />
     <Content Include="InventoryData.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
