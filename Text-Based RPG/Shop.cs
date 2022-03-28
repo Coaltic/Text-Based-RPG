@@ -182,6 +182,8 @@ namespace Text_Based_RPG
                 {
                     itemNumber = int.Parse(input.KeyChar.ToString());
                     item = inventory.GetItemInfo(itemNumber);
+                    if (item == null) break;
+                       
                     inventory.Draw();
 
                     player.gold = player.gold + item.sellPrice;

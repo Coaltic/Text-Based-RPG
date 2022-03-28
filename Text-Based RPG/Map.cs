@@ -22,7 +22,7 @@ namespace Text_Based_RPG
         }
 
         public void DisplayMap(Camera camera, Render render, Map map)
-        { 
+        {
             Console.SetCursorPosition(0, 0);
 
             for (int y = camera.Ystart; y < camera.Yend; y++)

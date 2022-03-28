@@ -1,4 +1,4 @@
 ﻿Type;Icon;Name;BuyPrice;SellPrice
 1;+;Healthpack;15;8;
 2;ð;Key;15;8;
-3;o;Gold;0;0;
+3;o;Piece of Gold;0;0;

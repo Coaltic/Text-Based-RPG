@@ -43,24 +43,24 @@
             {
                 player.health = player.health + 25;
                 item.active = false;
-                hud.ItemCollected(item);
+                hud.ItemUsed(item);
             }
             else if (item.itemType == 2)
             {
                 player.hasKey = true;
                 item.active = false;
-                hud.ItemCollected(item);
+                hud.ItemUsed(item);
             }
             else if (item.itemType == 3)
             {
                 player.gold++;
                 item.active = false;
-                hud.CoinCollected(item);
+                hud.ItemCollected(item);
             }
 
 
             
-            hud.ShowPlayerStats(player);
+            //hud.ShowPlayerStats(player);
         }
 
         

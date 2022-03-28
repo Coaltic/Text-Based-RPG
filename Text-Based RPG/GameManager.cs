@@ -26,6 +26,8 @@ namespace Text_Based_RPG
 
         public void RunGame()
         {
+            SetScreen();
+
             OnStateChanged(GameState.InMenu);
             OnStateChanged(GameState.InGame);
             //map.DisplayMap(camera, render, map);
@@ -33,6 +35,7 @@ namespace Text_Based_RPG
 
         public void PlayGame()
         {
+
             itemManager.InitItems();
             itemManager.InitCoins(map);
             enemyManager.InitEnemies();
@@ -44,14 +47,15 @@ namespace Text_Based_RPG
             SetUp();
             while (player.alive == true)
             {
-                Console.CursorVisible = false;
+                SetScreen();
 
                 player.Update(map, player, enemyManager, camera, hud, inventory);
                 enemyManager.Update(map, player, hud);
                 itemManager.Update(player, hud, inventory);
                 shopManager.Update(player, inventory);
 
-                //shopManager.SwitchState()
+                SetScreen();
+
                 map.DisplayMap(camera, render, map);
                 player.Draw(camera, render);
                 enemyManager.Draw(camera, render);
@@ -81,6 +85,14 @@ namespace Text_Based_RPG
             itemManager.Draw(camera, render, map);
             shopManager.Draw(camera, render);
             inventory.Draw();
+        }
+
+        public void SetScreen()
+        {
+            Console.CursorVisible = false;
+            Console.SetWindowSize(camera.Xend + 20, hud.currentHudLine + 2);
+            Console.SetBufferSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+            Console.SetWindowPosition(0, 0);
         }
         
         void OnStateChanged(GameState state)

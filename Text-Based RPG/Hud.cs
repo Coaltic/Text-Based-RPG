@@ -125,14 +125,14 @@ namespace Text_Based_RPG
             DisplayHud("Enemy Health: " + enemy.health);
         }
 
-        public void ItemCollected(Item item)
+        public void ItemUsed(Item item)
         {
             DisplayHud("You used the " + item.name);
         }
 
-        public void CoinCollected(Item item)
+        public void ItemCollected(Item item)
         {
-            DisplayHud("You found " + item.name);
+            DisplayHud("You found a " + item.name);
         }
     }
 }

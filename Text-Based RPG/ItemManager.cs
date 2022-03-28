@@ -8,8 +8,8 @@ namespace Text_Based_RPG
 {
     class ItemManager : Item
     {
-        public string[] data = System.IO.File.ReadAllLines("ItemLocationData.txt");
-        public string[] gottenData;
+        new public string[] data = System.IO.File.ReadAllLines("ItemLocationData.txt");
+        new public string[] gottenData;
 
         private static int ItemLimit = 20;
         public Item[] items = new Item[ItemLimit];
@@ -76,6 +76,7 @@ namespace Text_Based_RPG
                 if (items[i].x == player.x && items[i].y == player.y && items[i].active == true)
                 {
                     inventory.Update(items[i]);
+                    hud.ItemCollected(items[i]);
                 }
                 
             }

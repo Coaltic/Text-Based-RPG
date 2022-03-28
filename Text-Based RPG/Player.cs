@@ -64,6 +64,10 @@ namespace Text_Based_RPG
 
         public void Update(Map map, Player player, EnemyManager enemyManager, Camera camera, Hud hud, Inventory inventory)
         {
+            Console.CursorVisible = false;
+            Console.SetWindowSize(camera.Xend + 20, hud.currentHudLine + 2);
+            Console.SetWindowPosition(0, 0);
+
             if (player.exp >= player.levelUpLimit)
             {
                 player.exp = player.exp - player.levelUpLimit;
@@ -127,6 +131,7 @@ namespace Text_Based_RPG
                 inventory.UseInventory(player, input, hud);
             }
 
+            Console.SetBufferSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             wallet.Update(player);
         }
 
@@ -138,11 +143,13 @@ namespace Text_Based_RPG
             {
                 if (enemyManager.IsEnemy(x, y, player, hud) == true)
                 {
+                    Console.SetBufferSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
                     Console.Beep(800, 200);
                     return false;
                 }
                 else
                 {
+                    Console.SetBufferSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
                     player.y = y;
                     player.x = x;
                     return true;

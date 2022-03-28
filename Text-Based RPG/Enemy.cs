@@ -38,6 +38,9 @@ namespace Text_Based_RPG
         {
             if (enemy.alive == true)
             {
+
+                Console.SetBufferSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+
                 if (enemyType == 1)
                 {
                     if (player.IsPlayerNear(enemy.x, enemy.y, player) == true)
